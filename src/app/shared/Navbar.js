@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Trans } from 'react-i18next';
+
 
 class Navbar extends Component {
   toggleOffcanvas() {
@@ -29,13 +29,13 @@ class Navbar extends Component {
               <Dropdown.Toggle as="a" className="nav-link cursor-pointer no-caret">
                 <div className="navbar-profile">
                   <img className="img-xs rounded-circle" src={require('../../assets/images/faces/face15.jpg')} alt="profile" />
-                  <p className="mb-0 d-none d-sm-block navbar-profile-name"><Trans>Andres</Trans></p>
+                  <p className="mb-0 d-none d-sm-block navbar-profile-name">Andres</p>
                   <i className="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="navbar-dropdown preview-list navbar-profile-dropdown-menu">
-                <h6 className="p-3 mb-0"><Trans>Profile</Trans></h6>
+                <h6 className="p-3 mb-0">Profile</h6>
                 <Dropdown.Divider />
                 <Dropdown.Item href="!#" onClick={evt => evt.preventDefault()} className="preview-item">
                   <div className="preview-thumbnail">
@@ -44,7 +44,7 @@ class Navbar extends Component {
                     </div>
                   </div>
                   <div className="preview-item-content">
-                    <p className="preview-subject mb-1"><Trans>Settings</Trans></p>
+                    <p className="preview-subject mb-1">Settings</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Divider />
@@ -55,19 +55,19 @@ class Navbar extends Component {
                     </div>
                   </div>
                   <div className="preview-item-content">
-                    <p className="preview-subject mb-1"><Trans>Log Out</Trans></p>
+                    <p className="preview-subject mb-1">Log Out</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <p className="p-3 mb-0 text-center"><Trans>Advanced settings</Trans></p>
-              </Dropdown.Menu>
-            </Dropdown>
-          </ul>
+                <p className="p-3 mb-0 text-center">Advanced settings</p >
+              </Dropdown.Menu >
+            </Dropdown >
+          </ul >
           <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" onClick={this.toggleOffcanvas}>
             <span className="mdi mdi-format-line-spacing"></span>
           </button>
-        </div>
-      </nav>
+        </div >
+      </nav >
     );
   }
 }
