@@ -1,19 +1,22 @@
-import React, { Component, useContext } from 'react';
-import { context } from '../../context/authContext';
+import React, { Component, useContext } from "react";
+import { context } from "../../context/authContext";
 // import { Trans } from 'react-i18next';
 class Affiliate extends Component {
     render() {
-
-
-
         return (
             <div>
                 <div className="page-header">
                     <h3 className="page-title">Lista De Afiliados</h3>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Lista</a></li>
-                            <li className="breadcrumb-item active" aria-current="page">Afiliados</li>
+                            <li className="breadcrumb-item">
+                                <a href="!#" onClick={(event) => event.preventDefault()}>
+                                    Lista
+                                </a>
+                            </li>
+                            <li className="breadcrumb-item active" aria-current="page">
+                                Afiliados
+                            </li>
                         </ol>
                     </nav>
                 </div>
@@ -38,7 +41,27 @@ class Affiliate extends Component {
                                             <td>53275531</td>
                                             <td>302093209</td>
                                             <td>Colombia</td>
-                                            <td>  <button type="button" className="btn btn-outline-primary btn-sm">Editar</button> <button type="button" className="btn btn-outline-danger btn-sm">Eliminar</button></td>
+                                            <td>
+                                                {" "}
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-primary btn-sm"
+                                                >
+                                                    Editar
+                                                </button>{" "}
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-danger btn-sm"
+                                                >
+                                                    Eliminar
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-outline-success btn-sm"
+                                                >
+                                                    Agregar Puntos
+                                                </button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -46,7 +69,6 @@ class Affiliate extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }
