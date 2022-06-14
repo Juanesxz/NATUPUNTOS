@@ -78,7 +78,7 @@ class NewCompanies extends Component {
 
 
 
-                                <button type="submit" className="btn btn-outline-primary mr-2">Registrar   </button>
+                                <button type="submit" className="btn btn-outline-primary mr-2">Registrar</button>
 
                                 <Link to="/dashboard" className="btn btn-outline-light">Cancelar</Link>
                             </form>

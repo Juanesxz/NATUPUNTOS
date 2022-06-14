@@ -1,20 +1,35 @@
 import React, { useState } from "react";
-
-import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import { Link, useNavigate } from "react-router-dom";
 
 function register() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [user, setUser] = useState({
     email: "",
-    password: "",
+    assignedcode: "",
   });
 
-  const handleChange = (e) => {
-    console.log(e.target.id, e.target.value);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { signup } = useAuth();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const navigate = useNavigate();
+
+  const handleChange = ({ target: { name, value } }) => {
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signup(user.email, user.assignedcode);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div >
+    <div>
       <div className="d-flex align-items-center auth px-0 h-100">
         <div className="row w-100 mx-0">
           <div className="col-lg-5 mx-auto">
@@ -27,22 +42,14 @@ function register() {
               </div>
               <h4>REGISTRAR NUEVO USUARIO</h4>
 
-              <form className="pt-3">
+              <form onSubmit={handleSubmit} className="pt-3">
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control form-control-lg"
                     id="name"
+                    name="name"
                     placeholder="Nombre"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className="form-control form-control-lg"
-                    id="email"
-                    placeholder="Correo electronico"
                     onChange={handleChange}
                   />
                 </div>
@@ -51,7 +58,28 @@ function register() {
                     type="text"
                     className="form-control form-control-lg"
                     id="phone"
+                    name="phone"
                     placeholder="Telefono"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    id="assignedcode"
+                    name="assignedcode"
+                    placeholder="Codigo asignado"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    className="form-control form-control-lg"
+                    id="email"
+                    name="email"
+                    placeholder="Correo electronico"
                     onChange={handleChange}
                   />
                 </div>
@@ -60,6 +88,7 @@ function register() {
                   <select
                     className="form-control form-control-lg"
                     id="department"
+                    name="department"
                     onChange={handleChange}
                   >
                     <option>Departamento</option>
@@ -74,6 +103,7 @@ function register() {
                   <select
                     className="form-control form-control-lg"
                     id="city"
+                    name="city"
                     onChange={handleChange}
                   >
                     <option>Ciudad</option>
@@ -86,29 +116,21 @@ function register() {
                 </div>
                 <div className="form-group">
                   <input
-                    type="password"
-                    className="form-control form-control-lg"
-                    id="assignedcode"
-                    placeholder="Codigo asignado"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
                     type="text"
                     className="form-control form-control-lg"
                     id="Address"
+                    name="Address"
                     placeholder="Direccion"
                     onChange={handleChange}
                   />
                 </div>
                 <div className="mt-3">
-                  <Link
+                  <button
                     className="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn"
-                    to="/dashboard"
+                    type="submit"
                   >
                     INSCRIBIRSE
-                  </Link>
+                  </button>
                 </div>
                 <div className="text-center mt-4 font-weight-light">
                   ¿Ya tienes una cuenta?
