@@ -29,23 +29,12 @@ class NewAffiliate extends Component {
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="row">
-                                    <label htmlFor="exampleInputEmail2" className="col-sm-3 col-form-label">Documento</label>
-                                    <div className="col-sm-9">
-                                        <Form.Control type="text" className="form-control" id="exampleInputEmail2" placeholder="Documento" />
-                                    </div>
-                                </Form.Group>
-                                <Form.Group className="row">
                                     <label htmlFor="exampleInputMobile" className="col-sm-3 col-form-label">Telefono</label>
                                     <div className="col-sm-9">
                                         <Form.Control type="text" className="form-control" id="exampleInputMobile" placeholder="Telefono" />
                                     </div>
                                 </Form.Group>
-                                <Form.Group className="row">
-                                    <label htmlFor="exampleInputPassword2" className="col-sm-3 col-form-label">Correo</label>
-                                    <div className="col-sm-9">
-                                        <Form.Control type="email" className="form-control" id="exampleInputPassword2" placeholder="Correo" />
-                                    </div>
-                                </Form.Group>
+
 
 
                                 <Form.Group className="row">

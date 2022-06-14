@@ -34,7 +34,7 @@ const PurseCompanies = lazy(() => import("./allied-companies/PurseCompanies"));
 const NewCompanies = lazy(() => import("./allied-companies/NewCompanies"));
 
 //admin
-const Admin = lazy(() => import("./admin/AccountingControl"));
+const Admin = lazy(() => import("./admin/Reports"));
 const AdministrativePortfolio = lazy(() =>
   import("./admin/AdministrativePortfolio")
 );
@@ -86,7 +86,7 @@ class AppRoutes extends Component {
             />
 
             {/* admin */}
-            <Route path="/admin/accountingcontrol" component={Admin} />
+            <Route path="/admin/reports" component={Admin} />
             <Route
               path="/admin/administrativeportfolio"
               component={AdministrativePortfolio}

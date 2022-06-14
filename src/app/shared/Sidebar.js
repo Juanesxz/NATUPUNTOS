@@ -182,7 +182,7 @@ class Sidebar extends Component {
             <Collapse in={this.state.adminMenuOpen}>
               <div>
                 <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <Link className={this.isPathActive('/admin/accountingcontrol') ? 'nav-link active' : 'nav-link'} to="/admin/accountingcontrol">Control Contable</Link></li>
+                  <li className="nav-item"> <Link className={this.isPathActive('/admin/Reports') ? 'nav-link active' : 'nav-link'} to="/admin/Reports">Reportes</Link></li>
                   <li className="nav-item"> <Link className={this.isPathActive('/admin/administrativeportfolio') ? 'nav-link active' : 'nav-link'} to="/admin/administrativeportfolio">Cartera</Link></li>
                   <li className="nav-item"> <Link className={this.isPathActive('/admin/config') ? 'nav-link active' : 'nav-link'} to="/admin/config">Configuracion</Link></li>
                 </ul >

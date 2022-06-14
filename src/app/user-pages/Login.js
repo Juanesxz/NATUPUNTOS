@@ -26,6 +26,12 @@ export class Login extends Component {
                     <Link className="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn" to="/dashboard">Acceder</Link>
                   </div>
                 </Form>
+                <div className="text-center mt-4 font-weight-light">
+                  ¿No tienes cuenta?
+                  <Link to="/user-pages/register" className="text-primary">
+                    Registrate
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

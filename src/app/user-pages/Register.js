@@ -14,10 +14,10 @@ function register() {
   };
 
   return (
-    <div>
+    <div >
       <div className="d-flex align-items-center auth px-0 h-100">
         <div className="row w-100 mx-0">
-          <div className="col-lg-4 mx-auto">
+          <div className="col-lg-5 mx-auto">
             <div className="card text-center py-5 px-4 px-sm-5">
               <div className="brand-logo">
                 <img
@@ -88,16 +88,18 @@ function register() {
                   <input
                     type="password"
                     className="form-control form-control-lg"
-                    id="exampleInputPassword1"
+                    id="assignedcode"
                     placeholder="Codigo asignado"
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control form-control-lg"
-                    id="exampleInputUsername1"
+                    id="Address"
                     placeholder="Direccion"
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="mt-3">
@@ -110,7 +112,7 @@ function register() {
                 </div>
                 <div className="text-center mt-4 font-weight-light">
                   ¿Ya tienes una cuenta?
-                  <Link to="/user-pages/login-1" className="text-primary">
+                  <Link to="/user-pages/login" className="text-primary">
                     Acceder
                   </Link>
                 </div>

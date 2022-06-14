@@ -219,7 +219,7 @@ i18n
         }
       }
     },
-    fallbackLng: "en",
+    fallbackLng: "es",
     debug: false,
 
     // have a common namespace used around the full app

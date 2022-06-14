@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Trans } from 'react-i18next';
-class AccountingControl extends Component {
+class Reports extends Component {
     render() {
         return (
             <h1>SOY CONTROL ADMINISTRATIVO</h1>
@@ -8,4 +8,4 @@ class AccountingControl extends Component {
     }
 }
 
-export default AccountingControl;
+export default Reports;

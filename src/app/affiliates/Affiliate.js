@@ -37,9 +37,9 @@ function Affiliate() {
                                 <thead>
                                     <tr>
                                         <th>NOMBRE</th>
-                                        <th>DOCUMENTO</th>
+                                        <th>CODIGO ASIGNADO</th>
                                         <th>TELEFONO</th>
-                                        <th>UBICACION</th>
+                                        <th>DIRECCION</th>
                                         <th>ACCIONES</th>
                                     </tr>
                                 </thead>
