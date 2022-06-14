@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function register() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -11,8 +11,8 @@ function register() {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { signup } = useAuth();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const navigate = useNavigate();
+
+
 
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
@@ -22,7 +22,7 @@ function register() {
     e.preventDefault();
     try {
       await signup(user.email, user.assignedcode);
-      navigate("/");
+
     } catch (error) {
       console.log(error);
     }
