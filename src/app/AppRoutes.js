@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-
 import Spinner from "../app/shared/Spinner";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 import { AuthProvider } from "../context/authContext";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
@@ -50,55 +50,51 @@ class AppRoutes extends Component {
       <Suspense fallback={<Spinner />}>
         <Switch>
           <AuthProvider>
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route path="/basic-ui/buttons" component={Buttons} />
-            <Route path="/basic-ui/dropdowns" component={Dropdowns} />
-            <Route path="/basic-ui/typography" component={Typography} />
 
-            <Route
-              path="/form-Elements/basic-elements"
-              component={BasicElements}
-            />
+            <ProtectedRoute>
+              <Route exact path="/dashboard" component={Dashboard} />
 
-            <Route path="/tables/basic-table" component={BasicTable} />
-
-            <Route path="/icons/mdi" component={Mdi} />
-
-            <Route path="/charts/chart-js" component={ChartJs} />
-
-            <Route path="/user-pages/login" component={Login} />
-            <Route path="/user-pages/register" component={Register} />
-            <Route path="/error-pages/error-404" component={Error404} />
-            <Route path="/error-pages/error-500" component={Error500} />
-            {/* Afiliados */}
-
-            <Route path="/affiliates/affiliate" component={Affiliate} />
-            <Route path="/affiliates/newaffiliate" component={NewAffiliate} />
-            {/* Empresas aliadas */}
-            <Route path="/allied-companies/companies" component={Companies} />
-            <Route
-              path="/allied-companies/newcompanies"
-              component={NewCompanies}
-            />
-            <Route
-              path="/allied-companies/pursecompanies"
-              component={PurseCompanies}
-            />
-
-            {/* admin */}
-            <Route path="/admin/reports" component={Admin} />
-            <Route
-              path="/admin/administrativeportfolio"
-              component={AdministrativePortfolio}
-            />
-            <Route path="/admin/config" component={Config} />
-
-            {/* statistics */}
-            <Route
-              path="/statistics/biweeklyreport"
-              component={BiweeklyReport}
-            />
-            <Route path="/statistics/monthlyreport" component={MonthlyReport} />
+              <Route path="/basic-ui/buttons" component={Buttons} />
+              <Route path="/basic-ui/dropdowns" component={Dropdowns} />
+              <Route path="/basic-ui/typography" component={Typography} />
+              <Route
+                path="/form-Elements/basic-elements"
+                component={BasicElements}
+              />
+              <Route path="/tables/basic-table" component={BasicTable} />
+              <Route path="/icons/mdi" component={Mdi} />
+              <Route path="/charts/chart-js" component={ChartJs} />
+              <Route path="/user-pages/login" component={Login} />
+              <Route path="/user-pages/register" component={Register} />
+              <Route path="/error-pages/error-404" component={Error404} />
+              <Route path="/error-pages/error-500" component={Error500} />
+              {/* Afiliados */}
+              <Route path="/affiliates/affiliate" component={Affiliate} />
+              <Route path="/affiliates/newaffiliate" component={NewAffiliate} />
+              {/* Empresas aliadas */}
+              <Route path="/allied-companies/companies" component={Companies} />
+              <Route
+                path="/allied-companies/newcompanies"
+                component={NewCompanies}
+              />
+              <Route
+                path="/allied-companies/pursecompanies"
+                component={PurseCompanies}
+              />
+              {/* admin */}
+              <Route path="/admin/reports" component={Admin} />
+              <Route
+                path="/admin/administrativeportfolio"
+                component={AdministrativePortfolio}
+              />
+              <Route path="/admin/config" component={Config} />
+              {/* statistics */}
+              <Route
+                path="/statistics/biweeklyreport"
+                component={BiweeklyReport}
+              />
+              <Route path="/statistics/monthlyreport" component={MonthlyReport} />
+            </ProtectedRoute>
           </AuthProvider>
           <Redirect to="/dashboard" />
         </Switch>

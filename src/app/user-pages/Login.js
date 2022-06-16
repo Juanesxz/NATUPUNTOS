@@ -44,7 +44,9 @@ function Login() {
         }
         if (error.code === "auth/user-not-found") {
           toast.error("El usuario no existe");
+
         }
+        if (error.code === "auth/wrong-password") { toast.error("La contraseña es incorrecta"); }
       }
     }
   };
