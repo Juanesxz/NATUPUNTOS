@@ -15,19 +15,18 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-
     const [user, setUser] = useState(null);
 
     const signup = (email, password) =>
         createUserWithEmailAndPassword(auth, email, password);
 
-    const login = (email, password) =>
+    const login = async (email, password) =>
         signInWithEmailAndPassword(auth, email, password);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (currentUser) => {
+        onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-        })
+        });
     }, []);
 
     return (

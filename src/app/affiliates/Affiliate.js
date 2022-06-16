@@ -1,15 +1,12 @@
 import React from "react";
-import { useAuth } from "../../context/authContext";
+
 
 // import { Trans } from 'react-i18next';
 function Affiliate() {
 
 
 
-    const authContext = useAuth()
 
-
-    console.log(authContext);
 
     return (
         <div>
