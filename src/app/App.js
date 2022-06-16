@@ -7,6 +7,8 @@ import Sidebar from './shared/Sidebar';
 import Footer from './shared/Footer';
 import { withTranslation } from "react-i18next";
 import { AuthProvider } from '../context/authContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class App extends Component {
@@ -30,6 +32,7 @@ class App extends Component {
               </AuthProvider>
             </div>
             {footerComponent}
+            <ToastContainer position='top-right' />
           </div>
         </div>
       </div>

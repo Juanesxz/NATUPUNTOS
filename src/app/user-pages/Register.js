@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { toast } from "react-toastify";
 
 function register() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [user, setUser] = useState({
-    email: "",
+    name: "",
+    phone: "",
     assignedcode: "",
+    email: "",
+    department: "",
+    city: "",
+    address: "",
   });
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { signup } = useAuth();
 
-
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const history = useHistory();
 
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
@@ -20,12 +28,32 @@ function register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await signup(user.email, user.assignedcode);
 
-    } catch (error) {
-      console.log(error);
+    if (user.name === "" || user.phone === "" || user.email === "" || user.department === "" || user.city === "" || user.address === "") {
+      toast.error("Debe llenar todos los campos");
+    } else {
+      try {
+        await signup(user.email, user.assignedcode);
+        history.push("/user-pages/login");
+        toast.success("Successfully registered");
+      } catch (error) {
+
+        if (error.code === "auth/email-already-in-use") {
+          toast.error("El correo ya está en uso");
+        }
+        if (error.code === "auth/invalid-email") {
+          toast.error("El correo no es válido");
+        }
+        if (error.code === "auth/weak-password") {
+          toast.error("La contraseña debe tener al menos 6 caracteres");
+        }
+        if (error.code === "auth/operation-not-allowed") {
+          toast.error("La cuenta no está habilitada");
+        }
+      }
     }
+
+
   };
 
   return (
@@ -118,8 +146,8 @@ function register() {
                   <input
                     type="text"
                     className="form-control form-control-lg"
-                    id="Address"
-                    name="Address"
+                    id="address"
+                    name="address"
                     placeholder="Direccion"
                     onChange={handleChange}
                   />
