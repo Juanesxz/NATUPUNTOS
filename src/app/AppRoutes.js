@@ -51,9 +51,10 @@ class AppRoutes extends Component {
         <Switch>
           <AuthProvider>
 
+            <Route path="/user-pages/login" component={Login} />
+            <Route path="/user-pages/register" component={Register} />
             <ProtectedRoute>
               <Route exact path="/dashboard" component={Dashboard} />
-
               <Route path="/basic-ui/buttons" component={Buttons} />
               <Route path="/basic-ui/dropdowns" component={Dropdowns} />
               <Route path="/basic-ui/typography" component={Typography} />
@@ -64,8 +65,6 @@ class AppRoutes extends Component {
               <Route path="/tables/basic-table" component={BasicTable} />
               <Route path="/icons/mdi" component={Mdi} />
               <Route path="/charts/chart-js" component={ChartJs} />
-              <Route path="/user-pages/login" component={Login} />
-              <Route path="/user-pages/register" component={Register} />
               <Route path="/error-pages/error-404" component={Error404} />
               <Route path="/error-pages/error-500" component={Error500} />
               {/* Afiliados */}

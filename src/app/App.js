@@ -6,7 +6,7 @@ import Navbar from './shared/Navbar';
 import Sidebar from './shared/Sidebar';
 import Footer from './shared/Footer';
 import { withTranslation } from "react-i18next";
-import { AuthProvider } from '../context/authContext';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,9 +27,9 @@ class App extends Component {
           {navbarComponent}
           <div className="main-panel">
             <div className="content-wrapper">
-              <AuthProvider>
-                <AppRoutes />
-              </AuthProvider>
+
+              <AppRoutes />
+
             </div>
             {footerComponent}
             <ToastContainer position='top-right' />
