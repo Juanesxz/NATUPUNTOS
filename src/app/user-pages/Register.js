@@ -29,15 +29,22 @@ function register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (user.name === "" || user.phone === "" || user.email === "" || user.department === "" || user.city === "" || user.address === "") {
+    if (
+      user.name === "" ||
+      user.phone === "" ||
+      user.assignedcode === "" ||
+      user.email === "" ||
+      user.department === "" ||
+      user.city === "" ||
+      user.address === ""
+    ) {
       toast.error("Debe llenar todos los campos");
     } else {
       try {
         await signup(user.email, user.assignedcode);
         history.push("/user-pages/login");
-        toast.success("Successfully registered");
+        toast.success("Registro exitoso");
       } catch (error) {
-
         if (error.code === "auth/email-already-in-use") {
           toast.error("El correo ya está en uso");
         }
@@ -52,8 +59,6 @@ function register() {
         }
       }
     }
-
-
   };
 
   return (
@@ -93,7 +98,7 @@ function register() {
                 </div>
                 <div className="form-group">
                   <input
-                    type="text"
+                    type="password"
                     className="form-control form-control-lg"
                     id="assignedcode"
                     name="assignedcode"
