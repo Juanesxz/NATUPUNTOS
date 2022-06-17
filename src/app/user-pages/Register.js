@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { Link, useHistory } from "react-router-dom";
+import { push, ref } from "firebase/database"
+import { database } from "../Firebase";
 // eslint-disable-next-line no-unused-vars
 import { toast } from "react-toastify";
 
@@ -42,6 +44,7 @@ function register() {
     } else {
       try {
         await signup(user.email, user.assignedcode);
+        await push(ref(database, "users/afiliados"), user);
         history.push("/user-pages/login");
         toast.success("Registro exitoso");
       } catch (error) {

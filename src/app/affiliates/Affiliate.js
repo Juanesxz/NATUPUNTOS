@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
 
-// import { Trans } from 'react-i18next';
+import { ref, onValue, remove } from "firebase/database";
+import { database } from "../Firebase";
+import { toast } from "react-toastify";
+
 function Affiliate() {
-
-
+    const [data, setData] = useState();
     const { user, loading } = useAuth();
-
 
     if (loading) {
         return <h2>Loading...</h2>;
@@ -14,6 +15,29 @@ function Affiliate() {
 
     console.log(user);
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        onValue(ref(database, "users/afiliados"), (snapshot) => {
+            const data = snapshot.val();
+            if (data !== null) {
+                setData({ ...data });
+            } else {
+                setData({});
+            }
+        });
+        return () => {
+            setData({});
+        };
+    }, []);
+
+    const handleDelete = (id) => {
+        if (window.confirm("¿Está seguro de eliminar este afiliado?")) {
+            remove(ref(database, `users/afiliados/${id}`));
+            toast.success("Afiliado eliminado");
+        }
+    };
 
     return (
         <div>
@@ -40,6 +64,7 @@ function Affiliate() {
                             <table className="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>NOMBRE</th>
                                         <th>CODIGO ASIGNADO</th>
                                         <th>TELEFONO</th>
@@ -48,32 +73,39 @@ function Affiliate() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>53275531</td>
-                                        <td>302093209</td>
-                                        <td>Colombia</td>
-                                        <td>
-                                            <button
-                                                type="button"
-                                                className="btn btn-outline-primary btn-sm"
-                                            >
-                                                Editar
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className="btn btn-outline-danger btn-sm"
-                                            >
-                                                Eliminar
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className="btn btn-outline-success btn-sm"
-                                            >
-                                                Agregar Puntos
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    {data &&
+                                        Object.keys(data || {}).map((id, key) => {
+                                            return (
+                                                <tr key={id}>
+                                                    <td>{key + 1}</td>
+                                                    <td> {data[id].name} </td>
+                                                    <td> {data[id].assignedcode} </td>
+                                                    <td> {data[id].phone} </td>
+                                                    <td> {data[id].address} </td>
+                                                    <td>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-outline-primary btn-sm"
+                                                        >
+                                                            Editar
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-outline-danger btn-sm"
+                                                            onClick={() => handleDelete(id)}
+                                                        >
+                                                            Eliminar
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-outline-success btn-sm"
+                                                        >
+                                                            Agregar Puntos
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
                                 </tbody>
                             </table>
                         </div>
