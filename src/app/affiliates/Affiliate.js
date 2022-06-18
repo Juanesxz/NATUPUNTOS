@@ -1,25 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
-
-import { ref, onValue, remove } from "firebase/database";
+import { useParams, Link, useHistory } from "react-router-dom";
+import { ref, onValue, remove, update } from "firebase/database";
 import { database } from "../Firebase";
 import { toast } from "react-toastify";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 function Affiliate() {
-    const [data, setData] = useState();
-    const { user, loading } = useAuth();
 
-    if (loading) {
-        return <h2>Loading...</h2>;
-    }
+    const initstate = {
+        name: "",
+        assignedcode: "",
+        phone: "",
+        address: "",
+    };
 
-    console.log(user);
+    const history = useHistory();
 
+    const [state, setState] = useState(initstate);
+    const [data, setData] = useState({});
+    const { name, assignedcode, phone, address } = state;
+
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (name === "" || assignedcode === "" || phone === "" || address === "") {
+            toast.error("Debe llenar todos los campos");
+        } else {
+            update(ref(database, `users/afiliados/${id}`), state);
+            toast.success("Afiliado actualizado");
+            handleClose();
+            history.push("/affiliates/affiliate/list");
+
+        }
+    };
+
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setState({ ...state, [name]: value });
+    };
     // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { id } = useParams();
+
+    const handleDelete = (id) => {
+        if (window.confirm("¿Está seguro de eliminar este afiliado?")) {
+            remove(ref(database, `users/afiliados/${id}`));
+            toast.success("Afiliado eliminado");
+        }
+    };
+
+
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-        onValue(ref(database, "users/afiliados"), (snapshot) => {
+        const starCountRef = ref(database, `users/afiliados`);
+        onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             if (data !== null) {
                 setData({ ...data });
@@ -30,14 +76,21 @@ function Affiliate() {
         return () => {
             setData({});
         };
-    }, []);
+    }, [id]);
 
-    const handleDelete = (id) => {
-        if (window.confirm("¿Está seguro de eliminar este afiliado?")) {
-            remove(ref(database, `users/afiliados/${id}`));
-            toast.success("Afiliado eliminado");
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        if (id) {
+            setState({ ...data[id] });
+        } else {
+            setState({ ...initstate });
         }
-    };
+        return () => {
+            setState({ ...initstate });
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id, data]);
 
     return (
         <div>
@@ -83,12 +136,15 @@ function Affiliate() {
                                                     <td> {data[id].phone} </td>
                                                     <td> {data[id].address} </td>
                                                     <td>
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-outline-primary btn-sm"
-                                                        >
-                                                            Editar
-                                                        </button>
+                                                        <Link to={`/affiliates/affiliate/${id}`} >
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-outline-primary btn-sm"
+                                                                onClick={handleShow}
+                                                            >
+                                                                Editar
+                                                            </button>
+                                                        </Link>
                                                         <button
                                                             type="button"
                                                             className="btn btn-outline-danger btn-sm"
@@ -112,6 +168,70 @@ function Affiliate() {
                     </div>
                 </div>
             </div>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Editar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>NOMBRE</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="name"
+                                name="name"
+                                onChange={handleInputChange}
+                                autoFocus
+                                value={name || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>CODIGO ASIGNADO</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="assignedcode"
+                                name="assignedcode"
+                                onChange={handleInputChange}
+                                value={assignedcode || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>TELEFONO</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="phone"
+                                name="phone"
+                                onChange={handleInputChange}
+                                value={phone || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>DIRECCION</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="address"
+                                name="address"
+                                onChange={handleInputChange}
+                                value={address || ""}
+                            />
+                        </Form.Group>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Cancelar
+                            </Button>
+
+                            <Button type="submit" variant="primary" value={id ? "Update" : "save"} >
+                                guardar cambios
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }

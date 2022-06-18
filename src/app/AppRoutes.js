@@ -68,7 +68,7 @@ class AppRoutes extends Component {
               <Route path="/error-pages/error-404" component={Error404} />
               <Route path="/error-pages/error-500" component={Error500} />
               {/* Afiliados */}
-              <Route path="/affiliates/affiliate" component={Affiliate} />
+              <Route path="/affiliates/affiliate/:id" component={Affiliate} />
               <Route path="/affiliates/newaffiliate" component={NewAffiliate} />
               {/* Empresas aliadas */}
               <Route path="/allied-companies/companies" component={Companies} />

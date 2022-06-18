@@ -195,7 +195,7 @@ class Sidebar extends Component {
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/affiliates/affiliate"
+                      to="/affiliates/affiliate/list"
                     >
                       Lista de afiliados
                     </Link>

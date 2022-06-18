@@ -11,6 +11,12 @@ class Navbar extends Component {
     document.querySelector('.right-sidebar').classList.toggle('open');
   }
   render() {
+
+
+
+
+
+
     return (
       <nav className="navbar p-0 fixed-top d-flex flex-row">
         <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
@@ -68,6 +74,9 @@ class Navbar extends Component {
           </button>
         </div >
       </nav >
+
+
+
     );
   }
 }
