@@ -7,11 +7,11 @@ import {
 } from "firebase/auth";
 import { auth } from "../app/Firebase";
 
-export const authContext = createContext();
+const authContext = createContext();
 
 export const useAuth = () => {
     const context = useContext(authContext);
-    if (!context) throw new Error("useAuth must be used within a AuthProvider");
+    if (!context) throw new Error("No hay proveedor de autenticación.");
     return context;
 };
 

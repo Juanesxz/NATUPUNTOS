@@ -56,7 +56,7 @@ class Sidebar extends Component {
     return (
       <nav className="sidebar sidebar-offcanvas" id="sidebar">
         <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a className="sidebar-brand brand-logo" href="index.html">
+          <a className="sidebar-brand brand-logo" href="../dashboard">
             <img src={require("../../assets/images/logo.svg")} alt="logo" />
           </a>
           <a className="sidebar-brand brand-logo-mini" href="index.html">
@@ -416,34 +416,6 @@ class Sidebar extends Component {
             </Collapse>
           </li>
 
-          {/* <li className="nav-item nav-category">
-            <span className="nav-link">More</span>
-          </li>
-          <li className={this.isPathActive('/error-pages') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
-            <div className={this.state.errorPagesMenuOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() => this.toggleMenuState('errorPagesMenuOpen')} data-toggle="collapse">
-              <span className="menu-icon">
-                <i className="mdi mdi-lock"></i>
-              </span>
-              <span className="menu-title">Error Pages</span>
-              <i className="menu-arrow"></i>
-            </div>
-            <Collapse in={this.state.errorPagesMenuOpen}>
-              <div>
-                <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <Link className={this.isPathActive('/error-pages/error-404') ? 'nav-link active' : 'nav-link'} to="/error-pages/error-404">404</Link></li>
-                  <li className="nav-item"> <Link className={this.isPathActive('/error-pages/error-500') ? 'nav-link active' : 'nav-link'} to="/error-pages/error-500">500</Link></li>
-                </ul>
-              </div>
-            </Collapse>
-          </li>
-          <li className="nav-item menu-items">
-            <a className="nav-link" href="http://bootstrapdash.com/demo/corona-react-free/documentation/documentation.html" rel="noopener noreferrer" target="_blank">
-              <span className="menu-icon">
-                <i className="mdi mdi-file-document-box"></i>
-              </span>
-              <span className="menu-title">Documentation</span>
-            </a>
-          </li> */}
         </ul>
       </nav>
     );
