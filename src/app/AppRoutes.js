@@ -71,7 +71,7 @@ class AppRoutes extends Component {
               <Route path="/affiliates/affiliate/:id" component={Affiliate} />
               <Route path="/affiliates/newaffiliate" component={NewAffiliate} />
               {/* Empresas aliadas */}
-              <Route path="/allied-companies/companies" component={Companies} />
+              <Route path="/allied-companies/companies/:id" component={Companies} />
               <Route
                 path="/allied-companies/newcompanies"
                 component={NewCompanies}

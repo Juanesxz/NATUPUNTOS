@@ -36,6 +36,7 @@ function Affiliate() {
         e.preventDefault();
         if (name === "" || assignedcode === "" || phone === "" || address === "") {
             toast.error("Debe llenar todos los campos");
+
         } else {
             update(ref(database, `users/afiliados/${id}`), state);
             toast.success("Afiliado actualizado");
@@ -57,6 +58,8 @@ function Affiliate() {
         if (window.confirm("¿Está seguro de eliminar este afiliado?")) {
             remove(ref(database, `users/afiliados/${id}`));
             toast.success("Afiliado eliminado");
+        } else {
+            toast.error("No se eliminó el afiliado");
         }
     };
 
@@ -221,11 +224,11 @@ function Affiliate() {
                             />
                         </Form.Group>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button variant="outline-warning" onClick={handleClose}>
                                 Cancelar
                             </Button>
 
-                            <Button type="submit" variant="primary" value={id ? "Update" : "save"} >
+                            <Button type="submit" variant="outline-success ">
                                 guardar cambios
                             </Button>
                         </Modal.Footer>

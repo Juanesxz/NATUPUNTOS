@@ -253,7 +253,7 @@ class Sidebar extends Component {
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/allied-companies/companies"
+                      to="/allied-companies/companies/list"
                     >
                       Lista De Empresa
                     </Link>
