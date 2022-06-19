@@ -139,6 +139,13 @@ function Companies() {
                                                         >
                                                             Eliminar
                                                         </button>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-outline-success btn-sm"
+
+                                                        >
+                                                            Mas info
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             );
@@ -208,6 +215,7 @@ function Companies() {
                             <Button type="submit" variant="outline-success ">
                                 guardar cambios
                             </Button>
+
                         </Modal.Footer>
                     </Form>
                 </Modal.Body>

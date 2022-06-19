@@ -249,19 +249,6 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/allied-companies/companies")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                      to="/allied-companies/companies/list"
-                    >
-                      Lista De Empresa
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    {" "}
-                    <Link
-                      className={
                         this.isPathActive("/allied-companies/newcompanies")
                           ? "nav-link active"
                           : "nav-link"
@@ -271,6 +258,21 @@ class Sidebar extends Component {
                       Nueva empresa
                     </Link>
                   </li>
+
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/allied-companies/companies")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/allied-companies/companies/list"
+                    >
+                      Lista De Empresa
+                    </Link>
+                  </li>
+
                   <li className="nav-item">
                     {" "}
                     <Link
@@ -415,7 +417,6 @@ class Sidebar extends Component {
               </div>
             </Collapse>
           </li>
-
         </ul>
       </nav>
     );

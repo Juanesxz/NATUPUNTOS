@@ -8,7 +8,6 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 function Affiliate() {
-
     const initstate = {
         name: "",
         assignedcode: "",
@@ -22,30 +21,21 @@ function Affiliate() {
     const [data, setData] = useState({});
     const { name, assignedcode, phone, address } = state;
 
-
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
-
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (name === "" || assignedcode === "" || phone === "" || address === "") {
             toast.error("Debe llenar todos los campos");
-
         } else {
             update(ref(database, `users/afiliados/${id}`), state);
             toast.success("Afiliado actualizado");
             handleClose();
             history.push("/affiliates/affiliate/list");
-
         }
     };
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -63,8 +53,6 @@ function Affiliate() {
         }
     };
 
-
-
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         const starCountRef = ref(database, `users/afiliados`);
@@ -80,7 +68,6 @@ function Affiliate() {
             setData({});
         };
     }, [id]);
-
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
@@ -139,7 +126,7 @@ function Affiliate() {
                                                     <td> {data[id].phone} </td>
                                                     <td> {data[id].address} </td>
                                                     <td>
-                                                        <Link to={`/affiliates/affiliate/${id}`} >
+                                                        <Link to={`/affiliates/affiliate/${id}`}>
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-primary btn-sm"
