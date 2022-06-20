@@ -12,13 +12,15 @@ function Companies() {
         companyname: "",
         nit: "",
         phone: "",
+        department: "",
+        city: "",
         address: "",
     };
     const history = useHistory();
 
     const [company, setCompany] = useState(initstate);
     const [data, setData] = useState({});
-    const { companyname, nit, phone, address } = company;
+    const { companyname, nit, phone, address, department, city } = company;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -26,7 +28,14 @@ function Companies() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (companyname === "" || nit === "" || phone === "" || address === "") {
+        if (
+            companyname === "" ||
+            nit === "" ||
+            phone === "" ||
+            address === "" ||
+            department === "" ||
+            city === ""
+        ) {
             toast.error("Todos los campos son obligatorios");
         } else {
             update(ref(database, `users/empresas/${id}`), company);
@@ -122,6 +131,7 @@ function Companies() {
                                                     <td>{data[id].nit}</td>
                                                     <td>{data[id].phone}</td>
                                                     <td>{data[id].address}</td>
+
                                                     <td>
                                                         <Link to={`/allied-companies/companies/${id}`}>
                                                             <button
@@ -142,7 +152,6 @@ function Companies() {
                                                         <button
                                                             type="button"
                                                             className="btn btn-outline-success btn-sm"
-
                                                         >
                                                             Mas info
                                                         </button>
@@ -197,6 +206,28 @@ function Companies() {
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
+                            <Form.Label>DEPARTAMENTO</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="department"
+                                name="department"
+                                onChange={handleChange}
+                                value={department || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>CIUDAD</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="city"
+                                name="city"
+                                onChange={handleChange}
+                                value={city || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>DIRECCION</Form.Label>
                             <Form.Control
                                 type="text"
@@ -215,7 +246,6 @@ function Companies() {
                             <Button type="submit" variant="outline-success ">
                                 guardar cambios
                             </Button>
-
                         </Modal.Footer>
                     </Form>
                 </Modal.Body>

@@ -13,17 +13,28 @@ function Affiliate() {
         assignedcode: "",
         phone: "",
         address: "",
+        points: "",
     };
 
     const history = useHistory();
 
     const [state, setState] = useState(initstate);
     const [data, setData] = useState({});
-    const { name, assignedcode, phone, address } = state;
+    const { name, assignedcode, phone, address, points } = state;
 
+
+    //form modal submit
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    //form modal submit points
+    const [showPoints, setShowPoints] = useState(false);
+    const handleClosePoints = () => setShowPoints(false);
+    const handleShowPoints = () => setShowPoints(true);
+
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -112,6 +123,7 @@ function Affiliate() {
                                         <th>CODIGO ASIGNADO</th>
                                         <th>TELEFONO</th>
                                         <th>DIRECCION</th>
+                                        <th>PUNTOS</th>
                                         <th>ACCIONES</th>
                                     </tr>
                                 </thead>
@@ -125,6 +137,7 @@ function Affiliate() {
                                                     <td> {data[id].assignedcode} </td>
                                                     <td> {data[id].phone} </td>
                                                     <td> {data[id].address} </td>
+                                                    <td> {data[id].points} </td>
                                                     <td>
                                                         <Link to={`/affiliates/affiliate/${id}`}>
                                                             <button
@@ -145,6 +158,7 @@ function Affiliate() {
                                                         <button
                                                             type="button"
                                                             className="btn btn-outline-success btn-sm"
+                                                            onClick={handleShowPoints}
                                                         >
                                                             Agregar Puntos
                                                         </button>
@@ -222,6 +236,52 @@ function Affiliate() {
                     </Form>
                 </Modal.Body>
             </Modal>
+
+
+
+
+            <Modal show={showPoints} onHide={handleClosePoints}>
+                <Modal.Header closeButton>
+                    <Modal.Title>AGREGAR PUNTOS</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>PUNTOS ACTUALES</Form.Label>
+                            <Form.Control
+                                type="number"
+                                id="points"
+                                name="points"
+                                disabled
+                                value={points || ""}
+                                style={{ backgroundColor: "#2A3038", textAlign: "center" }}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>AÑADIR PUNTOS</Form.Label>
+                            <Form.Control
+                                type="number"
+                                id="morepoints"
+                                name="morepoints"
+                            />
+                        </Form.Group>
+
+
+
+
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="outline-warning" onClick={handleClosePoints}>
+                        CANCELAR
+                    </Button>
+                    <Button variant="outline-success" onClick={handleClosePoints}>
+                        AGREGAR PUNTOS
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+
         </div>
     );
 }

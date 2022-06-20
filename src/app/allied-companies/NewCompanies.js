@@ -38,7 +38,7 @@ function NewCompanies() {
         } else {
             try {
                 await push(ref(database, "users/empresas"), user);
-                history.push("/allied-companies/companies");
+                history.push("/allied-companies/companies/list");
                 toast.success("Registro exitoso");
             } catch (error) {
                 toast.error("Error al registrar la empresa");
