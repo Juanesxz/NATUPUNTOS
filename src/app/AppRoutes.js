@@ -44,6 +44,12 @@ const Config = lazy(() => import("./admin/Config"));
 const GraphPointsPerMonth = lazy(() => import("./statistics/GraphPointsPerMonth"));
 const GraphCompanyPoints = lazy(() => import("./statistics/GraphCompanyPoints"));
 
+//reports
+const ReportPointsByCity = lazy(() => import("./reports/ReportPointsByCity"));
+const ReportPointsByCompanies = lazy(() => import("./reports/ReportPointsByCompanies"));
+const ReportPointsForCustomers = lazy(() => import("./reports/ReportPointsForCustomers"));
+
+
 class AppRoutes extends Component {
   render() {
     return (
@@ -93,6 +99,13 @@ class AppRoutes extends Component {
                 component={GraphPointsPerMonth}
               />
               <Route path="/statistics/GraphCompanyPoints" component={GraphCompanyPoints} />
+
+              {/* reports */}
+              <Route path="/reports/reportpointsbycity" component={ReportPointsByCity} />
+              <Route path="/reports/reportpointsbycompanies" component={ReportPointsByCompanies} />
+              <Route path="/reports/reportpointsforcustomers" component={ReportPointsForCustomers} />
+
+
             </ProtectedRoute>
           </AuthProvider>
           <Redirect to="/dashboard" />

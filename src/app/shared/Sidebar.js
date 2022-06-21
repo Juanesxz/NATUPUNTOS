@@ -43,6 +43,7 @@ class Sidebar extends Component {
       { path: "/allied-companies", state: "companiesMenuOpen" },
       { path: "/admin", state: "adminMenuOpen" },
       { path: "/statistics", state: "statisticsMenuOpen" },
+      { path: "/reports", state: "reportsMenuOpen" },
     ];
 
     dropdownPaths.forEach((obj) => {
@@ -385,6 +386,76 @@ class Sidebar extends Component {
                       to="/statistics/GraphCompanyPoints"
                     >
                       Puntos de empresas
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </Collapse>
+          </li>
+
+          {/* Reportes */}
+          <li
+            className={
+              this.isPathActive("/reports")
+                ? "nav-item menu-items active"
+                : "nav-item menu-items"
+            }
+          >
+            <div
+              className={
+                this.state.reportsMenuOpen
+                  ? "nav-link menu-expanded"
+                  : "nav-link"
+              }
+              onClick={() => this.toggleMenuState("reportsMenuOpen")}
+              data-toggle="collapse"
+            >
+              <span className="menu-icon">
+                <i className="mdi mdi-calendar-text-outline"></i>
+              </span>
+              <span className="menu-title">Reportes</span>
+              <i className="menu-arrow"></i>
+            </div>
+            <Collapse in={this.state.reportsMenuOpen}>
+              <div>
+                <ul className="nav flex-column sub-menu">
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/reports/reportpointsforcustomers")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/reports/reportpointsforcustomers"
+                    >
+                      Puntos por clientes
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/reports/reportpointsbycompanies")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/reports/reportpointsbycompanies"
+                    >
+                      Puntos por empresas
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/reports/reportpointsbycity")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/reports/reportpointsbycity"
+                    >
+                      Puntos por ciudad
                     </Link>
                   </li>
                 </ul>
