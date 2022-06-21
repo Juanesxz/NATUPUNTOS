@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { Trans } from 'react-i18next';
 import { Line, Bar } from 'react-chartjs-2';
-class MonthlyReport extends Component {
+function GraphPointsPerMonth() {
 
-    areaData = {
+    const areaData = {
         labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto"],
         datasets: [{
             label: 'Puntos',
@@ -42,7 +42,7 @@ class MonthlyReport extends Component {
         }]
     };
 
-    data = {
+    const data = {
         labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto"],
         datasets: [{
             label: 'Puntos',
@@ -80,44 +80,44 @@ class MonthlyReport extends Component {
             fill: false
         }]
     };
-    render() {
-        return (
-            <div>
-                <div className="page-header">
-                    <h3 className="page-title">
-                        Reporte Mensual
-                    </h3>
-                    <nav aria-label="breadcrumb">
-                        <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Estadistica</a></li>
-                            <li className="breadcrumb-item active" aria-current="page">Mensual</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div className="row">
+
+    return (
+        <div>
+            <div className="page-header">
+                <h3 className="page-title">
+                    Grafica de puntos por mes
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Estadistica</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Mensual</li>
+                    </ol>
+                </nav>
+            </div>
+            <div className="row">
 
 
-                    <div className="col-md-12 grid-margin stretch-card">
-                        <div className="card">
-                            <div className="card-body">
-                                <h4 className="card-title">Puntos</h4>
-                                <Bar data={this.data} options={this.options} />
-                            </div>
+                <div className="col-md-12 grid-margin stretch-card">
+                    <div className="card">
+                        <div className="card-body">
+                            <h4 className="card-title">Puntos</h4>
+                            <Bar data={data} />
                         </div>
                     </div>
+                </div>
 
-                    <div className="col-md-12 grid-margin stretch-card">
-                        <div className="card">
-                            <div className="card-body">
-                                <h4 className="card-title">Puntos</h4>
-                                <Line data={this.areaData} options={this.areaOptions} />
-                            </div>
+                <div className="col-md-12 grid-margin stretch-card">
+                    <div className="card">
+                        <div className="card-body">
+                            <h4 className="card-title">Puntos</h4>
+                            <Line data={areaData} />
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
-export default MonthlyReport;
+
+export default GraphPointsPerMonth;

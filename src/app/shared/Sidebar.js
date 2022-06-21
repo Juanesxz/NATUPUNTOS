@@ -365,26 +365,26 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/statistics/biweeklyreport")
+                        this.isPathActive("/statistics/GraphPointsPerMonth")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/statistics/biweeklyreport"
+                      to="/statistics/GraphPointsPerMonth"
                     >
-                      Reporte quincenal
+                      Puntos por mes
                     </Link>
                   </li>
                   <li className="nav-item">
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/statistics/monthlyreport")
+                        this.isPathActive("/statistics/GraphCompanyPoints")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/statistics/monthlyreport"
+                      to="/statistics/GraphCompanyPoints"
                     >
-                      Reporte Mensual
+                      Puntos de empresas
                     </Link>
                   </li>
                 </ul>

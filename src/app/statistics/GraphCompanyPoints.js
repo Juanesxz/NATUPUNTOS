@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 
-class BiweeklyReport extends Component {
+function GraphCompanyPoints() {
 
-    areaData = {
+    const areaData = {
         labels: ["2013", "2014", "2015", "2016", "2017"],
         datasets: [{
             label: '# of Votes',
@@ -29,7 +29,7 @@ class BiweeklyReport extends Component {
         }]
     };
 
-    data = {
+    const data = {
         labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
         datasets: [{
             label: '# of Votes',
@@ -54,42 +54,41 @@ class BiweeklyReport extends Component {
             fill: false
         }]
     };
-    render() {
-        return (
-            <div>
-                <div className="page-header">
-                    <h3 className="page-title">
-                        Reporte Quincenal
-                    </h3>
-                    <nav aria-label="breadcrumb">
-                        <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Estadistica</a></li>
-                            <li className="breadcrumb-item active" aria-current="page">Quincenal</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div className="row">
-                    <div className="col-md-6 grid-margin stretch-card">
-                        <div className="card">
-                            <div className="card-body">
-                                <h4 className="card-title">Area Chart</h4>
-                                <Line data={this.areaData} options={this.areaOptions} />
-                            </div>
+
+    return (
+        <div>
+            <div className="page-header">
+                <h3 className="page-title">
+                    Grafica de puntos por compañia
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Estadistica</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Quincenal</li>
+                    </ol>
+                </nav>
+            </div>
+            <div className="row">
+                <div className="col-md-6 grid-margin stretch-card">
+                    <div className="card">
+                        <div className="card-body">
+                            <h4 className="card-title">Area Chart</h4>
+                            <Line data={areaData} />
                         </div>
                     </div>
+                </div>
 
-                    <div className="col-md-6 grid-margin stretch-card">
-                        <div className="card">
-                            <div className="card-body">
-                                <h4 className="card-title">Bar Chart</h4>
-                                <Bar data={this.data} options={this.options} />
-                            </div>
+                <div className="col-md-6 grid-margin stretch-card">
+                    <div className="card">
+                        <div className="card-body">
+                            <h4 className="card-title">Bar Chart</h4>
+                            <Bar data={data} />
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
-export default BiweeklyReport;
+export default GraphCompanyPoints;

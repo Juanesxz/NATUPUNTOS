@@ -41,8 +41,8 @@ const AdministrativePortfolio = lazy(() =>
 const Config = lazy(() => import("./admin/Config"));
 
 // statistics
-const MonthlyReport = lazy(() => import("./statistics/MonthlyReport"));
-const BiweeklyReport = lazy(() => import("./statistics/BiweeklyReport"));
+const GraphPointsPerMonth = lazy(() => import("./statistics/GraphPointsPerMonth"));
+const GraphCompanyPoints = lazy(() => import("./statistics/GraphCompanyPoints"));
 
 class AppRoutes extends Component {
   render() {
@@ -89,10 +89,10 @@ class AppRoutes extends Component {
               <Route path="/admin/config" component={Config} />
               {/* statistics */}
               <Route
-                path="/statistics/biweeklyreport"
-                component={BiweeklyReport}
+                path="/statistics/GraphPointsPerMonth"
+                component={GraphPointsPerMonth}
               />
-              <Route path="/statistics/monthlyreport" component={MonthlyReport} />
+              <Route path="/statistics/GraphCompanyPoints" component={GraphCompanyPoints} />
             </ProtectedRoute>
           </AuthProvider>
           <Redirect to="/dashboard" />
