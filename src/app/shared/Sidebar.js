@@ -320,19 +320,6 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/admin/Reports")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                      to="/admin/Reports"
-                    >
-                      Reportes
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    {" "}
-                    <Link
-                      className={
                         this.isPathActive("/admin/administrativeportfolio")
                           ? "nav-link active"
                           : "nav-link"
@@ -340,19 +327,6 @@ class Sidebar extends Component {
                       to="/admin/administrativeportfolio"
                     >
                       Cartera
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    {" "}
-                    <Link
-                      className={
-                        this.isPathActive("/admin/config")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                      to="/admin/config"
-                    >
-                      Configuracion
                     </Link>
                   </li>
                 </ul>

@@ -238,6 +238,39 @@ function Companies() {
                                 value={address || ""}
                             />
                         </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>FORMA DE PAGO</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="address"
+                                name="address"
+                                onChange={handleChange}
+                                value={address || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>TIPO DE CUENTA</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="address"
+                                name="address"
+                                onChange={handleChange}
+                                value={address || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>NUMERO DE CUENTA</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="address"
+                                name="address"
+                                onChange={handleChange}
+                                value={address || ""}
+                            />
+                        </Form.Group>
                         <Modal.Footer>
                             <Button variant="outline-warning" onClick={handleClose}>
                                 Cancelar
