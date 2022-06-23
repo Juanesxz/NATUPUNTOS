@@ -30,7 +30,7 @@ class AdministrativePortfolio extends Component {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Jacob</td>
+                                            <td>Hola</td>
                                             <td>53275531</td>
                                             <td>120000</td>
                                             <td>8000</td>

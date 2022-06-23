@@ -149,12 +149,14 @@ function Companies() {
                                                         >
                                                             Eliminar
                                                         </button>
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-outline-success btn-sm"
-                                                        >
-                                                            Mas info
-                                                        </button>
+                                                        <Link to={`/allied-companies/moreinfo/${id}`}>
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-outline-success btn-sm"
+                                                            >
+                                                                Mas info
+                                                            </button>
+                                                        </Link>
                                                     </td>
                                                 </tr>
                                             );

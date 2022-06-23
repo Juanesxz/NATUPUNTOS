@@ -32,6 +32,7 @@ const NewAffiliate = lazy(() => import("./affiliates/NewAffiliate"));
 const Companies = lazy(() => import("./allied-companies/Companies"));
 const PurseCompanies = lazy(() => import("./allied-companies/PurseCompanies"));
 const NewCompanies = lazy(() => import("./allied-companies/NewCompanies"));
+const MoreInfo = lazy(() => import("./allied-companies/MoreInfo"));
 
 //admin
 const Admin = lazy(() => import("./admin/Reports"));
@@ -102,6 +103,10 @@ class AppRoutes extends Component {
                 path="/allied-companies/pursecompanies"
                 component={PurseCompanies}
               />
+              <Route
+                path="/allied-companies/moreinfo/:id"
+                component={MoreInfo}
+              />
               {/* admin */}
               <Route path="/admin/reports" component={Admin} />
               <Route
@@ -137,7 +142,10 @@ class AppRoutes extends Component {
               {/* settings */}
 
               <Route path="/setting/createprofile" component={CreateProfile} />
-              <Route path="/setting/dashboardsetting" component={DashboardSetting} />
+              <Route
+                path="/setting/dashboardsetting"
+                component={DashboardSetting}
+              />
               <Route path="/setting/natupointsapp" component={NatupointsApp} />
             </ProtectedRoute>
           </AuthProvider>

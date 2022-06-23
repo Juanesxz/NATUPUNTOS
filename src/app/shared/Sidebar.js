@@ -275,7 +275,7 @@ class Sidebar extends Component {
                       }
                       to="/allied-companies/companies/list"
                     >
-                      Lista De Empresa
+                      Lista de empresa
                     </Link>
                   </li>
 
