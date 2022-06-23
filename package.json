@@ -32,6 +32,8 @@
     "react-chartjs-2": "^2.8.0",
     "react-clipboard.js": "^2.0.16",
     "react-color": "^2.17.3",
+    "react-data-table-component": "^7.5.2",
+    "react-data-table-component-extensions": "^1.6.0",
     "react-datepicker": "^2.9.6",
     "react-dnd": "^9.4.0",
     "react-dnd-html5-backend": "^9.4.0",

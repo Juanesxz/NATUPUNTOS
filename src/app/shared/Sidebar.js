@@ -44,6 +44,7 @@ class Sidebar extends Component {
       { path: "/admin", state: "adminMenuOpen" },
       { path: "/statistics", state: "statisticsMenuOpen" },
       { path: "/reports", state: "reportsMenuOpen" },
+      { path: "/settings", state: "settingsMenuOpen" },
     ];
 
     dropdownPaths.forEach((obj) => {
@@ -143,9 +144,13 @@ class Sidebar extends Component {
               </Dropdown>
             </div>
           </li>
+
+
+
           <li className="nav-item nav-category">
             <span className="nav-link">Navegacion</span>
           </li>
+          {/* Dashboard */}
           <li
             className={
               this.isPathActive("/dashboard")
@@ -462,6 +467,79 @@ class Sidebar extends Component {
               </div>
             </Collapse>
           </li>
+
+          {/* Configuracion */}
+
+          <li
+            className={
+              this.isPathActive("/settings")
+                ? "nav-item menu-items active"
+                : "nav-item menu-items"
+            }
+          >
+            <div
+              className={
+                this.state.settingsMenuOpen
+                  ? "nav-link menu-expanded"
+                  : "nav-link"
+              }
+              onClick={() => this.toggleMenuState("settingsMenuOpen")}
+              data-toggle="collapse"
+            >
+              <span className="menu-icon">
+                <i className="mdi mdi-settings"></i>
+              </span>
+              <span className="menu-title">Configuracion</span>
+              <i className="menu-arrow"></i>
+            </div>
+            <Collapse in={this.state.settingsMenuOpen}>
+              <div>
+                <ul className="nav flex-column sub-menu">
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/setting/createprofile")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/setting/createprofile"
+                    >
+                      Crear perfil
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/setting/natupointsapp")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/setting/natupointsapp"
+                    >
+                      App natupuntos
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/setting/dashboardsetting")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/setting/dashboardsetting"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </Collapse>
+          </li>
+
+
         </ul>
       </nav>
     );

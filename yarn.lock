@@ -4712,6 +4712,11 @@ deep-is@~0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.4.tgz#a6f2dce612fadd2ef1f519b73551f17e85199831"
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
 
+deepmerge@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
+  integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
+
 default-gateway@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/default-gateway/-/default-gateway-4.2.0.tgz#167104c7500c2115f6dd69b0a536bb8ed720552b"
@@ -10400,6 +10405,20 @@ react-context-toolbox@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-context-toolbox/-/react-context-toolbox-2.0.2.tgz#35637287cb23f801e6ed802c2bb7a97e1f04e3fb"
   integrity sha512-tY4j0imkYC3n5ZlYSgFkaw7fmlCp3IoQQ6DxpqeNHzcD0hf+6V+/HeJxviLUZ1Rv1Yn3N3xyO2EhkkZwHn0m1A==
+
+react-data-table-component-extensions@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-data-table-component-extensions/-/react-data-table-component-extensions-1.6.0.tgz#3d2c607300513274ab7800e67c00571a3c3a354f"
+  integrity sha512-AfaZj21Hx7VCwGugGVInrGgxa5PmBfhgQFSe55piYmgM05tJcegZfm6RjbnMT96CM0dWrC2ky5Mh7n0RZun6DQ==
+  dependencies:
+    react "^16.9.0"
+
+react-data-table-component@^7.5.2:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/react-data-table-component/-/react-data-table-component-7.5.2.tgz#42d0af2a923e05887baadf8f4718bbb133c6db83"
+  integrity sha512-sOmeEEZiORJcnzf8fwcwA5+JbhIChjf+tQV/dLYvlhU8UT8rJZ33aBSOJNjNYq/5+t3lj/xCJXtSa2kgoZTDVQ==
+  dependencies:
+    deepmerge "^4.2.2"
 
 react-datepicker@^2.9.6:
   version "2.16.0"

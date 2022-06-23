@@ -41,14 +41,28 @@ const AdministrativePortfolio = lazy(() =>
 const Config = lazy(() => import("./admin/Config"));
 
 // statistics
-const GraphPointsPerMonth = lazy(() => import("./statistics/GraphPointsPerMonth"));
-const GraphCompanyPoints = lazy(() => import("./statistics/GraphCompanyPoints"));
+const GraphPointsPerMonth = lazy(() =>
+  import("./statistics/GraphPointsPerMonth")
+);
+const GraphCompanyPoints = lazy(() =>
+  import("./statistics/GraphCompanyPoints")
+);
 
 //reports
 const ReportPointsByCity = lazy(() => import("./reports/ReportPointsByCity"));
-const ReportPointsByCompanies = lazy(() => import("./reports/ReportPointsByCompanies"));
-const ReportPointsForCustomers = lazy(() => import("./reports/ReportPointsForCustomers"));
+const ReportPointsByCompanies = lazy(() =>
+  import("./reports/ReportPointsByCompanies")
+);
+const ReportPointsForCustomers = lazy(() =>
+  import("./reports/ReportPointsForCustomers")
+);
 
+const DataFire = lazy(() => import("./reports/DataFire"));
+
+//settings
+const CreateProfile = lazy(() => import("./setting/CreateProfile"));
+const DashboardSetting = lazy(() => import("./setting/DashboardSetting"));
+const NatupointsApp = lazy(() => import("./setting/NatupointsApp"));
 
 class AppRoutes extends Component {
   render() {
@@ -56,7 +70,6 @@ class AppRoutes extends Component {
       <Suspense fallback={<Spinner />}>
         <Switch>
           <AuthProvider>
-
             <Route path="/user-pages/login" component={Login} />
             <Route path="/user-pages/register" component={Register} />
             <ProtectedRoute>
@@ -77,7 +90,10 @@ class AppRoutes extends Component {
               <Route path="/affiliates/affiliate/:id" component={Affiliate} />
               <Route path="/affiliates/newaffiliate" component={NewAffiliate} />
               {/* Empresas aliadas */}
-              <Route path="/allied-companies/companies/:id" component={Companies} />
+              <Route
+                path="/allied-companies/companies/:id"
+                component={Companies}
+              />
               <Route
                 path="/allied-companies/newcompanies"
                 component={NewCompanies}
@@ -98,14 +114,31 @@ class AppRoutes extends Component {
                 path="/statistics/GraphPointsPerMonth"
                 component={GraphPointsPerMonth}
               />
-              <Route path="/statistics/GraphCompanyPoints" component={GraphCompanyPoints} />
+              <Route
+                path="/statistics/GraphCompanyPoints"
+                component={GraphCompanyPoints}
+              />
 
               {/* reports */}
-              <Route path="/reports/reportpointsbycity" component={ReportPointsByCity} />
-              <Route path="/reports/reportpointsbycompanies" component={ReportPointsByCompanies} />
-              <Route path="/reports/reportpointsforcustomers" component={ReportPointsForCustomers} />
+              <Route
+                path="/reports/reportpointsbycity"
+                component={ReportPointsByCity}
+              />
+              <Route
+                path="/reports/reportpointsbycompanies"
+                component={ReportPointsByCompanies}
+              />
+              <Route
+                path="/reports/reportpointsforcustomers"
+                component={ReportPointsForCustomers}
+              />
+              <Route path="/reports/datafire" component={DataFire} />
 
+              {/* settings */}
 
+              <Route path="/setting/createprofile" component={CreateProfile} />
+              <Route path="/setting/dashboardsetting" component={DashboardSetting} />
+              <Route path="/setting/natupointsapp" component={NatupointsApp} />
             </ProtectedRoute>
           </AuthProvider>
           <Redirect to="/dashboard" />
