@@ -145,8 +145,6 @@ class Sidebar extends Component {
             </div>
           </li>
 
-
-
           <li className="nav-item nav-category">
             <span className="nav-link">Navegacion</span>
           </li>
@@ -206,19 +204,7 @@ class Sidebar extends Component {
                       Lista de afiliados
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    {" "}
-                    <Link
-                      className={
-                        this.isPathActive("/affiliates/newaffiliate")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                      to="/affiliates/newaffiliate"
-                    >
-                      Nuevo afiliados
-                    </Link>
-                  </li>
+
                 </ul>
               </div>
             </Collapse>
@@ -538,8 +524,6 @@ class Sidebar extends Component {
               </div>
             </Collapse>
           </li>
-
-
         </ul>
       </nav>
     );

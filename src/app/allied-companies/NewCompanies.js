@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useAuth } from "../../context/authContext";
 import { Link, useHistory } from "react-router-dom";
 import { push, ref } from "firebase/database";
 import { database } from "../Firebase";
@@ -16,6 +17,7 @@ function NewCompanies() {
         address: "",
     });
 
+    const { signup } = useAuth();
     const history = useHistory();
 
     const handleChange = ({ target: { name, value } }) => {
@@ -37,11 +39,25 @@ function NewCompanies() {
             toast.error("Debe llenar todos los campos");
         } else {
             try {
+                await signup(user.email, user.nit);
                 await push(ref(database, "users/empresas"), user);
                 history.push("/allied-companies/companies/list");
                 toast.success("Registro exitoso");
             } catch (error) {
-                toast.error("Error al registrar la empresa");
+                if (error.code === "auth/email-already-in-use") {
+                    toast.error("El correo ya está en uso");
+                }
+                if (error.code === "auth/invalid-email") {
+                    toast.error("El correo no es válido");
+                }
+                if (error.code === "auth/weak-password") {
+                    toast.error("La contraseña debe tener al menos 6 caracteres");
+                }
+                if (error.code === "auth/operation-not-allowed") {
+                    toast.error("La cuenta no está habilitada");
+                }
+
+
             }
         }
     };
@@ -142,7 +158,7 @@ function NewCompanies() {
                                         id="department"
                                         onChange={handleChange}
                                     >
-                                        <option>America</option>
+                                        <option>Seleccione un departamento</option>
                                         <option>Italy</option>
                                         <option>Russia</option>
                                         <option>Britain</option>
@@ -158,7 +174,7 @@ function NewCompanies() {
                                         id="city"
                                         onChange={handleChange}
                                     >
-                                        <option>America</option>
+                                        <option>Seleccione una ciudad</option>
                                         <option>Italy</option>
                                         <option>Russia</option>
                                         <option>Britain</option>
@@ -181,11 +197,11 @@ function NewCompanies() {
                                 </div>
                             </Form.Group>
 
-                            <button type="submit" className="btn btn-outline-primary mr-2">
+                            <button type="submit" className="btn btn-outline-success mr-2">
                                 Registrar
                             </button>
 
-                            <Link to="/dashboard" className="btn btn-outline-light">
+                            <Link to="/allied-companies/companies/list" className="btn btn-outline-warning">
                                 Cancelar
                             </Link>
                         </form>

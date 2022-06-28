@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import React from "react";
+
 import { Line, Bar } from "react-chartjs-2";
-import { database } from "../Firebase";
-import { onValue, ref } from "firebase/database";
+
 
 function GraphCompanyPoints() {
-    const { id } = useParams();
-    const [datas, setDatas] = useState({});
 
-    useEffect(() => {
-        const starCountRef = ref(database, `users/afiliados`);
-        onValue(starCountRef, (snapshot) => {
-            const datas = snapshot.val();
-            if (datas !== null) {
-                setDatas({ ...datas });
-            } else {
-                setDatas({});
-            }
-        });
-        return () => {
-            setDatas({});
-        };
-    }, [id]);
+
 
     const areaData = {
         labels: ["2013", "2014", "2015", "2016", "2017"],

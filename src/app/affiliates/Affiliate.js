@@ -224,7 +224,7 @@ function Affiliate() {
                         <Form.Group className="mb-3">
                             <Form.Label>TELEFONO</Form.Label>
                             <Form.Control
-                                type="text"
+                                type="number"
                                 placeholder=""
                                 id="phone"
                                 name="phone"

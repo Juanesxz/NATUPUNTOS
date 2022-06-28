@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { Form } from "react-bootstrap";
 import { useAuth } from "../../context/authContext";
@@ -97,12 +97,7 @@ function Login() {
                   </button>
                 </div>
               </Form>
-              <div className="text-center mt-4 font-weight-light">
-                ¿No tienes cuenta?
-                <Link to="/user-pages/register" className="text-primary">
-                  Registrate
-                </Link>
-              </div>
+
             </div>
           </div>
         </div>

@@ -270,7 +270,7 @@ function Companies() {
                         <Form.Group className="mb-3">
                             <Form.Label>NUMERO DE CUENTA</Form.Label>
                             <Form.Control
-                                type="text"
+                                type="number"
                                 placeholder=""
                                 id="accountnumber"
                                 name="accountnumber"

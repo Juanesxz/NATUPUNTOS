@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
+import React, { Component } from "react";
+import { Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class NewAffiliate extends Component {
     render() {
@@ -11,8 +10,14 @@ class NewAffiliate extends Component {
                     <h3 className="page-title">Registrar Afiliados</h3>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Lista</a></li>
-                            <li className="breadcrumb-item active" aria-current="page">Nuevo Afiliado</li>
+                            <li className="breadcrumb-item">
+                                <a href="!#" onClick={(event) => event.preventDefault()}>
+                                    Lista
+                                </a>
+                            </li>
+                            <li className="breadcrumb-item active" aria-current="page">
+                                Nuevo Afiliado
+                            </li>
                         </ol>
                     </nav>
                 </div>
@@ -23,25 +28,45 @@ class NewAffiliate extends Component {
 
                             <form className="forms-sample">
                                 <Form.Group className="row">
-                                    <label htmlFor="exampleInputUsername2" className="col-sm-3 col-form-label">Nombre Completo</label>
+                                    <label
+                                        htmlFor="exampleInputUsername2"
+                                        className="col-sm-3 col-form-label"
+                                    >
+                                        Nombre Completo
+                                    </label>
                                     <div className="col-sm-9">
-                                        <Form.Control type="text" className="form-control" id="exampleInputUsername2" placeholder="Nombre" />
+                                        <Form.Control
+                                            type="text"
+                                            className="form-control"
+                                            id="exampleInputUsername2"
+                                            placeholder="Nombre"
+                                        />
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="row">
-                                    <label htmlFor="exampleInputMobile" className="col-sm-3 col-form-label">Telefono</label>
+                                    <label
+                                        htmlFor="exampleInputMobile"
+                                        className="col-sm-3 col-form-label"
+                                    >
+                                        Telefono
+                                    </label>
                                     <div className="col-sm-9">
-                                        <Form.Control type="text" className="form-control" id="exampleInputMobile" placeholder="Telefono" />
+                                        <Form.Control
+                                            type="text"
+                                            className="form-control"
+                                            id="exampleInputMobile"
+                                            placeholder="Telefono"
+                                        />
                                     </div>
                                 </Form.Group>
 
-
-
                                 <Form.Group className="row">
-                                    <label className="col-sm-3 col-form-label">Departamento</label>
+                                    <label className="col-sm-3 col-form-label">
+                                        Departamento
+                                    </label>
                                     <div className="col-sm-9">
                                         <select className="form-control">
-                                            <option>America</option>
+                                            <option>Seleccione un departamento</option>
                                             <option>Italy</option>
                                             <option>Russia</option>
                                             <option>Britain</option>
@@ -52,7 +77,7 @@ class NewAffiliate extends Component {
                                     <label className="col-sm-3 col-form-label">Ciudad</label>
                                     <div className="col-sm-9">
                                         <select className="form-control">
-                                            <option>America</option>
+                                            <option>Seleccione una ciudad</option>
                                             <option>Italy</option>
                                             <option>Russia</option>
                                             <option>Britain</option>
@@ -60,27 +85,49 @@ class NewAffiliate extends Component {
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="row">
-                                    <label htmlFor="exampleInputPassword2" className="col-sm-3 col-form-label">Contraseña</label>
+                                    <label
+                                        htmlFor="exampleInputPassword2"
+                                        className="col-sm-3 col-form-label"
+                                    >
+                                        Contraseña
+                                    </label>
                                     <div className="col-sm-9">
-                                        <Form.Control type="password" className="form-control" id="exampleInputPassword2" placeholder="Contraseña" />
+                                        <Form.Control
+                                            type="password"
+                                            className="form-control"
+                                            id="exampleInputPassword2"
+                                            placeholder="Contraseña"
+                                        />
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="row">
-                                    <label htmlFor="exampleInputPassword2" className="col-sm-3 col-form-label">Codigo Asignado</label>
+                                    <label
+                                        htmlFor="exampleInputPassword2"
+                                        className="col-sm-3 col-form-label"
+                                    >
+                                        Codigo Asignado
+                                    </label>
                                     <div className="col-sm-9">
-                                        <Form.Control type="text" className="form-control" id="exampleInputPassword2" placeholder="Codigo Asignado" />
+                                        <Form.Control
+                                            type="text"
+                                            className="form-control"
+                                            id="exampleInputPassword2"
+                                            placeholder="Codigo Asignado"
+                                        />
                                     </div>
                                 </Form.Group>
 
+                                <button type="submit" className="btn btn-primary mr-2">
+                                    Registrar{" "}
+                                </button>
 
-                                <button type="submit" className="btn btn-primary mr-2">Registrar   </button>
-
-                                <Link to="/dashboard" className="btn btn-light">Cancelar</Link>
+                                <Link to="/dashboard" className="btn btn-light">
+                                    Cancelar
+                                </Link>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }
