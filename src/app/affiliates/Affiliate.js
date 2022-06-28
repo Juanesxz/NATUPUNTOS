@@ -14,6 +14,8 @@ function Affiliate() {
         assignedcode: "",
         phone: "",
         address: "",
+        city: "",
+        department: "",
         points: "",
         morepoints: "",
     };
@@ -22,7 +24,7 @@ function Affiliate() {
 
     const [state, setState] = useState(initstate);
     const [data, setData] = useState({});
-    const { name, assignedcode, phone, address, points, morepoints } = state;
+    const { name, assignedcode, phone, address, points, morepoints, city, department } = state;
 
     //form modal submit
     const [show, setShow] = useState(false);
@@ -174,7 +176,7 @@ function Affiliate() {
                                                                 className="btn btn-outline-success btn-sm"
                                                                 onClick={handleShowPoints}
                                                             >
-                                                                Agregar Puntos
+                                                                Cambiar puntos
                                                             </button>
                                                         </Link>
                                                     </td>
@@ -188,13 +190,13 @@ function Affiliate() {
                 </div>
             </div>
 
+            {/* MODAL DE EDITAR */}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Editar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
-                    {/* MODAL DE EDITAR */}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">
                             <Form.Label>NOMBRE</Form.Label>
@@ -231,6 +233,28 @@ function Affiliate() {
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
+                            <Form.Label>DEPARTAMENTO</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="department"
+                                name="department"
+                                onChange={handleInputChange}
+                                value={department || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>CIUDAD</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="city"
+                                name="city"
+                                onChange={handleInputChange}
+                                value={city || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label>DIRECCION</Form.Label>
                             <Form.Control
                                 type="text"
@@ -241,6 +265,8 @@ function Affiliate() {
                                 value={address || ""}
                             />
                         </Form.Group>
+
+
                         <Modal.Footer>
                             <Button variant="outline-warning" onClick={handleClose}>
                                 Cancelar
@@ -254,12 +280,12 @@ function Affiliate() {
                 </Modal.Body>
             </Modal>
 
+            {/* MODAL AGREGAR */}
             <Modal show={showPoints} onHide={handleClosePoints}>
                 <Modal.Header closeButton>
                     <Modal.Title>AGREGAR PUNTOS</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* MODAL AGREGAR */}
                     <Form onSubmit={handleSubmitPoints}>
                         <Form.Group className="mb-3" >
                             <Form.Label>PUNTOS ACTUALES</Form.Label>

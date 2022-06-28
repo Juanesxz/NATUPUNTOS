@@ -7,12 +7,14 @@ import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCZlZVuSJODJNnAtsH8DQG5TdPoWyjhAh0",
-    authDomain: "natupuntos-7434b.firebaseapp.com",
-    projectId: "natupuntos-7434b",
-    storageBucket: "natupuntos-7434b.appspot.com",
-    messagingSenderId: "837914191944",
-    appId: "1:837914191944:web:54bc66fe796b8a5123d07d"
+    apiKey: "AIzaSyD0wE3Dube95qbfIpE1a1L84_6zot_Nisw",
+    authDomain: "natupuntos-1bebf.firebaseapp.com",
+    databaseURL: "https://natupuntos-1bebf-default-rtdb.firebaseio.com",
+    projectId: "natupuntos-1bebf",
+    storageBucket: "natupuntos-1bebf.appspot.com",
+    messagingSenderId: "944154940336",
+    appId: "1:944154940336:web:2d551a0277a79516443c75",
+    measurementId: "G-3DQ0RFT10C"
 };
 
 // Initialize Firebase

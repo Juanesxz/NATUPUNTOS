@@ -4,40 +4,30 @@ function ReportPointsByCity() {
     return (
         <div>
             <div className="page-header">
-                <h3 className="page-title">Cartera Administrativa</h3>
+                <h3 className="page-title">Puntos Por Ciudad</h3>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Lista</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">Cartera</li>
+                        <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Reporte</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Ciudad</li>
                     </ol>
                 </nav>
             </div>
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
-                        <h4 className="card-title">Carteras De Empresas</h4>
+                        <h4 className="card-title">Puntos Ciudad</h4>
                         <div className="table-responsive">
                             <table className="table table-secondary  table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>NOMBRE DE LA EMPRESA</th>
-                                        <th>NIT</th>
+                                        <th>NOMBRE CIUDAD</th>
                                         <th>TOTAL PUNTOS</th>
-                                        <th>TOTAL A PAGAR</th>
-                                        <th>FORMA DE PAGO</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Jacob</td>
+                                        <td>Apartado</td>
                                         <td>53275531</td>
-                                        <td>120000</td>
-                                        <td>8000</td>
-                                        {/* icon java */}
-                                        <td><i className="mdi mdi-credit-card-outline" />
-                                            {/* icon fire */}
-                                            <i className="mdi mdi-cash-usd" />
-                                        </td>
                                     </tr>
 
                                 </tbody>

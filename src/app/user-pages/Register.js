@@ -15,6 +15,7 @@ function register() {
     department: "",
     city: "",
     address: "",
+    points: "0",
   });
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -43,7 +44,7 @@ function register() {
     } else {
       try {
         await signup(user.email, user.assignedcode);
-        await push(ref(database, "NATUPUNTOS/afiliados"), user);
+        await push(ref(database, "users/afiliados"), user);
         history.push("/user-pages/login");
         toast.success("Registro exitoso");
       } catch (error) {

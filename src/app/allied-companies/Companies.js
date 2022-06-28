@@ -15,12 +15,17 @@ function Companies() {
         department: "",
         city: "",
         address: "",
+        paymentmethod: "",
+        accounttype: "",
+        accountnumber: "",
+
+
     };
     const history = useHistory();
 
     const [company, setCompany] = useState(initstate);
     const [data, setData] = useState({});
-    const { companyname, nit, phone, address, department, city } = company;
+    const { companyname, nit, phone, address, department, city, paymentmethod, accounttype, accountnumber } = company;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -245,10 +250,10 @@ function Companies() {
                             <Form.Control
                                 type="text"
                                 placeholder=""
-                                id="address"
-                                name="address"
+                                id="paymentmethod"
+                                name="paymentmethod"
                                 onChange={handleChange}
-                                value={address || ""}
+                                value={paymentmethod || ""}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
@@ -256,10 +261,10 @@ function Companies() {
                             <Form.Control
                                 type="text"
                                 placeholder=""
-                                id="address"
-                                name="address"
+                                id="accounttype"
+                                name="accounttype"
                                 onChange={handleChange}
-                                value={address || ""}
+                                value={accounttype || ""}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
@@ -267,10 +272,10 @@ function Companies() {
                             <Form.Control
                                 type="text"
                                 placeholder=""
-                                id="address"
-                                name="address"
+                                id="accountnumber"
+                                name="accountnumber"
                                 onChange={handleChange}
-                                value={address || ""}
+                                value={accountnumber || ""}
                             />
                         </Form.Group>
                         <Modal.Footer>

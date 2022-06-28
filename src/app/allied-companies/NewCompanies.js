@@ -171,7 +171,7 @@ function NewCompanies() {
                                 </label>
                                 <div className="col-sm-9">
                                     <Form.Control
-                                        type="password"
+                                        type="text"
                                         className="form-control"
                                         id="address"
                                         name="address"
