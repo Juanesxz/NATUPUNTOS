@@ -80,13 +80,13 @@ function Affiliate() {
             history.push("/affiliates/affiliate/list");
         }
     };
-    const { id } = useParams();
     // obtener el valor del input
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setState({ ...state, [name]: value });
     };
     // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { id } = useParams();
 
     //button para eliminar afiliado
     const handleDelete = (id) => {
