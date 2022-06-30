@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
+
 function Affiliate() {
     //date format
     const initstate = {
@@ -19,11 +20,17 @@ function Affiliate() {
         morepoints: "",
     };
 
-    const history = useHistory();
-
     const [state, setState] = useState(initstate);
     const [data, setData] = useState({});
-    const { name, code, phone, points = 0, morepoints, municipio, departamento } = state;
+    const {
+        name,
+        code,
+        phone,
+        points = 0,
+        morepoints,
+        municipio,
+        departamento,
+    } = state;
 
     //form modal submit
     const [show, setShow] = useState(false);
@@ -35,9 +42,20 @@ function Affiliate() {
     const handleClosePoints = () => setShowPoints(false);
     const handleShowPoints = () => setShowPoints(true);
 
+
+
+    const history = useHistory();
+
+    // Button para actualizar afiliados
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (name === "" || code === "" || phone === "" || municipio === "" || departamento === "") {
+        if (
+            name === "" ||
+            code === "" ||
+            phone === "" ||
+            municipio === "" ||
+            departamento === ""
+        ) {
             toast.error("Debe llenar todos los campos");
         } else {
             update(ref(database, `users/${id}`), state);
@@ -47,6 +65,7 @@ function Affiliate() {
         }
     };
 
+    // Button para agregar puntos
     const handleSubmitPoints = (e) => {
         e.preventDefault();
         const newPoints = parseInt(points) + parseInt(morepoints);
@@ -61,14 +80,15 @@ function Affiliate() {
             history.push("/affiliates/affiliate/list");
         }
     };
-
+    const { id } = useParams();
+    // obtener el valor del input
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setState({ ...state, [name]: value });
     };
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { id } = useParams();
 
+    //button para eliminar afiliado
     const handleDelete = (id) => {
         if (window.confirm("¿Está seguro de eliminar este afiliado?")) {
             remove(ref(database, `users/${id}`));
@@ -128,12 +148,18 @@ function Affiliate() {
                 <div className="card">
                     <div className="card-body">
                         <nav style={{ left: 0 }} className="navbar p-0 d-flex flex-row">
-
                             <h4 className="card-title">Afiliados</h4>
                             <ul className="navbar-nav w-20">
                                 <li className="nav-item w-20">
                                     <form className="nav-link mt-2 mt-md-0 d-lg-flex search">
-                                        <input type="text" className="form-control" placeholder="Buscar" />
+                                        {data && (
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar"
+
+                                            />
+                                        )}
                                     </form>
                                 </li>
                             </ul>
@@ -205,7 +231,6 @@ function Affiliate() {
                     <Modal.Title>Editar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">
                             <Form.Label>NOMBRE</Form.Label>
@@ -284,7 +309,7 @@ function Affiliate() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmitPoints}>
-                        <Form.Group className="mb-3" >
+                        <Form.Group className="mb-3">
                             <Form.Label>PUNTOS ACTUALES</Form.Label>
                             <Form.Control
                                 type="number"
@@ -308,10 +333,7 @@ function Affiliate() {
                             <Button variant="outline-warning" onClick={handleClosePoints}>
                                 CANCELAR
                             </Button>
-                            <Button
-                                type="submit"
-                                variant="outline-success"
-                            >
+                            <Button type="submit" variant="outline-success">
                                 AGREGAR PUNTOS
                             </Button>
                         </Modal.Footer>
