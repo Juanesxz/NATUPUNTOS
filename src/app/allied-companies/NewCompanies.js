@@ -40,7 +40,7 @@ function NewCompanies() {
         } else {
             try {
                 await signup(user.email, user.nit);
-                await push(ref(database, "users/empresas"), user);
+                await push(ref(database, "empresas"), user);
                 history.push("/allied-companies/companies/list");
                 toast.success("Registro exitoso");
             } catch (error) {

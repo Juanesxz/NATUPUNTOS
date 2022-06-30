@@ -43,7 +43,7 @@ function Companies() {
         ) {
             toast.error("Todos los campos son obligatorios");
         } else {
-            update(ref(database, `users/empresas/${id}`), company);
+            update(ref(database, `empresas/${id}`), company);
             handleClose();
             toast.success("Empresa actualizada correctamente");
             history.push("/allied-companies/companies/list");
@@ -59,7 +59,7 @@ function Companies() {
 
     const handleDelete = (id) => {
         if (window.confirm("¿Estas seguro de eliminar este registro?")) {
-            remove(ref(database, `users/empresas/${id}`));
+            remove(ref(database, `empresas/${id}`));
             toast.success("Empresa eliminada correctamente");
         } else {
             toast.error("Empresa no eliminada");
@@ -67,7 +67,7 @@ function Companies() {
     };
 
     useEffect(() => {
-        const starCountRef = ref(database, `users/empresas`);
+        const starCountRef = ref(database, `empresas`);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             if (data !== null) {

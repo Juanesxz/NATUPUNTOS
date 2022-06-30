@@ -13,7 +13,7 @@ function MoreInfo() {
 
     useEffect(() => {
         const dbRef = ref(database);
-        get(child(dbRef, `users/empresas/${id}`))
+        get(child(dbRef, `empresas/${id}`))
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     setUser({ ...snapshot.val() });

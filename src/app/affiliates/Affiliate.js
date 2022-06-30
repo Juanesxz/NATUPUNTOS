@@ -11,11 +11,10 @@ function Affiliate() {
     //date format
     const initstate = {
         name: "",
-        assignedcode: "",
+        code: "",
         phone: "",
-        address: "",
-        city: "",
-        department: "",
+        municipio: "",
+        departamento: "",
         points: "",
         morepoints: "",
     };
@@ -24,7 +23,7 @@ function Affiliate() {
 
     const [state, setState] = useState(initstate);
     const [data, setData] = useState({});
-    const { name, assignedcode, phone, address, points, morepoints, city, department } = state;
+    const { name, code, phone, points = 0, morepoints, municipio, departamento } = state;
 
     //form modal submit
     const [show, setShow] = useState(false);
@@ -38,10 +37,10 @@ function Affiliate() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (name === "" || assignedcode === "" || phone === "" || address === "") {
+        if (name === "" || code === "" || phone === "" || municipio === "" || departamento === "") {
             toast.error("Debe llenar todos los campos");
         } else {
-            update(ref(database, `users/afiliados/${id}`), state);
+            update(ref(database, `users/${id}`), state);
             toast.success("Afiliado actualizado");
             handleClose();
             history.push("/affiliates/affiliate/list");
@@ -54,7 +53,7 @@ function Affiliate() {
         if (isNaN(newPoints)) {
             toast.error("Por favor ingrese un numero");
         } else {
-            update(ref(database, `users/afiliados/${id}`), {
+            update(ref(database, `users/${id}`), {
                 points: newPoints,
             });
             toast.success("Puntos actualizados");
@@ -72,7 +71,7 @@ function Affiliate() {
 
     const handleDelete = (id) => {
         if (window.confirm("¿Está seguro de eliminar este afiliado?")) {
-            remove(ref(database, `users/afiliados/${id}`));
+            remove(ref(database, `users/${id}`));
             toast.success("Afiliado eliminado");
         } else {
             toast.error("No se eliminó el afiliado");
@@ -81,7 +80,7 @@ function Affiliate() {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-        const starCountRef = ref(database, `users/afiliados`);
+        const starCountRef = ref(database, `users`);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             if (data !== null) {
@@ -128,7 +127,17 @@ function Affiliate() {
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
-                        <h4 className="card-title">Afiliados</h4>
+                        <nav style={{ left: 0 }} className="navbar p-0 d-flex flex-row">
+
+                            <h4 className="card-title">Afiliados</h4>
+                            <ul className="navbar-nav w-20">
+                                <li className="nav-item w-20">
+                                    <form className="nav-link mt-2 mt-md-0 d-lg-flex search">
+                                        <input type="text" className="form-control" placeholder="Buscar" />
+                                    </form>
+                                </li>
+                            </ul>
+                        </nav>
                         <div className="table-responsive">
                             <table className="table table-striped table-bordered">
                                 <thead>
@@ -137,7 +146,7 @@ function Affiliate() {
                                         <th>NOMBRE</th>
                                         <th>CODIGO ASIGNADO</th>
                                         <th>TELEFONO</th>
-                                        <th>DIRECCION</th>
+                                        <th>CIUDAD</th>
                                         <th>PUNTOS</th>
                                         <th>ACCIONES</th>
                                     </tr>
@@ -149,9 +158,9 @@ function Affiliate() {
                                                 <tr key={id}>
                                                     <td>{key + 1}</td>
                                                     <td> {data[id].name} </td>
-                                                    <td> {data[id].assignedcode} </td>
+                                                    <td> {data[id].code} </td>
                                                     <td> {data[id].phone} </td>
-                                                    <td> {data[id].address} </td>
+                                                    <td> {data[id].municipio} </td>
                                                     <td> {data[id].points} </td>
                                                     <td>
                                                         <Link to={`/affiliates/affiliate/${id}`}>
@@ -215,10 +224,10 @@ function Affiliate() {
                             <Form.Control
                                 type="text"
                                 placeholder=""
-                                id="assignedcode"
-                                name="assignedcode"
+                                id="code"
+                                name="code"
                                 onChange={handleInputChange}
-                                value={assignedcode || ""}
+                                value={code || ""}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
@@ -237,10 +246,10 @@ function Affiliate() {
                             <Form.Control
                                 type="text"
                                 placeholder=""
-                                id="department"
-                                name="department"
+                                id="departamento"
+                                name="departamento"
                                 onChange={handleInputChange}
-                                value={department || ""}
+                                value={departamento || ""}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
@@ -248,24 +257,12 @@ function Affiliate() {
                             <Form.Control
                                 type="text"
                                 placeholder=""
-                                id="city"
-                                name="city"
+                                id="municipio"
+                                name="municipio"
                                 onChange={handleInputChange}
-                                value={city || ""}
+                                value={municipio || ""}
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>DIRECCION</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder=""
-                                id="address"
-                                name="address"
-                                onChange={handleInputChange}
-                                value={address || ""}
-                            />
-                        </Form.Group>
-
 
                         <Modal.Footer>
                             <Button variant="outline-warning" onClick={handleClose}>
@@ -294,7 +291,7 @@ function Affiliate() {
                                 id="points"
                                 name="points"
                                 disabled
-                                value={points || ""}
+                                value={points || 0}
                                 style={{ backgroundColor: "#2A3038", textAlign: "center" }}
                             />
                         </Form.Group>

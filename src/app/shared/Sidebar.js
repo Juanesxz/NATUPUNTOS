@@ -265,19 +265,6 @@ class Sidebar extends Component {
                     </Link>
                   </li>
 
-                  <li className="nav-item">
-                    {" "}
-                    <Link
-                      className={
-                        this.isPathActive("/allied-companies/pursecompanies")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                      to="/allied-companies/pursecompanies"
-                    >
-                      Cartera
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </Collapse>
