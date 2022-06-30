@@ -113,7 +113,24 @@ function Companies() {
             <div className="col-lg-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
-                        <h4 className="card-title">Empresas aliadas</h4>
+                        <nav style={{ left: 0 }} className="navbar p-0 d-flex flex-row">
+                            <h4 className="card-title">Empresas Aliadas</h4>
+                            <ul className="navbar-nav w-20">
+                                <li className="nav-item w-20">
+                                    <form className="nav-link mt-2 mt-md-0 d-lg-flex search">
+                                        {data && (
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar"
+                                                name="search"
+                                                id="search"
+                                            />
+                                        )}
+                                    </form>
+                                </li>
+                            </ul>
+                        </nav>
                         <div className="table-responsive">
                             <table className="table table-striped table-bordered">
                                 <thead>
