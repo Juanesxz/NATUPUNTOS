@@ -187,7 +187,7 @@ function Affiliate() {
                                                     <td> {data[id].code} </td>
                                                     <td> {data[id].phone} </td>
                                                     <td> {data[id].municipio} </td>
-                                                    <td> {data[id].points} </td>
+                                                    <td> {data[id].points || 0} </td>
                                                     <td>
                                                         <Link to={`/affiliates/affiliate/${id}`}>
                                                             <button

@@ -83,7 +83,7 @@ class App extends Component {
       "/error-pages/error-404",
       "/error-pages/error-500",
       "/general-pages/landing-page",
-      "/allied-companies/moreinfo/:id",
+      "/setting/createprofile",
     ];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (this.props.location.pathname === fullPageLayoutRoutes[i]) {

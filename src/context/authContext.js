@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const signup = (email, password) =>
+    const signup = (email, password, role) =>
         createUserWithEmailAndPassword(auth, email, password);
 
     const login = async (email, password) =>
