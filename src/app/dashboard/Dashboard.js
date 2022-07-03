@@ -1,5 +1,4 @@
 import React from "react";
-import { useAuth } from "../../context/authContext";
 import { Carousel } from 'react-bootstrap';
 
 function Dashboard() {

@@ -25,16 +25,14 @@ class App extends Component {
     );
     let sidebarComponent = !this.state.isFullPageLayout ? (
       <AuthProvider>
-        {" "}
-        <Sidebar />{" "}
+        <Sidebar />
       </AuthProvider>
     ) : (
       ""
     );
     let footerComponent = !this.state.isFullPageLayout ? (
       <AuthProvider>
-        {" "}
-        <Footer />{" "}
+        <Footer />
       </AuthProvider>
     ) : (
       ""
@@ -47,7 +45,6 @@ class App extends Component {
           <div className="main-panel">
             <div className="content-wrapper">
               <AuthProvider>
-                {" "}
                 <AppRoutes />
               </AuthProvider>
             </div>

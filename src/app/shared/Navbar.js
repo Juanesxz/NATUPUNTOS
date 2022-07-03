@@ -16,7 +16,7 @@ class Navbar extends Component {
     return (
       <nav className="navbar p-0 fixed-top d-flex flex-row">
         <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-          <Link className="navbar-brand brand-logo-mini" to="/">
+          <Link className="navbar-brand brand-logo-mini" to="/dashboard">
             <img
               src={require("../../assets/images/logo-mini.svg")}
               alt="logo"

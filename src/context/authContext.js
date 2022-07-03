@@ -3,11 +3,25 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    signOut
+    signOut,
 } from "firebase/auth";
-import { auth } from "../app/Firebase";
+import { ref, onValue } from "firebase/database";
+import { auth, database } from "../app/Firebase";
+
 
 const authContext = createContext();
+
+//Obtener rol de la base de datos con una funcion
+async function getRole(uid) {
+    const starCountRef = ref(database, `admin/${uid}`);
+    onValue(starCountRef, (snapshot) => {
+        const docu = snapshot.val();
+        const role = docu.role;
+        return role;
+    });
+}
+
+
 
 export const useAuth = () => {
     const context = useContext(authContext);
@@ -19,7 +33,7 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const signup = (email, password, role) =>
+    const signup = (email, password) =>
         createUserWithEmailAndPassword(auth, email, password);
 
     const login = async (email, password) =>
@@ -29,8 +43,24 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-            setLoading(false);
+            if (currentUser) {
+
+
+                getRole(currentUser.uid).then((role) => {
+                    const userData = {
+                        email: currentUser.email,
+                        uid: currentUser.uid,
+                        role: role,
+                    };
+                    setUser(userData);
+                    console.log(userData);
+                    setLoading(false);
+                });
+
+            } else {
+                setUser(null);
+                setLoading(false);
+            }
         });
 
         return () => unsubscribe();

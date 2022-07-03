@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { Link, useHistory } from "react-router-dom";
-import { push, ref, set } from "firebase/database";
+import { Link } from "react-router-dom";
+import { ref, set } from "firebase/database";
 import { database } from "../Firebase";
 import { toast } from "react-toastify";
 
@@ -21,7 +21,7 @@ function CreateProfile() {
     };
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const history = useHistory();
+
 
     const handleChange = ({ target: { name, value } }) => {
         setUser({ ...user, [name]: value });

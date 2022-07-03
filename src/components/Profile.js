@@ -21,7 +21,7 @@ function Profile() {
                         alt="profile"
                     />
                     <p className="mb-0 d-none d-sm-block navbar-profile-name">
-                        {user.email}
+                        {user ? user.email : ""}
                     </p>
                     <i className="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
