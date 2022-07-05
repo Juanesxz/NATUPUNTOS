@@ -11,16 +11,6 @@ import { auth, database } from "../app/Firebase";
 
 const authContext = createContext();
 
-//Obtener rol de la base de datos con una funcion
-async function getRole(uid) {
-    const starCountRef = ref(database, `admin/${uid}`);
-    onValue(starCountRef, (snapshot) => {
-        const docu = snapshot.val();
-        const role = docu.role;
-        console.log(role);
-        return role;
-    });
-}
 
 
 
