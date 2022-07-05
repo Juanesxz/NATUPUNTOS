@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import { ref, set } from "firebase/database";
-import { database } from "../Firebase";
+import { database, firestore } from "../Firebase";
+import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 function CreateProfile() {
@@ -22,7 +23,6 @@ function CreateProfile() {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
-
     const handleChange = ({ target: { name, value } }) => {
         setUser({ ...user, [name]: value });
     };
@@ -40,14 +40,19 @@ function CreateProfile() {
             toast.error("Debe llenar todos los campos");
         } else {
             try {
-                const infoUsuario = await signup(user.email, user.password, user.role);
+                const infoUsuario = await signup(user.email, user.password);
                 console.log(infoUsuario);
-                await set(ref(database, "admin/" + infoUsuario.user.uid), {
+
+                const refadmin = doc(firestore, "admin/" + infoUsuario.user.uid);
+                await setDoc(refadmin, {
                     name: user.name,
                     email: user.email,
                     role: user.role,
                 });
-                toast.success("El Nuevo Perfil De usuario se ha registrado correctamente");
+                toast.success("Usuario creado correctamente");
+                toast.success(
+                    "El Nuevo Perfil De usuario se ha registrado correctamente"
+                );
                 handleLogout();
             } catch (error) {
                 if (error.code === "auth/email-already-in-use") {
@@ -133,7 +138,6 @@ function CreateProfile() {
                                     </button>
                                 </div>
                                 <div className="bntext-center mt-4 font-weight-light">
-
                                     <Link to="/dashboard" className="btn btn-outline-danger ">
                                         volver
                                     </Link>
@@ -144,7 +148,7 @@ function CreateProfile() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default CreateProfile
+export default CreateProfile;

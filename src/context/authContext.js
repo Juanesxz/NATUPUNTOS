@@ -17,6 +17,7 @@ async function getRole(uid) {
     onValue(starCountRef, (snapshot) => {
         const docu = snapshot.val();
         const role = docu.role;
+        console.log(role);
         return role;
     });
 }
@@ -42,11 +43,12 @@ export function AuthProvider({ children }) {
     const logout = () => signOut(auth);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
-
-
-                getRole(currentUser.uid).then((role) => {
+                const starCountRef = ref(database, `admin/${currentUser.uid}`);
+                onValue(starCountRef, (snapshot) => {
+                    const docu = snapshot.val();
+                    const role = docu.role;
                     const userData = {
                         email: currentUser.email,
                         uid: currentUser.uid,
@@ -56,7 +58,6 @@ export function AuthProvider({ children }) {
                     console.log(userData);
                     setLoading(false);
                 });
-
             } else {
                 setUser(null);
                 setLoading(false);
