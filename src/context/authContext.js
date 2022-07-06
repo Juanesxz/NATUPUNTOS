@@ -45,7 +45,6 @@ export function AuthProvider({ children }) {
                         role: role,
                     };
                     setUser(userData);
-                    console.log(userData);
                     setLoading(false);
                 });
             } else {

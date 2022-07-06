@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { push, ref } from "firebase/database";
 import { database } from "../Firebase";
 import { toast } from "react-toastify";
+import { departamentos } from "../../components/Department";
 
 function NewCompanies() {
     const [user, setUser] = useState({
@@ -12,10 +13,30 @@ function NewCompanies() {
         nit: "",
         phone: "",
         email: "",
+        iddepartaments: -1,
         department: "",
         city: "",
         address: "",
+        latitude: "",
+        length: "",
     });
+
+
+    const nombredepartamentos = departamentos.map((item, i) => (
+        item.nombre
+    ));
+
+    const departaments = nombredepartamentos[user.iddepartaments];
+
+    if (departaments === undefined) {
+        user.department = "";
+    } else {
+        user.department = departaments;
+
+    }
+
+
+
 
     const { signup } = useAuth();
     const history = useHistory();
@@ -34,13 +55,26 @@ function NewCompanies() {
             user.email === "" ||
             user.department === "" ||
             user.city === "" ||
-            user.address === ""
+            user.address === "" ||
+            user.latitude === "" ||
+            user.length === ""
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
             try {
                 await signup(user.email, user.nit);
-                await push(ref(database, "empresas"), user);
+                await push(ref(database, "empresas"),
+                    {
+                        companyname: user.companyname,
+                        nit: user.nit,
+                        phone: user.phone,
+                        email: user.email,
+                        department: user.department,
+                        city: user.city,
+                        address: user.address,
+                        latitude: user.latitude,
+                        length: user.length,
+                    });
                 history.push("/allied-companies/companies/list");
                 toast.success("Registro exitoso");
             } catch (error) {
@@ -154,14 +188,17 @@ function NewCompanies() {
                                 <div className="col-sm-9">
                                     <select
                                         className="form-control"
-                                        name="department"
-                                        id="department"
+                                        name="iddepartaments"
+                                        id="iddepartaments"
                                         onChange={handleChange}
                                     >
-                                        <option>Seleccione un departamento</option>
-                                        <option>Italy</option>
-                                        <option>Russia</option>
-                                        <option>Britain</option>
+                                        <option value="-1" >Seleccione un departamento</option>
+                                        {departamentos.map((item, i) => (
+                                            <option key={"iddepartaments" + i} name={item.nombre} id={item.nombre} value={i}  >
+                                                {item.nombre}
+                                            </option>
+                                        ))}
+
                                     </select>
                                 </div>
                             </Form.Group>
@@ -174,10 +211,16 @@ function NewCompanies() {
                                         id="city"
                                         onChange={handleChange}
                                     >
-                                        <option>Seleccione una ciudad</option>
-                                        <option>Italy</option>
-                                        <option>Russia</option>
-                                        <option>Britain</option>
+                                        <option >Seleccione una ciudad</option>
+
+                                        {user.iddepartaments > -1 &&
+                                            departamentos[user.iddepartaments].ciudades.map((item, i) => (
+                                                <option key={"ciudad" + i} value={item.ciudad}>
+                                                    {item}
+                                                </option>
+                                            ))}
+
+
                                     </select>
                                 </div>
                             </Form.Group>
@@ -196,6 +239,37 @@ function NewCompanies() {
                                     />
                                 </div>
                             </Form.Group>
+                            <Form.Group className="row">
+                                <label htmlFor="latitude" className="col-sm-3 col-form-label">
+                                    Latitud
+                                </label>
+                                <div className="col-sm-9">
+                                    <Form.Control
+                                        type="text"
+                                        className="form-control"
+                                        id="latitude"
+                                        name="latitude"
+                                        placeholder="Latitud"
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </Form.Group>
+                            <Form.Group className="row">
+                                <label htmlFor="length" className="col-sm-3 col-form-label">
+                                    Longitud
+                                </label>
+                                <div className="col-sm-9">
+                                    <Form.Control
+                                        type="text"
+                                        className="form-control"
+                                        id="length"
+                                        name="length"
+                                        placeholder="Longitud"
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </Form.Group>
+
 
                             <button type="submit" className="btn btn-outline-success mr-2">
                                 Registrar
