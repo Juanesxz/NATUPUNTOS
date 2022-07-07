@@ -214,7 +214,7 @@ function NewCompanies() {
                                         <option >Seleccione una ciudad</option>
 
                                         {user.iddepartaments > -1 &&
-                                            departamentos[user.iddepartaments].ciudades.map((item, i) => (
+                                            departamentos[user.iddepartaments].municipios.map((item, i) => (
                                                 <option key={"ciudad" + i} value={item.ciudad}>
                                                     {item}
                                                 </option>

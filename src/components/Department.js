@@ -262,10 +262,10 @@ export const departamentos = [
     },
     {
         nombre: "Vaupés",
-        municipios: [],
+        municipios: ["Carurú", "Mitú", "Pacoa", "Papunaua", "Taraira", "Yavaraté"],
     },
     {
         nombre: "Vichada",
-        municipios: [],
+        municipios: ["Cumaribo", "La Primavera", "Puerto Carreño", "Santa Rosalía"],
     },
 ];
