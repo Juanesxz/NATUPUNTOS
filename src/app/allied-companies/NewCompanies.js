@@ -7,6 +7,7 @@ import { database } from "../Firebase";
 import { toast } from "react-toastify";
 import { departamentos } from "../../components/Department";
 
+
 function NewCompanies() {
     const [user, setUser] = useState({
         companyname: "",
@@ -32,14 +33,19 @@ function NewCompanies() {
         user.department = "";
     } else {
         user.department = departaments;
-
     }
 
 
 
 
-    const { signup } = useAuth();
+
+    const { signup, logout } = useAuth();
     const history = useHistory();
+
+    const handleLogout = async () => {
+        await logout();
+
+    }
 
     const handleChange = ({ target: { name, value } }) => {
         setUser({ ...user, [name]: value });
@@ -76,7 +82,8 @@ function NewCompanies() {
                         length: user.length,
                     });
                 history.push("/allied-companies/companies/list");
-                toast.success("Registro exitoso");
+                toast.success("Registro de empresa exitoso");
+                handleLogout();
             } catch (error) {
                 if (error.code === "auth/email-already-in-use") {
                     toast.error("El correo ya está en uso");
@@ -211,7 +218,7 @@ function NewCompanies() {
                                         id="city"
                                         onChange={handleChange}
                                     >
-                                        <option >Seleccione una ciudad</option>
+                                        <option value="" >Seleccione una ciudad</option>
 
                                         {user.iddepartaments > -1 &&
                                             departamentos[user.iddepartaments].municipios.map((item, i) => (

@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 export function ProtectedRoute({ children }) {
     const { user, loading } = useAuth();
     if (loading) return <h3>Loading...</h3>;
-    const { role } = user;
+
 
 
 

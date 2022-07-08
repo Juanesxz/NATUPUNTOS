@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import { ref, set } from "firebase/database";
-import { database, firestore } from "../Firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { database } from "../Firebase";
+
 import { toast } from "react-toastify";
 
 function CreateProfile() {
@@ -42,13 +42,13 @@ function CreateProfile() {
             try {
                 const infoUsuario = await signup(user.email, user.password);
                 console.log(infoUsuario);
-
-                const refadmin = doc(firestore, "admin/" + infoUsuario.user.uid);
-                await setDoc(refadmin, {
+                const refuser = ref(database, "admin/" + infoUsuario.user.uid);
+                await set(refuser, {
                     name: user.name,
                     email: user.email,
-                    role: user.role,
+                    role: user.role
                 });
+
                 toast.success("Usuario creado correctamente");
                 toast.success(
                     "El Nuevo Perfil De usuario se ha registrado correctamente"
