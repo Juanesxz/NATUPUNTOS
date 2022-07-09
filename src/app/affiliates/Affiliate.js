@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-
+import { useAuth } from "../../context/authContext";
 
 function Affiliate() {
     //date format
@@ -22,8 +22,9 @@ function Affiliate() {
 
     const [state, setState] = useState(initstate);
     const [data, setData] = useState({});
+    const [search, setSearch] = useState("");
     const {
-        name,
+        name = "",
         code,
         phone,
         points = 0,
@@ -41,8 +42,6 @@ function Affiliate() {
     const [showPoints, setShowPoints] = useState(false);
     const handleClosePoints = () => setShowPoints(false);
     const handleShowPoints = () => setShowPoints(true);
-
-
 
     const history = useHistory();
 
@@ -127,6 +126,33 @@ function Affiliate() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, data]);
 
+    const { loading } = useAuth();
+
+    if (loading) {
+        return <h4>cargando...</h4>;
+    }
+
+    const searcher = (e) => {
+        setSearch(e.target.value);
+        console.log(e.target.value);
+    };
+
+    const nombre = Object.keys(data).map((item, i) => data[item]);
+
+
+    // metodo de filtrado 1
+    let results = [];
+
+    if (!search) {
+        results = nombre;
+    } else {
+        results = nombre.filter((dato) =>
+            dato.name.toLowerCase().includes(search.toLocaleLowerCase())
+        );
+    }
+
+    console.log(results);
+
     return (
         <div>
             <div className="page-header">
@@ -154,10 +180,11 @@ function Affiliate() {
                                     <form className="nav-link mt-2 mt-md-0 d-lg-flex search">
                                         {data && (
                                             <input
+                                                value={search}
+                                                onChange={searcher}
                                                 type="text"
+                                                placeholder="Search"
                                                 className="form-control"
-                                                placeholder="Buscar"
-
                                             />
                                         )}
                                     </form>
@@ -178,16 +205,16 @@ function Affiliate() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data &&
-                                        Object.keys(data || {}).map((id, key) => {
+                                    {results &&
+                                        Object.keys(results || {}).map((id, key) => {
                                             return (
                                                 <tr key={id}>
                                                     <td>{key + 1}</td>
-                                                    <td> {data[id].name} </td>
-                                                    <td> {data[id].code} </td>
-                                                    <td> {data[id].phone} </td>
-                                                    <td> {data[id].municipio} </td>
-                                                    <td> {data[id].points || 0} </td>
+                                                    <td> {results[id].name} </td>
+                                                    <td> {results[id].code} </td>
+                                                    <td> {results[id].phone} </td>
+                                                    <td> {results[id].municipio} </td>
+                                                    <td> {results[id].points || 0} </td>
                                                     <td>
                                                         <Link to={`/affiliates/affiliate/${id}`}>
                                                             <button
