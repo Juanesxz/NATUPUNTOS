@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { useAuth } from "../../context/authContext";
+
 
 function Affiliate() {
     //date format
@@ -126,19 +126,14 @@ function Affiliate() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, data]);
 
-    const { loading } = useAuth();
-
-    if (loading) {
-        return <h4>cargando...</h4>;
-    }
 
     const searcher = (e) => {
+        e.preventDefault();
         setSearch(e.target.value);
         console.log(e.target.value);
     };
 
     const nombre = Object.keys(data).map((item, i) => data[item]);
-
 
     // metodo de filtrado 1
     let results = [];
@@ -146,12 +141,17 @@ function Affiliate() {
     if (!search) {
         results = nombre;
     } else {
-        results = nombre.filter((dato) =>
-            dato.name.toLowerCase().includes(search.toLocaleLowerCase())
+        results = nombre.filter(
+            (dato) =>
+                dato.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.code.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.phone.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.municipio.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.departamento.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
 
-    console.log(results);
+
 
     return (
         <div>
@@ -177,17 +177,17 @@ function Affiliate() {
                             <h4 className="card-title">Afiliados</h4>
                             <ul className="navbar-nav w-20">
                                 <li className="nav-item w-20">
-                                    <form className="nav-link mt-2 mt-md-0 d-lg-flex search">
-                                        {data && (
-                                            <input
-                                                value={search}
-                                                onChange={searcher}
-                                                type="text"
-                                                placeholder="Search"
-                                                className="form-control"
-                                            />
-                                        )}
-                                    </form>
+
+                                    {data && (
+                                        <input
+                                            value={search}
+                                            onChange={searcher}
+                                            type="search"
+                                            placeholder="Buscar"
+                                            className="form-control "
+                                        />
+                                    )}
+
                                 </li>
                             </ul>
                         </nav>

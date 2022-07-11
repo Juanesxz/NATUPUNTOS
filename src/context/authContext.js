@@ -6,7 +6,7 @@ import {
     signOut,
 } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
-import { auth, database } from "../app/Firebase";
+import { auth, database, auth2 } from "../app/Firebase";
 
 
 const authContext = createContext();
@@ -25,10 +25,11 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     const signup = (email, password) =>
-        createUserWithEmailAndPassword(auth, email, password);
+        createUserWithEmailAndPassword(auth2, email, password);
 
-    const login = async (email, password) =>
+    async function login(email, password) {
         signInWithEmailAndPassword(auth, email, password);
+    }
 
     const logout = () => signOut(auth);
 
@@ -37,8 +38,8 @@ export function AuthProvider({ children }) {
             if (currentUser) {
                 const starCountRef = ref(database, `admin/${currentUser.uid}`);
                 onValue(starCountRef, (snapshot) => {
-                    const docu = snapshot.val();
-                    const role = docu.role;
+                    const docu = snapshot.val() ? snapshot.val() : {};
+                    const role = docu.role ? docu.role : null;
                     const userData = {
                         email: currentUser.email,
                         uid: currentUser.uid,
@@ -48,7 +49,13 @@ export function AuthProvider({ children }) {
                     setLoading(false);
                 });
             } else {
-                setUser(null);
+                const userData = {
+                    email: null,
+                    uid: null,
+                    role: null,
+                };
+
+                setUser(userData);
                 setLoading(false);
             }
         });

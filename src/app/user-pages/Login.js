@@ -8,25 +8,31 @@ import { toast } from "react-toastify";
 
 function Login() {
   // eslint-disable-next-line no-undef
-  const [user, setUser] = useState({
+  const [users, setUsers] = useState({
     email: "",
     assignedcode: "",
   });
 
-  const { login } = useAuth();
+  const { login, user, loading } = useAuth();
   const history = useHistory();
 
+
+
+
+
+  console.log(user);
+
   const handleChange = ({ target: { name, value } }) =>
-    setUser({ ...user, [name]: value });
+    setUsers({ ...users, [name]: value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (user.email === "" || user.assignedcode === "") {
+    if (users.email === "" || users.assignedcode === "") {
       toast.error("Debe llenar todos los campos");
     } else {
       try {
-        await login(user.email, user.assignedcode);
+        await login(users.email, users.assignedcode);
         history.push("/dashboard");
         toast.success("Ingreso exitoso");
       } catch (error) {
@@ -44,9 +50,10 @@ function Login() {
         }
         if (error.code === "auth/user-not-found") {
           toast.error("El usuario no existe");
-
         }
-        if (error.code === "auth/wrong-password") { toast.error("La contraseña es incorrecta"); }
+        if (error.code === "auth/wrong-password") {
+          toast.error("La contraseña es incorrecta");
+        }
       }
     }
   };
@@ -97,7 +104,6 @@ function Login() {
                   </button>
                 </div>
               </Form>
-
             </div>
           </div>
         </div>

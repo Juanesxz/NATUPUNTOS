@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useAuth } from "../context/authContext";
 import { Redirect } from "react-router-dom";
 export function ProtectedRoute({ children }) {
@@ -8,7 +8,12 @@ export function ProtectedRoute({ children }) {
 
 
 
-    // eslint-disable-next-line react/react-in-jsx-scope
-    if (!user) return <Redirect to="/user-pages/login" />;
+    if (user.role === null) return <Redirect to="/user-pages/login" />;
+
+
+
+
+
+
     return children;
 }

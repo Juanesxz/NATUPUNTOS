@@ -3,6 +3,7 @@ import { useAuth } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import { ref, set } from "firebase/database";
 import { database } from "../Firebase";
+import { useHistory } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
@@ -14,12 +15,12 @@ function CreateProfile() {
         role: "",
     });
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { signup, logout } = useAuth();
+    const history = useHistory();
 
-    const handleLogout = async () => {
-        await logout();
-    };
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { signup } = useAuth();
+
+
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
@@ -53,7 +54,7 @@ function CreateProfile() {
                 toast.success(
                     "El Nuevo Perfil De usuario se ha registrado correctamente"
                 );
-                handleLogout();
+                history.push("/dashboard");
             } catch (error) {
                 if (error.code === "auth/email-already-in-use") {
                     toast.error("El correo ya está en uso");

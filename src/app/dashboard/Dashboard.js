@@ -1,7 +1,13 @@
 import React from "react";
 import { Carousel } from 'react-bootstrap';
+import { useAuth } from "../../context/authContext";
+
 
 function Dashboard() {
+
+  const { user } = useAuth();
+
+  console.log(user);
 
   return (
     <div>

@@ -39,13 +39,10 @@ function NewCompanies() {
 
 
 
-    const { signup, logout } = useAuth();
+    const { signup } = useAuth();
     const history = useHistory();
 
-    const handleLogout = async () => {
-        await logout();
 
-    }
 
     const handleChange = ({ target: { name, value } }) => {
         setUser({ ...user, [name]: value });
@@ -83,7 +80,6 @@ function NewCompanies() {
                     });
                 history.push("/allied-companies/companies/list");
                 toast.success("Registro de empresa exitoso");
-                handleLogout();
             } catch (error) {
                 if (error.code === "auth/email-already-in-use") {
                     toast.error("El correo ya está en uso");
