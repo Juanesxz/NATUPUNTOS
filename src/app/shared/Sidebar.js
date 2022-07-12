@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Collapse, Dropdown } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
+import ProfileSidebar from "../../components/ProfileSidebar";
 
 class Sidebar extends Component {
   state = {};
@@ -71,20 +72,7 @@ class Sidebar extends Component {
         <ul className="nav">
           <li className="nav-item profile">
             <div className="profile-desc">
-              <div className="profile-pic">
-                <div className="count-indicator">
-                  <img
-                    className="img-xs rounded-circle "
-                    src={require("../../assets/images/faces/face15.jpg")}
-                    alt="profile"
-                  />
-                  <span className="count bg-success"></span>
-                </div>
-                <div className="profile-name">
-                  <h5 className="mb-0 font-weight-normal">Andres</h5>
-                  <span>ADMINISTRADOR</span>
-                </div>
-              </div>
+              <ProfileSidebar />
               <Dropdown alignRight>
                 <Dropdown.Toggle as="a" className="cursor-pointer no-caret">
                   <i className="mdi mdi-dots-vertical"></i>

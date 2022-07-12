@@ -13,12 +13,8 @@ function Login() {
     assignedcode: "",
   });
 
-  const { login, user, loading } = useAuth();
+  const { login, user } = useAuth();
   const history = useHistory();
-
-
-
-
 
   console.log(user);
 
@@ -33,6 +29,7 @@ function Login() {
     } else {
       try {
         await login(users.email, users.assignedcode);
+
         history.push("/dashboard");
         toast.success("Ingreso exitoso");
       } catch (error) {

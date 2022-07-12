@@ -40,7 +40,9 @@ export function AuthProvider({ children }) {
                 onValue(starCountRef, (snapshot) => {
                     const docu = snapshot.val() ? snapshot.val() : {};
                     const role = docu.role ? docu.role : null;
+                    const name = docu.name ? docu.name : null;
                     const userData = {
+                        name: name,
                         email: currentUser.email,
                         uid: currentUser.uid,
                         role: role,
@@ -50,6 +52,7 @@ export function AuthProvider({ children }) {
                 });
             } else {
                 const userData = {
+                    name: null,
                     email: null,
                     uid: null,
                     role: null,

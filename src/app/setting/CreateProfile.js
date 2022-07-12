@@ -13,6 +13,9 @@ function CreateProfile() {
         password: "",
         email: "",
         role: "",
+        readAfiliados: false,
+        deleteAfiliados: false,
+        editAfiliados: false,
     });
 
     const history = useHistory();
@@ -35,8 +38,7 @@ function CreateProfile() {
             user.name === "" ||
             user.password === "" ||
             user.email === "" ||
-            user.role === "" ||
-            user.role === "Seleccione rol"
+            user.role === ""
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
@@ -119,17 +121,28 @@ function CreateProfile() {
                                 </div>
 
                                 <div className="form-group">
-                                    <select
+                                    <input
+                                        type="text"
                                         className="form-control form-control-lg"
                                         id="role"
                                         name="role"
+                                        placeholder="Rol de usuario"
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="form-group ">
+                                    <select
+                                        className="form-control col-sm-4 form-control-lg"
+                                        id="readAfiliados"
+                                        name="readAfiliados"
                                         onChange={handleChange}
                                     >
-                                        <option>Seleccione rol</option>
-                                        <option>ADMINISTRADOR</option>
-                                        <option>SECRETARIA</option>
+                                        <option>false</option>
+                                        <option>true</option>
                                     </select>
                                 </div>
+
+
                                 <div className="mt-3">
                                     <button
                                         className="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn"
