@@ -86,7 +86,7 @@ function DashboardAdmin() {
                     </div>
                 </div>
             </div>
-            <div className="col-md-12 col-xl-12 grid-margin stretch-card">
+            <div className="col-md-12 col-xl-9 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
                         <h4 className="card-title">Portfolio Slide</h4>
@@ -94,7 +94,7 @@ function DashboardAdmin() {
                             <Carousel.Item interval={1000}>
                                 <img
                                     className="d-block w-100"
-                                    src="holder.js/800x400?text=First slide&bg=373940"
+                                    src={require('../../assets/images/carousel/banner_1.jpg')}
                                     alt="First slide"
                                 />
                                 <Carousel.Caption>
@@ -105,7 +105,7 @@ function DashboardAdmin() {
                             <Carousel.Item interval={500}>
                                 <img
                                     className="d-block w-100"
-                                    src="holder.js/800x400?text=Second slide&bg=282c34"
+                                    src={require('../../assets/images/carousel/banner_2.jpg')}
                                     alt="Second slide"
                                 />
                                 <Carousel.Caption>
@@ -116,7 +116,7 @@ function DashboardAdmin() {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src="holder.js/800x400?text=Third slide&bg=20232a"
+                                    src={require('../../assets/images/carousel/banner_3.jpg')}
                                     alt="Third slide"
                                 />
                                 <Carousel.Caption>

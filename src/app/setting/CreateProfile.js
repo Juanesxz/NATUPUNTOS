@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ref, set } from "firebase/database";
 import { database } from "../Firebase";
 import { useHistory } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
 import { toast } from "react-toastify";
 
@@ -13,17 +14,28 @@ function CreateProfile() {
         password: "",
         email: "",
         role: "",
-        readAfiliados: false,
-        deleteAfiliados: false,
-        editAfiliados: false,
+        readafiliados: "false",
+        editafiliados: "false",
+        deleteafiliados: "false",
+        changepoints: "false",
+        readregisternewcompanies: "false",
+        readalliedcompanies: "false",
+        editcompanies: "false",
+        deletecompanies: "false",
+        moreinfocompanies: "false",
+        readadministrativeportfolio: "false",
+        administrativepaymentmethod: "false",
+        readstatisticspointspermonth: "false",
+        readcompaniespointsstatistics: "false",
+        readreportspointspercustomer: "false",
+        readreportspointsbycompanies: "false",
+        readreportspointsbycity: "false",
     });
 
     const history = useHistory();
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { signup } = useAuth();
-
-
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
@@ -49,7 +61,23 @@ function CreateProfile() {
                 await set(refuser, {
                     name: user.name,
                     email: user.email,
-                    role: user.role
+                    role: user.role,
+                    readafiliados: user.readafiliados,
+                    editafiliados: user.editafiliados,
+                    deleteafiliados: user.deleteafiliados,
+                    changepoints: user.changepoints,
+                    readregisternewcompanies: user.readregisternewcompanies,
+                    readalliedcompanies: user.readalliedcompanies,
+                    editcompanies: user.editcompanies,
+                    deletecompanies: user.deletecompanies,
+                    moreinfocompanies: user.moreinfocompanies,
+                    readadministrativeportfolio: user.readadministrativeportfolio,
+                    administrativepaymentmethod: user.administrativepaymentmethod,
+                    readstatisticspointspermonth: user.readstatisticspointspermonth,
+                    readcompaniespointsstatistics: user.readcompaniespointsstatistics,
+                    readreportspointspercustomer: user.readreportspointspercustomer,
+                    readreportspointsbycompanies: user.readreportspointsbycompanies,
+                    readreportspointsbycity: user.readreportspointsbycity,
                 });
 
                 toast.success("Usuario creado correctamente");
@@ -130,19 +158,310 @@ function CreateProfile() {
                                         onChange={handleChange}
                                     />
                                 </div>
-                                <div className="form-group ">
-                                    <select
-                                        className="form-control col-sm-4 form-control-lg"
-                                        id="readAfiliados"
-                                        name="readAfiliados"
-                                        onChange={handleChange}
-                                    >
-                                        <option>false</option>
-                                        <option>true</option>
-                                    </select>
+                                {/* Permisos para afiliados */}
+                                <p className="card-description"> PERMISOS MODULOS AFILIADOS </p>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver afiliados
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readafiliados"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Editar afiliados
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="editafiliados"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Eliminar afiliados
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="deleteafiliados"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Cambiar puntos afiliados
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="changepoints"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                </div>
+                                {/* Permisos para empresas */}
+                                <p className="card-description"> PERMISOS MODULOS EMPRESAS </p>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Crear nuevas empresas
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readregisternewcompanies"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver empresas aliadas
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readalliedcompanies"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Editar empresas aliadas
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="editcompanies"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Eliminar empresas aliadas
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="deletecompanies"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Mas info
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="moreinfocompanies"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                </div>
+                                {/* Permisos para administrativo */}
+                                <p className="card-description">
+                                    {" "}
+                                    PERMISOS MODULOS ADMINISTRATIVO{" "}
+                                </p>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver cartera administrativa
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readadministrativeportfolio"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Forma de pago administrativo
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="administrativepaymentmethod"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                </div>
+                                {/* Permisos para estadisticas */}
+                                <p className="card-description">
+                                    {" "}
+                                    PERMISOS MODULOS ESTADISTICAS{" "}
+                                </p>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver estadisticas puntos por mes
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readstatisticspointspermonth"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver estadisticas puntos de empresas
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readcompaniespointsstatistics"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
                                 </div>
 
+                                {/* Permisos para reportes */}
+                                <p className="card-description">
+                                    {" "}
+                                    PERMISOS MODULOS REPORTES{" "}
+                                </p>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver reportes puntos por clientes
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readreportspointspercustomer"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver reportes puntos de empresas
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readreportspointsbycompanies"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Form.Group className="row">
+                                            <label className="col-sm-3 col-form-label">
+                                                Ver reportes puntos de ciudad
+                                            </label>
+                                            <div className="col-sm-9">
+                                                <select
+                                                    onChange={handleChange}
+                                                    name="readreportspointsbycity"
+                                                    className="form-control"
+                                                >
+                                                    <option>false</option>
+                                                    <option>true</option>
+                                                </select>
+                                            </div>
+                                        </Form.Group>
+                                    </div>
+                                </div>
 
+                                {/* Boton de formulario */}
                                 <div className="mt-3">
                                     <button
                                         className="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn"
