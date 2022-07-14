@@ -50,6 +50,13 @@ export function AuthProvider({ children }) {
                     const editcompanies = docu.editcompanies ? docu.editcompanies : null;
                     const deletecompanies = docu.deletecompanies ? docu.deletecompanies : null;
                     const moreinfocompanies = docu.moreinfocompanies ? docu.moreinfocompanies : null;
+                    const readadministrativeportfolio = docu.readadministrativeportfolio ? docu.readadministrativeportfolio : null;
+                    const administrativepaymentmethod = docu.administrativepaymentmethod ? docu.administrativepaymentmethod : null;
+                    const readstatisticspointspermonth = docu.readstatisticspointspermonth ? docu.readstatisticspointspermonth : null;
+                    const readcompaniespointsstatistics = docu.readcompaniespointsstatistics ? docu.readcompaniespointsstatistics : null;
+                    const readreportspointspercustomer = docu.readreportspointspercustomer ? docu.readreportspointspercustomer : null;
+                    const readreportspointsbycompanies = docu.readreportspointsbycompanies ? docu.readreportspointsbycompanies : null;
+                    const readreportspointsbycity = docu.readreportspointsbycity ? docu.readreportspointsbycity : null;
                     const userData = {
                         name: name,
                         email: currentUser.email,
@@ -64,9 +71,17 @@ export function AuthProvider({ children }) {
                         editcompanies: editcompanies,
                         deletecompanies: deletecompanies,
                         moreinfocompanies: moreinfocompanies,
+                        readadministrativeportfolio: readadministrativeportfolio,
+                        administrativepaymentmethod: administrativepaymentmethod,
+                        readstatisticspointspermonth: readstatisticspointspermonth,
+                        readcompaniespointsstatistics: readcompaniespointsstatistics,
+                        readreportspointspercustomer: readreportspointspercustomer,
+                        readreportspointsbycompanies: readreportspointsbycompanies,
+                        readreportspointsbycity: readreportspointsbycity,
                     };
 
                     setUser(userData);
+                    console.log(userData);
                     setLoading(false);
                 });
             } else {

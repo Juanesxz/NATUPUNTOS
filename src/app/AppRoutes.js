@@ -57,7 +57,7 @@ const ReportPointsForCustomers = lazy(() =>
   import("./reports/ReportPointsForCustomers")
 );
 
-const DataFire = lazy(() => import("./reports/DataFire"));
+
 
 //settings
 const CreateProfile = lazy(() => import("./setting/CreateProfile"));
@@ -131,7 +131,7 @@ class AppRoutes extends Component {
                 path="/reports/reportpointsforcustomers"
                 component={ReportPointsForCustomers}
               />
-              <Route path="/reports/datafire" component={DataFire} />
+
 
               {/* settings */}
 

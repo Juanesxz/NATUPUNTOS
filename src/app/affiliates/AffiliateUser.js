@@ -151,6 +151,8 @@ function AffiliateUser() {
         );
     }
 
+
+
     return (
         <div>
             {user.role !== "null" && user.readafiliados === "true" ? (
