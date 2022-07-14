@@ -41,12 +41,31 @@ export function AuthProvider({ children }) {
                     const docu = snapshot.val() ? snapshot.val() : {};
                     const role = docu.role ? docu.role : null;
                     const name = docu.name ? docu.name : null;
+                    const readafiliados = docu.readafiliados ? docu.readafiliados : null;
+                    const editafiliados = docu.editafiliados ? docu.editafiliados : null;
+                    const deleteafiliados = docu.deleteafiliados ? docu.deleteafiliados : null;
+                    const changepoints = docu.changepoints ? docu.changepoints : null;
+                    const readregisternewcompanies = docu.readregisternewcompanies ? docu.readregisternewcompanies : null;
+                    const readalliedcompanies = docu.readalliedcompanies ? docu.readalliedcompanies : null;
+                    const editcompanies = docu.editcompanies ? docu.editcompanies : null;
+                    const deletecompanies = docu.deletecompanies ? docu.deletecompanies : null;
+                    const moreinfocompanies = docu.moreinfocompanies ? docu.moreinfocompanies : null;
                     const userData = {
                         name: name,
                         email: currentUser.email,
                         uid: currentUser.uid,
                         role: role,
+                        readafiliados: readafiliados,
+                        editafiliados: editafiliados,
+                        deleteafiliados: deleteafiliados,
+                        changepoints: changepoints,
+                        readregisternewcompanies: readregisternewcompanies,
+                        readalliedcompanies: readalliedcompanies,
+                        editcompanies: editcompanies,
+                        deletecompanies: deletecompanies,
+                        moreinfocompanies: moreinfocompanies,
                     };
+
                     setUser(userData);
                     setLoading(false);
                 });

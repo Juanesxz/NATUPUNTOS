@@ -42,7 +42,7 @@ class Sidebar extends Component {
       { path: "/error-pages", state: "errorPagesMenuOpen" },
       { path: "/affiliate", state: "affiliateMenuOpen" },
       { path: "/allied-companies", state: "companiesMenuOpen" },
-      { path: "/admin", state: "adminMenuOpen" },
+      { path: "/administrative", state: "administrativeMenuOpen" },
       { path: "/statistics", state: "statisticsMenuOpen" },
       { path: "/reports", state: "reportsMenuOpen" },
       { path: "/settings", state: "settingsMenuOpen" },
@@ -59,7 +59,7 @@ class Sidebar extends Component {
     return (
       <nav className="sidebar sidebar-offcanvas" id="sidebar">
         <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <Link className="sidebar-brand brand-logo" to="/dashboard" >
+          <Link className="sidebar-brand brand-logo" to="/dashboard">
             <img src={require("../../assets/images/logo.svg")} alt="logo" />
           </Link>
           <Link className="sidebar-brand brand-logo-mini" to="/dashboard">
@@ -192,7 +192,6 @@ class Sidebar extends Component {
                       Lista de afiliados
                     </Link>
                   </li>
-
                 </ul>
               </div>
             </Collapse>
@@ -252,7 +251,6 @@ class Sidebar extends Component {
                       Lista de empresa
                     </Link>
                   </li>
-
                 </ul>
               </div>
             </Collapse>
@@ -262,16 +260,18 @@ class Sidebar extends Component {
 
           <li
             className={
-              this.isPathActive("/admin")
+              this.isPathActive("/administrative")
                 ? "nav-item menu-items active"
                 : "nav-item menu-items"
             }
           >
             <div
               className={
-                this.state.adminMenuOpen ? "nav-link menu-expanded" : "nav-link"
+                this.state.administrativeMenuOpen
+                  ? "nav-link menu-expanded"
+                  : "nav-link"
               }
-              onClick={() => this.toggleMenuState("adminMenuOpen")}
+              onClick={() => this.toggleMenuState("administrativeMenuOpen")}
               data-toggle="collapse"
             >
               <span className="menu-icon">
@@ -280,18 +280,20 @@ class Sidebar extends Component {
               <span className="menu-title">Administrativo</span>
               <i className="menu-arrow"></i>
             </div>
-            <Collapse in={this.state.adminMenuOpen}>
+            <Collapse in={this.state.administrativeMenuOpen}>
               <div>
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item">
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/admin/administrativeportfolio")
+                        this.isPathActive(
+                          "/administrative/administrative-portfolio"
+                        )
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/admin/administrativeportfolio"
+                      to="/administrative/administrative-portfolio"
                     >
                       Cartera
                     </Link>

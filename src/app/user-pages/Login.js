@@ -13,10 +13,10 @@ function Login() {
     assignedcode: "",
   });
 
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const history = useHistory();
 
-  console.log(user);
+
 
   const handleChange = ({ target: { name, value } }) =>
     setUsers({ ...users, [name]: value });

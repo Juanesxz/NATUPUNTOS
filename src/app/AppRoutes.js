@@ -26,20 +26,19 @@ const Register = lazy(() => import("./user-pages/Register"));
 
 // Afiliados
 const Affiliate = lazy(() => import("./affiliates/Affiliate"));
-const NewAffiliate = lazy(() => import("./affiliates/NewAffiliate"));
+
 
 // Empresas Aliadas
 const Companies = lazy(() => import("./allied-companies/Companies"));
-const PurseCompanies = lazy(() => import("./allied-companies/PurseCompanies"));
+
 const NewCompanies = lazy(() => import("./allied-companies/NewCompanies"));
 const MoreInfo = lazy(() => import("./allied-companies/MoreInfo"));
 
 //admin
-const Admin = lazy(() => import("./admin/Reports"));
+
 const AdministrativePortfolio = lazy(() =>
-  import("./admin/AdministrativePortfolio")
+  import("./administrative/AdministrativePortfolio")
 );
-const Config = lazy(() => import("./admin/Config"));
 
 // statistics
 const GraphPointsPerMonth = lazy(() =>
@@ -89,7 +88,7 @@ class AppRoutes extends Component {
               <Route path="/error-pages/error-500" component={Error500} />
               {/* Afiliados */}
               <Route path="/affiliates/affiliate/:id" component={Affiliate} />
-              <Route path="/affiliates/newaffiliate" component={NewAffiliate} />
+
               {/* Empresas aliadas */}
               <Route
                 path="/allied-companies/companies/:id"
@@ -100,20 +99,15 @@ class AppRoutes extends Component {
                 component={NewCompanies}
               />
               <Route
-                path="/allied-companies/pursecompanies"
-                component={PurseCompanies}
-              />
-              <Route
                 path="/allied-companies/moreinfo/:id"
                 component={MoreInfo}
               />
               {/* admin */}
-              <Route path="/admin/reports" component={Admin} />
               <Route
-                path="/admin/administrativeportfolio"
+                path="/administrative/administrative-portfolio"
                 component={AdministrativePortfolio}
               />
-              <Route path="/admin/config" component={Config} />
+
               {/* statistics */}
               <Route
                 path="/statistics/GraphPointsPerMonth"
