@@ -212,7 +212,7 @@ function AffiliateAdmin() {
                                                     <td> {results[id].municipio} </td>
                                                     <td> {results[id].points || 0} </td>
                                                     <td>
-                                                        <Link to={`/affiliates/affiliate/${id}`}>
+                                                        <Link to={`/affiliates/affiliate/${results[id].id}`}>
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-primary btn-sm"
@@ -224,11 +224,11 @@ function AffiliateAdmin() {
                                                         <button
                                                             type="button"
                                                             className="btn btn-outline-danger btn-sm"
-                                                            onClick={() => handleDelete(id)}
+                                                            onClick={() => handleDelete(results[id].id)}
                                                         >
                                                             Eliminar
                                                         </button>
-                                                        <Link to={`/affiliates/affiliate/${id}`}>
+                                                        <Link to={`/affiliates/affiliate/${results[id].id}`}>
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-success btn-sm"

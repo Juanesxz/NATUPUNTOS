@@ -81,7 +81,6 @@ export function AuthProvider({ children }) {
                     };
 
                     setUser(userData);
-                    console.log(userData);
                     setLoading(false);
                 });
             } else {

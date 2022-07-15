@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function Companies() {
+function CompaniesAdmin() {
     const initstate = {
         companyname: "",
         nit: "",
@@ -23,6 +23,7 @@ function Companies() {
 
     const [company, setCompany] = useState(initstate);
     const [data, setData] = useState({});
+    const [search, setSearch] = useState("");
     const {
         companyname,
         nit,
@@ -101,6 +102,32 @@ function Companies() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, data]);
 
+
+    const searcher = (e) => {
+        e.preventDefault();
+        setSearch(e.target.value);
+        console.log(e.target.value);
+    };
+
+    const nombre = Object.keys(data).map((item, i) => data[item]);
+
+    // metodo de filtrado 1
+    let results = [];
+
+    if (!search) {
+        results = nombre;
+    } else {
+        results = nombre.filter(
+            (dato) =>
+                dato.companyname.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.nit.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.phone.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.address.toLowerCase().includes(search.toLocaleLowerCase())
+        );
+    }
+
+    console.log(company);
+
     return (
         <div>
             <div className="page-header">
@@ -128,6 +155,8 @@ function Companies() {
                                     <form className="nav-link mt-2 mt-md-0 d-lg-flex search">
                                         {data && (
                                             <input
+                                                value={search}
+                                                onChange={searcher}
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Buscar"
@@ -152,18 +181,18 @@ function Companies() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data &&
-                                        Object.keys(data || {}).map((id, key) => {
+                                    {results &&
+                                        Object.keys(results || {}).map((id, key) => {
                                             return (
                                                 <tr key={id}>
                                                     <td>{key + 1}</td>
-                                                    <td>{data[id].companyname}</td>
-                                                    <td>{data[id].nit}</td>
-                                                    <td>{data[id].phone}</td>
-                                                    <td>{data[id].address}</td>
+                                                    <td>{results[id].companyname}</td>
+                                                    <td>{results[id].nit}</td>
+                                                    <td>{results[id].phone}</td>
+                                                    <td>{results[id].address}</td>
 
                                                     <td>
-                                                        <Link to={`/allied-companies/companies/${id}`}>
+                                                        <Link to={`/allied-companies/companies/${results[id].id}`}>
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-primary btn-sm"
@@ -175,11 +204,11 @@ function Companies() {
                                                         <button
                                                             type="button"
                                                             className="btn btn-outline-danger btn-sm"
-                                                            onClick={() => handleDelete(id)}
+                                                            onClick={() => handleDelete(results[id].id)}
                                                         >
                                                             Eliminar
                                                         </button>
-                                                        <Link to={`/allied-companies/moreinfo/${id}`}>
+                                                        <Link to={`/allied-companies/moreinfo/${results[id].id}`}>
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-success btn-sm"
@@ -319,4 +348,4 @@ function Companies() {
     );
 }
 
-export default Companies;
+export default CompaniesAdmin;

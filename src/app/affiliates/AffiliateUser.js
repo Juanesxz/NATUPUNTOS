@@ -151,8 +151,6 @@ function AffiliateUser() {
         );
     }
 
-
-
     return (
         <div>
             {user.role !== "null" && user.readafiliados === "true" ? (
@@ -201,8 +199,9 @@ function AffiliateUser() {
                                                 <th>TELEFONO</th>
                                                 <th>CIUDAD</th>
                                                 <th>PUNTOS</th>
-                                                {user.editafiliados === "false" && user.deleteafiliados === "false" && user.changepoints === "false" ? (
-
+                                                {user.editafiliados === "false" &&
+                                                    user.deleteafiliados === "false" &&
+                                                    user.changepoints === "false" ? (
                                                     <th></th>
                                                 ) : (
                                                     <th>ACCIONES</th>
@@ -211,15 +210,15 @@ function AffiliateUser() {
                                         </thead>
                                         <tbody>
                                             {results &&
-                                                Object.keys(results || {}).map((id, key) => {
+                                                Object.keys(data || {}).map((id, key) => {
                                                     return (
                                                         <tr key={id}>
                                                             <td>{key + 1}</td>
-                                                            <td> {results[id].name} </td>
-                                                            <td> {results[id].code} </td>
-                                                            <td> {results[id].phone} </td>
-                                                            <td> {results[id].municipio} </td>
-                                                            <td> {results[id].points || 0} </td>
+                                                            <td> {data[id].name} </td>
+                                                            <td> {data[id].code} </td>
+                                                            <td> {data[id].phone} </td>
+                                                            <td> {data[id].municipio} </td>
+                                                            <td> {data[id].points || 0} </td>
                                                             <td>
                                                                 {user.editafiliados === "true" ? (
                                                                     <Link to={`/affiliates/affiliate/${id}`}>

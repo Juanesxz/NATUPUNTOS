@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useAuth } from "../../context/authContext";
 import { Link, useHistory } from "react-router-dom";
-import { push, ref } from "firebase/database";
+import { ref, set } from "firebase/database";
 import { database } from "../Firebase";
 import { toast } from "react-toastify";
 import { departamentos } from "../../components/Department";
@@ -19,6 +19,7 @@ function NewCompaniesAdmin() {
         address: "",
         latitude: "",
         length: "",
+        id: "",
     });
 
     const nombredepartamentos = departamentos.map((item, i) => item.nombre);
@@ -55,8 +56,8 @@ function NewCompaniesAdmin() {
             toast.error("Debe llenar todos los campos");
         } else {
             try {
-                await signup(user.email, user.nit);
-                await push(ref(database, "empresas"), {
+                const infoEmpresa = await signup(user.email, user.nit);
+                await set(ref(database, "empresas/" + infoEmpresa.user.uid), {
                     companyname: user.companyname,
                     nit: user.nit,
                     phone: user.phone,
@@ -66,6 +67,7 @@ function NewCompaniesAdmin() {
                     address: user.address,
                     latitude: user.latitude,
                     length: user.length,
+                    id: infoEmpresa.user.uid,
                 });
                 history.push("/allied-companies/companies/list");
                 toast.success("Registro de empresa exitoso");
