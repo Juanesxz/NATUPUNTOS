@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { useAuth } from "../../context/authContext";
 import { Link, useHistory } from "react-router-dom";
 import { ref, set } from "firebase/database";
-import { database } from "../Firebase";
+import { database, uploadFile } from "../Firebase";
 import { toast } from "react-toastify";
 import { departamentos } from "../../components/Department";
 
@@ -20,6 +20,7 @@ function NewCompaniesAdmin() {
         latitude: "",
         length: "",
         id: "",
+        photo: null,
     });
 
     const nombredepartamentos = departamentos.map((item, i) => item.nombre);
@@ -39,6 +40,10 @@ function NewCompaniesAdmin() {
         setUser({ ...user, [name]: value });
     };
 
+    const handlePhoto = ({ target: { files } }) => {
+        setUser({ ...user, photo: files[0] });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -51,39 +56,48 @@ function NewCompaniesAdmin() {
             user.city === "" ||
             user.address === "" ||
             user.latitude === "" ||
-            user.length === ""
+            user.length === "" ||
+            user.photo === null
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
-            try {
-                const infoEmpresa = await signup(user.email, user.nit);
-                await set(ref(database, "empresas/" + infoEmpresa.user.uid), {
-                    companyname: user.companyname,
-                    nit: user.nit,
-                    phone: user.phone,
-                    email: user.email,
-                    department: user.department,
-                    city: user.city,
-                    address: user.address,
-                    latitude: user.latitude,
-                    length: user.length,
-                    id: infoEmpresa.user.uid,
-                });
-                history.push("/allied-companies/companies/list");
-                toast.success("Registro de empresa exitoso");
-            } catch (error) {
-                if (error.code === "auth/email-already-in-use") {
-                    toast.error("El correo ya está en uso");
+            if (user.photo.type === "image/jpeg" || user.photo.type === "image/png") {
+                try {
+                    const infoEmpresa = await signup(user.email, user.nit);
+                    await set(ref(database, "empresas/" + infoEmpresa.user.uid), {
+                        companyname: user.companyname,
+                        nit: user.nit,
+                        phone: user.phone,
+                        email: user.email,
+                        department: user.department,
+                        city: user.city,
+                        address: user.address,
+                        latitude: user.latitude,
+                        length: user.length,
+                        id: infoEmpresa.user.uid,
+                    });
+                    if (user.photo !== null) {
+                        uploadFile(user.photo, infoEmpresa.user.uid);
+                    }
+
+                    history.push("/allied-companies/companies/list");
+                    toast.success("Registro de empresa exitoso");
+                } catch (error) {
+                    if (error.code === "auth/email-already-in-use") {
+                        toast.error("El correo ya está en uso");
+                    }
+                    if (error.code === "auth/invalid-email") {
+                        toast.error("El correo no es válido");
+                    }
+                    if (error.code === "auth/weak-password") {
+                        toast.error("La contraseña debe tener al menos 6 caracteres");
+                    }
+                    if (error.code === "auth/operation-not-allowed") {
+                        toast.error("La cuenta no está habilitada");
+                    }
                 }
-                if (error.code === "auth/invalid-email") {
-                    toast.error("El correo no es válido");
-                }
-                if (error.code === "auth/weak-password") {
-                    toast.error("La contraseña debe tener al menos 6 caracteres");
-                }
-                if (error.code === "auth/operation-not-allowed") {
-                    toast.error("La cuenta no está habilitada");
-                }
+            } else {
+                toast.error("La imagen debe ser formato jpeg o png");
             }
         }
     };
@@ -232,6 +246,21 @@ function NewCompaniesAdmin() {
                                         name="address"
                                         placeholder="Direccion"
                                         onChange={handleChange}
+                                    />
+                                </div>
+                            </Form.Group>
+                            <Form.Group className="row">
+                                <label htmlFor="photo" className="col-sm-3 col-form-label">
+                                    Logo de la Empresa
+                                </label>
+                                <div className="col-sm-9">
+                                    <Form.Control
+                                        type="file"
+                                        className="form-control"
+                                        id="photo"
+                                        name="photo"
+                                        placeholder="Foto"
+                                        onChange={handlePhoto}
                                     />
                                 </div>
                             </Form.Group>

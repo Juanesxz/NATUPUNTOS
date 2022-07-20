@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
-import { getFirestore } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,7 +23,15 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const database = getDatabase(app);
-export const firestore = getFirestore(app);
 
 export const app2 = initializeApp(firebaseConfig, "app2");
 export const auth2 = getAuth(app2);
+export const firestore = getStorage(app);
+
+export function uploadFile(file, uid) {
+    const storageRef = ref(firestore, "companyphotos/" + uid);
+    uploadBytes(storageRef, file).then(snapshot => {
+        console.log(snapshot);
+    });
+}
+
