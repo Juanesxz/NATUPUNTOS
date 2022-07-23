@@ -64,6 +64,7 @@ function NewCompaniesAdmin() {
             if (user.photo.type === "image/jpeg" || user.photo.type === "image/png") {
                 try {
                     const infoEmpresa = await signup(user.email, user.nit);
+                    const infofoto = await uploadFile(user.photo, infoEmpresa.user.uid);
                     await set(ref(database, "empresas/" + infoEmpresa.user.uid), {
                         companyname: user.companyname,
                         nit: user.nit,
@@ -75,10 +76,8 @@ function NewCompaniesAdmin() {
                         latitude: user.latitude,
                         length: user.length,
                         id: infoEmpresa.user.uid,
+                        imgpath: infofoto,
                     });
-                    if (user.photo !== null) {
-                        uploadFile(user.photo, infoEmpresa.user.uid);
-                    }
 
                     history.push("/allied-companies/companies/list");
                     toast.success("Registro de empresa exitoso");

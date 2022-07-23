@@ -102,7 +102,6 @@ function CompaniesAdmin() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, data]);
 
-
     const searcher = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
@@ -125,8 +124,6 @@ function CompaniesAdmin() {
                 dato.address.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
-
-    console.log(company);
 
     return (
         <div>
@@ -192,7 +189,9 @@ function CompaniesAdmin() {
                                                     <td>{results[id].address}</td>
 
                                                     <td>
-                                                        <Link to={`/allied-companies/companies/${results[id].id}`}>
+                                                        <Link
+                                                            to={`/allied-companies/companies/${results[id].id}`}
+                                                        >
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-primary btn-sm"
@@ -208,7 +207,9 @@ function CompaniesAdmin() {
                                                         >
                                                             Eliminar
                                                         </button>
-                                                        <Link to={`/allied-companies/moreinfo/${results[id].id}`}>
+                                                        <Link
+                                                            to={`/allied-companies/moreinfo/${results[id].id}`}
+                                                        >
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-success btn-sm"

@@ -71,6 +71,7 @@ function AffiliateAdmin() {
         } else {
             update(ref(database, `users/${id}`), {
                 points: newPoints,
+                totalpoints: newPoints,
             });
             toast.success("Puntos actualizados");
             handleClosePoints();
@@ -124,7 +125,6 @@ function AffiliateAdmin() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, data]);
 
-
     const searcher = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
@@ -173,7 +173,6 @@ function AffiliateAdmin() {
                             <h4 className="card-title">Afiliados</h4>
                             <ul className="navbar-nav w-20">
                                 <li className="nav-item w-20">
-
                                     {data && (
                                         <input
                                             value={search}
@@ -183,7 +182,6 @@ function AffiliateAdmin() {
                                             className="form-control "
                                         />
                                     )}
-
                                 </li>
                             </ul>
                         </nav>
@@ -212,7 +210,9 @@ function AffiliateAdmin() {
                                                     <td> {results[id].municipio} </td>
                                                     <td> {results[id].points || 0} </td>
                                                     <td>
-                                                        <Link to={`/affiliates/affiliate/${results[id].id}`}>
+                                                        <Link
+                                                            to={`/affiliates/affiliate/${results[id].id}`}
+                                                        >
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-primary btn-sm"
@@ -228,7 +228,9 @@ function AffiliateAdmin() {
                                                         >
                                                             Eliminar
                                                         </button>
-                                                        <Link to={`/affiliates/affiliate/${results[id].id}`}>
+                                                        <Link
+                                                            to={`/affiliates/affiliate/${results[id].id}`}
+                                                        >
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-outline-success btn-sm"
@@ -364,7 +366,7 @@ function AffiliateAdmin() {
                 </Modal.Body>
             </Modal>
         </div>
-    )
+    );
 }
 
-export default AffiliateAdmin
+export default AffiliateAdmin;

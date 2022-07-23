@@ -34,11 +34,12 @@ const Companies = lazy(() => import("./allied-companies/Companies"));
 const NewCompanies = lazy(() => import("./allied-companies/NewCompanies"));
 const MoreInfo = lazy(() => import("./allied-companies/MoreInfo"));
 
-//admin
+//AdministrativePortfolio
 
 const AdministrativePortfolio = lazy(() =>
   import("./administrative/AdministrativePortfolio")
 );
+const UploadSupport = lazy(() => import("./administrative/UploadSupport"));
 
 // statistics
 const GraphPointsPerMonth = lazy(() =>
@@ -107,6 +108,11 @@ class AppRoutes extends Component {
                 path="/administrative/administrative-portfolio"
                 component={AdministrativePortfolio}
               />
+              <Route
+                path="/administrative/upload-support/:id"
+                component={UploadSupport}
+              />
+
 
               {/* statistics */}
               <Route
