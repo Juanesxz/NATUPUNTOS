@@ -18,6 +18,8 @@ function CompaniesAdmin() {
         paymentmethod: "",
         accounttype: "",
         accountnumber: "",
+        latitude: "",
+        length: "",
     };
     const history = useHistory();
 
@@ -34,6 +36,8 @@ function CompaniesAdmin() {
         paymentmethod,
         accounttype,
         accountnumber,
+        latitude,
+        length,
     } = company;
 
     const [show, setShow] = useState(false);
@@ -48,7 +52,9 @@ function CompaniesAdmin() {
             phone === "" ||
             address === "" ||
             department === "" ||
-            city === ""
+            city === "" ||
+            latitude === "" ||
+            length === ""
         ) {
             toast.error("Todos los campos son obligatorios");
         } else {
@@ -331,6 +337,28 @@ function CompaniesAdmin() {
                                 name="accountnumber"
                                 onChange={handleChange}
                                 value={accountnumber || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Latitud</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="latitude"
+                                name="latitude"
+                                onChange={handleChange}
+                                value={latitude || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Longitud</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder=""
+                                id="length"
+                                name="length"
+                                onChange={handleChange}
+                                value={length || ""}
                             />
                         </Form.Group>
                         <Modal.Footer>

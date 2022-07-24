@@ -27,7 +27,7 @@ function MoreInfo() {
             });
     }, [id]);
 
-    console.log(user);
+    console.log(user.imgpath);
 
     return (
         <Container>
@@ -123,6 +123,31 @@ function MoreInfo() {
                         </Card.Title>
                         <Card.Text as="display-5">{!user.accountnumber ? "No se a registrado un numero cuenta" : user.accountnumber}</Card.Text>
                         <br />
+                        <Card.Title
+                            style={{ display: "inline-block", margin: "5px" }}
+                            as="h4"
+                        >
+                            LATITUD :{" "}
+                        </Card.Title>
+                        <Card.Text as="display-5">{!user.latitude ? "No se a registrado" : user.latitude}</Card.Text>
+                        <br />
+                        <Card.Title
+                            style={{ display: "inline-block", margin: "5px" }}
+                            as="h4"
+                        >
+                            LONGITUD :{" "}
+                        </Card.Title>
+                        <Card.Text as="display-5">{!user.length ? "No se a registrado" : user.length}</Card.Text>
+                        <br />
+                        <Card.Title
+                            style={{ display: "block", margin: "5px" }}
+                            as="h4"
+                        >
+                            IMAGEN DE LA EMPRESA :{" "}
+                        </Card.Title>
+                        <Card.Img style={{ width: "16rem", height: "16rem" }} variant="top" src={user.imgpath} />
+                        <Card.Body>
+                        </Card.Body>
                         <Link to="/allied-companies/companies/list">
                             <Button variant="success">Volver al inicio</Button>
                         </Link>

@@ -20,6 +20,8 @@ function CompaniesUser() {
         paymentmethod: "",
         accounttype: "",
         accountnumber: "",
+        latitude: "",
+        length: "",
     };
     const history = useHistory();
 
@@ -36,6 +38,8 @@ function CompaniesUser() {
         paymentmethod,
         accounttype,
         accountnumber,
+        latitude,
+        length,
     } = company;
 
     const [show, setShow] = useState(false);
@@ -354,6 +358,28 @@ function CompaniesUser() {
                                         name="accountnumber"
                                         onChange={handleChange}
                                         value={accountnumber || ""}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Latitud</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder=""
+                                        id="latitude"
+                                        name="latitude"
+                                        onChange={handleChange}
+                                        value={latitude || ""}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Longitud</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder=""
+                                        id="length"
+                                        name="length"
+                                        onChange={handleChange}
+                                        value={length || ""}
                                     />
                                 </Form.Group>
                                 <Modal.Footer>

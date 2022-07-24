@@ -36,8 +36,8 @@ export async function uploadFile(file, uid) {
 
 export async function uploadSupport(file, uid, lastModified) {
     const storageRef = ref(firestore, `businesssupports/${uid}/${lastModified}`);
-
     await uploadBytes(storageRef, file);
     const url = await getDownloadURL(storageRef);
     return url;
+
 }

@@ -3,7 +3,6 @@ import { get, child, ref, set } from "firebase/database";
 import { useParams, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { database, uploadSupport } from "../Firebase";
-import emailjs from "@emailjs/browser";
 
 function UploadSupport() {
     const [user, setUser] = useState({
@@ -28,21 +27,6 @@ function UploadSupport() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        emailjs
-            .sendForm(
-                "service_cop43vv",
-                "template_0kigbhg",
-                form.current,
-                "6zVwejyu3xogiXS2W"
-            )
-            .then(
-                (result) => {
-                    console.log(result.text);
-                },
-                (error) => {
-                    console.log(error.text);
-                }
-            );
 
         if (
             user.name === "" ||

@@ -21,6 +21,7 @@ function NewCompaniesUser() {
         length: "",
         id: "",
         photo: null,
+        totalpoints: 0,
     });
 
     console.log(users);
@@ -69,6 +70,7 @@ function NewCompaniesUser() {
             ) {
                 try {
                     const infoEmpresa = await signup(users.email, users.nit);
+                    const infofoto = await uploadFile(user.photo, infoEmpresa.user.uid);
                     await set(ref(database, "empresas/" + infoEmpresa.user.uid), {
                         companyname: users.companyname,
                         nit: users.nit,
@@ -80,8 +82,10 @@ function NewCompaniesUser() {
                         latitude: users.latitude,
                         length: users.length,
                         id: infoEmpresa.user.uid,
+                        imgpath: infofoto,
+                        totalpoints: user.totalpoints,
                     });
-                    uploadFile(users.photo, infoEmpresa.user.uid);
+
                     history.push("/allied-companies/companies/list");
                     toast.success("Registro de empresa exitoso");
                 } catch (error) {

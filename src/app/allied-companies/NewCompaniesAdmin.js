@@ -21,6 +21,7 @@ function NewCompaniesAdmin() {
         length: "",
         id: "",
         photo: null,
+        totalpoints: 0,
     });
 
     const nombredepartamentos = departamentos.map((item, i) => item.nombre);
@@ -77,6 +78,7 @@ function NewCompaniesAdmin() {
                         length: user.length,
                         id: infoEmpresa.user.uid,
                         imgpath: infofoto,
+                        totalpoints: user.totalpoints,
                     });
 
                     history.push("/allied-companies/companies/list");

@@ -210,18 +210,20 @@ function AffiliateUser() {
                                         </thead>
                                         <tbody>
                                             {results &&
-                                                Object.keys(data || {}).map((id, key) => {
+                                                Object.keys(results || {}).map((id, key) => {
                                                     return (
                                                         <tr key={id}>
                                                             <td>{key + 1}</td>
-                                                            <td> {data[id].name} </td>
-                                                            <td> {data[id].code} </td>
-                                                            <td> {data[id].phone} </td>
-                                                            <td> {data[id].municipio} </td>
-                                                            <td> {data[id].points || 0} </td>
+                                                            <td> {results[id].name} </td>
+                                                            <td> {results[id].code} </td>
+                                                            <td> {results[id].phone} </td>
+                                                            <td> {results[id].municipio} </td>
+                                                            <td> {results[id].points || 0} </td>
                                                             <td>
                                                                 {user.editafiliados === "true" ? (
-                                                                    <Link to={`/affiliates/affiliate/${id}`}>
+                                                                    <Link
+                                                                        to={`/affiliates/affiliate/${results[id].id}`}
+                                                                    >
                                                                         <button
                                                                             type="button"
                                                                             className="btn btn-outline-primary btn-sm"
@@ -237,7 +239,7 @@ function AffiliateUser() {
                                                                     <button
                                                                         type="button"
                                                                         className="btn btn-outline-danger btn-sm"
-                                                                        onClick={() => handleDelete(id)}
+                                                                        onClick={() => handleDelete(results[id].id)}
                                                                     >
                                                                         Eliminar
                                                                     </button>
@@ -245,7 +247,9 @@ function AffiliateUser() {
                                                                     <div></div>
                                                                 )}
                                                                 {user.changepoints === "true" ? (
-                                                                    <Link to={`/affiliates/affiliate/${id}`}>
+                                                                    <Link
+                                                                        to={`/affiliates/affiliate/${results[id].id}`}
+                                                                    >
                                                                         <button
                                                                             type="button"
                                                                             className="btn btn-outline-success btn-sm"
