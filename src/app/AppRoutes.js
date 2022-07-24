@@ -6,8 +6,6 @@ import { AuthProvider } from "../context/authContext";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
-const Mdi = lazy(() => import("./icons/Mdi"));
-
 const Error404 = lazy(() => import("./error-pages/Error404"));
 const Error500 = lazy(() => import("./error-pages/Error500"));
 
@@ -63,8 +61,6 @@ class AppRoutes extends Component {
             <Route path="/user-pages/register" component={Register} />
             <ProtectedRoute>
               <Route exact path="/dashboard" component={Dashboard} />
-
-              <Route path="/icons/mdi" component={Mdi} />
 
               <Route path="/error-pages/error-404" component={Error404} />
               <Route path="/error-pages/error-500" component={Error500} />
