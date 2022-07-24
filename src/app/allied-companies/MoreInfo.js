@@ -27,7 +27,7 @@ function MoreInfo() {
             });
     }, [id]);
 
-    console.log(user.imgpath);
+
 
     return (
         <Container>

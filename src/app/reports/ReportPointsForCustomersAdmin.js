@@ -47,7 +47,7 @@ function ReportPointsForCustomersAdmin() {
         );
     }
 
-    console.log(results);
+
 
     return (
         <div>

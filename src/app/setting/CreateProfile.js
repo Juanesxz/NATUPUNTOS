@@ -58,7 +58,6 @@ function CreateProfile() {
             } else {
                 try {
                     const infoUsuario = await signup(users.email, users.password);
-                    console.log(infoUsuario);
                     const refusers = ref(database, "admin/" + infoUsuario.user.uid);
                     await set(refusers, {
                         name: users.name,

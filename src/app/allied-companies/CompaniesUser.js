@@ -131,7 +131,7 @@ function CompaniesUser() {
         );
     }
 
-    console.log(company);
+
 
     return (
         <div>

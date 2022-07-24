@@ -6,27 +6,17 @@ import { AuthProvider } from "../context/authContext";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
-const Buttons = lazy(() => import("./basic-ui/Buttons"));
-const Dropdowns = lazy(() => import("./basic-ui/Dropdowns"));
-const Typography = lazy(() => import("./basic-ui/Typography"));
-
-const BasicElements = lazy(() => import("./form-elements/BasicElements"));
-
-const BasicTable = lazy(() => import("./tables/BasicTable"));
-
 const Mdi = lazy(() => import("./icons/Mdi"));
-
-const ChartJs = lazy(() => import("./charts/ChartJs"));
 
 const Error404 = lazy(() => import("./error-pages/Error404"));
 const Error500 = lazy(() => import("./error-pages/Error500"));
 
+// user pages
 const Login = lazy(() => import("./user-pages/Login"));
 const Register = lazy(() => import("./user-pages/Register"));
 
 // Afiliados
 const Affiliate = lazy(() => import("./affiliates/Affiliate"));
-
 
 // Empresas Aliadas
 const Companies = lazy(() => import("./allied-companies/Companies"));
@@ -58,8 +48,6 @@ const ReportPointsForCustomers = lazy(() =>
   import("./reports/ReportPointsForCustomers")
 );
 
-
-
 //settings
 const CreateProfile = lazy(() => import("./setting/CreateProfile"));
 const DashboardSetting = lazy(() => import("./setting/DashboardSetting"));
@@ -75,16 +63,9 @@ class AppRoutes extends Component {
             <Route path="/user-pages/register" component={Register} />
             <ProtectedRoute>
               <Route exact path="/dashboard" component={Dashboard} />
-              <Route path="/basic-ui/buttons" component={Buttons} />
-              <Route path="/basic-ui/dropdowns" component={Dropdowns} />
-              <Route path="/basic-ui/typography" component={Typography} />
-              <Route
-                path="/form-Elements/basic-elements"
-                component={BasicElements}
-              />
-              <Route path="/tables/basic-table" component={BasicTable} />
+
               <Route path="/icons/mdi" component={Mdi} />
-              <Route path="/charts/chart-js" component={ChartJs} />
+
               <Route path="/error-pages/error-404" component={Error404} />
               <Route path="/error-pages/error-500" component={Error500} />
               {/* Afiliados */}
@@ -113,7 +94,6 @@ class AppRoutes extends Component {
                 component={UploadSupport}
               />
 
-
               {/* statistics */}
               <Route
                 path="/statistics/GraphPointsPerMonth"
@@ -137,7 +117,6 @@ class AppRoutes extends Component {
                 path="/reports/reportpointsforcustomers"
                 component={ReportPointsForCustomers}
               />
-
 
               {/* settings */}
 

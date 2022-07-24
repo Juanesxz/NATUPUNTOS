@@ -24,7 +24,7 @@ function NewCompaniesUser() {
         totalpoints: 0,
     });
 
-    console.log(users);
+
 
     const nombredepartamentos = departamentos.map((item, i) => item.nombre);
 

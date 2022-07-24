@@ -61,7 +61,6 @@ function UploadSupport() {
                             imgpath: infosoporte,
                         }
                     );
-                    console.log(infosoporte);
                     history.push("/administrative/administrative-portfolio");
                     toast.success("Soporte subido exitosamente");
                 } catch (error) {
@@ -93,7 +92,7 @@ function UploadSupport() {
             });
     }, [id]);
 
-    console.log(user);
+
 
     return (
         <div>
