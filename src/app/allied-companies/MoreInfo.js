@@ -98,30 +98,7 @@ function MoreInfo() {
                             DIRECCION:{" "}
                         </Card.Title>
                         <Card.Text as="display-5">{user.address}</Card.Text>
-                        <br />
-                        <Card.Title
-                            style={{ display: "inline-block", margin: "5px" }}
-                            as="h4"
-                        >
-                            FORMA DE PAGO:{" "}
-                        </Card.Title>
-                        <Card.Text as="display-5">{!user.paymentmethod ? "No hay un formato de pago" : user.paymentmethod}</Card.Text>
-                        <br />
-                        <Card.Title
-                            style={{ display: "inline-block", margin: "5px" }}
-                            as="h4"
-                        >
-                            TIPO DE CUENTA:{" "}
-                        </Card.Title>
-                        <Card.Text as="display-5">{!user.accounttype ? "No se a registrado un tipo cuenta" : user.accounttype}</Card.Text>
-                        <br />
-                        <Card.Title
-                            style={{ display: "inline-block", margin: "5px" }}
-                            as="h4"
-                        >
-                            NUMERO DE CUENTA:{" "}
-                        </Card.Title>
-                        <Card.Text as="display-5">{!user.accountnumber ? "No se a registrado un numero cuenta" : user.accountnumber}</Card.Text>
+
                         <br />
                         <Card.Title
                             style={{ display: "inline-block", margin: "5px" }}
@@ -152,7 +129,7 @@ function MoreInfo() {
                             <Button variant="success">Volver al inicio</Button>
                         </Link>
                     </Card.Body>
-                    <Card.Footer className="text-muted">2 days ago</Card.Footer>
+                    <Card.Footer className="text-muted"></Card.Footer>
                 </Card>
             </div>
         </Container>

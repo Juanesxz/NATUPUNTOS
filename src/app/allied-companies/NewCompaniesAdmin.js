@@ -8,8 +8,15 @@ import { toast } from "react-toastify";
 import { departamentos } from "../../components/Department";
 
 function NewCompaniesAdmin() {
+
+    const year = new Date();
+    const FullYear = year.getFullYear();
+
+
+
     const [user, setUser] = useState({
         companyname: "",
+        password: `Natupuntos-${FullYear}*`,
         nit: "",
         phone: "",
         email: "",
@@ -23,6 +30,8 @@ function NewCompaniesAdmin() {
         photo: null,
         totalpoints: 0,
     });
+
+
 
     const nombredepartamentos = departamentos.map((item, i) => item.nombre);
 
@@ -58,13 +67,14 @@ function NewCompaniesAdmin() {
             user.address === "" ||
             user.latitude === "" ||
             user.length === "" ||
-            user.photo === null
+            user.photo === null ||
+            user.password === ""
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
-            if (user.photo.type === "image/jpeg" || user.photo.type === "image/png") {
+            if (user.photo.type === "image/jpeg" || user.photo.type === "image/png" || user.photo.type === "image/jpg" || user.photo.type === "image/gif") {
                 try {
-                    const infoEmpresa = await signup(user.email, user.nit);
+                    const infoEmpresa = await signup(user.email, user.password);
                     const infofoto = await uploadFile(user.photo, infoEmpresa.user.uid);
                     await set(ref(database, "empresas/" + infoEmpresa.user.uid), {
                         companyname: user.companyname,
@@ -72,6 +82,7 @@ function NewCompaniesAdmin() {
                         phone: user.phone,
                         email: user.email,
                         department: user.department,
+                        iddepartaments: user.iddepartaments,
                         city: user.city,
                         address: user.address,
                         latitude: user.latitude,
@@ -141,6 +152,25 @@ function NewCompaniesAdmin() {
                                         name="companyname"
                                         placeholder="Nombre"
                                         onChange={handleChange}
+                                    />
+                                </div>
+                            </Form.Group>
+                            <Form.Group className="row">
+                                <label
+                                    htmlFor="password"
+                                    className="col-sm-3 col-form-label"
+                                >
+                                    Contraseña asignada
+                                </label>
+                                <div className="col-sm-9">
+                                    <Form.Control
+                                        type="text"
+                                        className="form-control"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Contraseña"
+                                        onChange={handleChange}
+                                        value={user.password}
                                     />
                                 </div>
                             </Form.Group>

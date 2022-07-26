@@ -7,19 +7,17 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useAuth } from "../../context/authContext";
-
+import { departamentos } from "../../components/Department";
 function CompaniesUser() {
     const { user } = useAuth();
     const initstate = {
         companyname: "",
         nit: "",
         phone: "",
+        iddepartaments: -1,
         department: "",
         city: "",
         address: "",
-        paymentmethod: "",
-        accounttype: "",
-        accountnumber: "",
         latitude: "",
         length: "",
     };
@@ -34,10 +32,8 @@ function CompaniesUser() {
         phone,
         address,
         department,
+        iddepartaments,
         city,
-        paymentmethod,
-        accounttype,
-        accountnumber,
         latitude,
         length,
     } = company;
@@ -80,6 +76,16 @@ function CompaniesUser() {
             toast.error("Empresa no eliminada");
         }
     };
+
+    const nombredepartamentos = departamentos.map((item, i) => item.nombre);
+
+    const departaments = nombredepartamentos[company.iddepartaments];
+
+    if (departaments === undefined) {
+        company.department = "";
+    } else {
+        company.department = departaments;
+    }
 
     useEffect(() => {
         const starCountRef = ref(database, `empresas`);
@@ -296,25 +302,45 @@ function CompaniesUser() {
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>DEPARTAMENTO</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder=""
-                                        id="department"
-                                        name="department"
+                                    <select
+                                        className="form-control"
+                                        name="iddepartaments"
+                                        id="iddepartaments"
                                         onChange={handleChange}
-                                        value={department || ""}
-                                    />
+                                    >
+                                        <option value="-1">{company.department}</option>
+                                        {departamentos.map((item, i) => (
+                                            <option
+                                                key={"iddepartaments" + i}
+                                                name={item.nombre}
+                                                id={item.nombre}
+                                                value={i}
+                                            >
+                                                {item.nombre}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>CIUDAD</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder=""
-                                        id="city"
+                                    <select
+                                        className="form-control"
                                         name="city"
+                                        id="city"
                                         onChange={handleChange}
-                                        value={city || ""}
-                                    />
+                                    >
+                                        <option value="">{company.city}</option>
+
+                                        {company.iddepartaments > -1 &&
+                                            departamentos[company.iddepartaments].municipios.map(
+                                                (item, i) => (
+                                                    <option key={"ciudad" + i} value={item.ciudad}>
+                                                        {item}
+                                                    </option>
+                                                )
+                                            )}
+                                    </select>
+
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>DIRECCION</Form.Label>
@@ -325,39 +351,6 @@ function CompaniesUser() {
                                         name="address"
                                         onChange={handleChange}
                                         value={address || ""}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>FORMA DE PAGO</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder=""
-                                        id="paymentmethod"
-                                        name="paymentmethod"
-                                        onChange={handleChange}
-                                        value={paymentmethod || ""}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>TIPO DE CUENTA</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder=""
-                                        id="accounttype"
-                                        name="accounttype"
-                                        onChange={handleChange}
-                                        value={accounttype || ""}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>NUMERO DE CUENTA</Form.Label>
-                                    <Form.Control
-                                        type="number"
-                                        placeholder=""
-                                        id="accountnumber"
-                                        name="accountnumber"
-                                        onChange={handleChange}
-                                        value={accountnumber || ""}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3">

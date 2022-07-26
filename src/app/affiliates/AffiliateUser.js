@@ -294,6 +294,7 @@ function AffiliateUser() {
                                 <Form.Group className="mb-3">
                                     <Form.Label>CODIGO ASIGNADO</Form.Label>
                                     <Form.Control
+                                        disabled
                                         type="text"
                                         placeholder=""
                                         id="code"
