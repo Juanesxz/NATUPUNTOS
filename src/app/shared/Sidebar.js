@@ -475,19 +475,6 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/setting/natupointsapp")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                      to="/setting/natupointsapp"
-                    >
-                      App natupuntos
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    {" "}
-                    <Link
-                      className={
                         this.isPathActive("/setting/dashboardsetting")
                           ? "nav-link active"
                           : "nav-link"

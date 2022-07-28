@@ -32,6 +32,7 @@ function CompaniesUser() {
         phone,
         address,
         department,
+        // eslint-disable-next-line no-unused-vars
         iddepartaments,
         city,
         latitude,

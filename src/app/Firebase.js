@@ -39,5 +39,23 @@ export async function uploadSupport(file, uid, lastModified) {
     await uploadBytes(storageRef, file);
     const url = await getDownloadURL(storageRef);
     return url;
+}
 
+export async function CarouselImg(file) {
+    const storageRef = ref(firestore, `dashboard/imagen1`);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    return url;
+}
+export async function CarouselImg2(file) {
+    const storageRef = ref(firestore, `dashboard/imagen2`);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    return url;
+}
+export async function CarouselImg3(file) {
+    const storageRef = ref(firestore, `dashboard/imagen3`);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    return url;
 }

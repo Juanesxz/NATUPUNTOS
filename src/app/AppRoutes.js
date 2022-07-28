@@ -49,7 +49,6 @@ const ReportPointsForCustomers = lazy(() =>
 //settings
 const CreateProfile = lazy(() => import("./setting/CreateProfile"));
 const DashboardSetting = lazy(() => import("./setting/DashboardSetting"));
-const NatupointsApp = lazy(() => import("./setting/NatupointsApp"));
 
 class AppRoutes extends Component {
   render() {
@@ -121,7 +120,7 @@ class AppRoutes extends Component {
                 path="/setting/dashboardsetting"
                 component={DashboardSetting}
               />
-              <Route path="/setting/natupointsapp" component={NatupointsApp} />
+
             </ProtectedRoute>
           </AuthProvider>
           <Redirect to="/dashboard" />

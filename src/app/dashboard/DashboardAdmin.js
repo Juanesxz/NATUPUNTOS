@@ -1,7 +1,26 @@
-import React from 'react'
-import { Carousel } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { Carousel } from "react-bootstrap";
+import { database } from "../Firebase";
+import { ref, onValue } from "firebase/database";
 
 function DashboardAdmin() {
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const starCountRef = ref(database, `dashboard`);
+        onValue(starCountRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data !== null) {
+                setData({ ...data });
+            } else {
+                setData({});
+            }
+        });
+        return () => {
+            setData({});
+        };
+    }, []);
+
     return (
         <div>
             <div className="row">
@@ -12,7 +31,9 @@ function DashboardAdmin() {
                                 <div className="col-9">
                                     <div className="d-flex align-items-center align-self-start">
                                         <h3 className="mb-0">$12.34</h3>
-                                        <p className="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                                        <p className="text-success ml-2 mb-0 font-weight-medium">
+                                            +3.5%
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="col-3">
@@ -21,7 +42,9 @@ function DashboardAdmin() {
                                     </div>
                                 </div>
                             </div>
-                            <h6 className="text-muted font-weight-normal">Potential growth</h6>
+                            <h6 className="text-muted font-weight-normal">
+                                Potential growth
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -32,7 +55,9 @@ function DashboardAdmin() {
                                 <div className="col-9">
                                     <div className="d-flex align-items-center align-self-start">
                                         <h3 className="mb-0">$17.34</h3>
-                                        <p className="text-success ml-2 mb-0 font-weight-medium">+11%</p>
+                                        <p className="text-success ml-2 mb-0 font-weight-medium">
+                                            +11%
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="col-3">
@@ -52,7 +77,9 @@ function DashboardAdmin() {
                                 <div className="col-9">
                                     <div className="d-flex align-items-center align-self-start">
                                         <h3 className="mb-0">$12.34</h3>
-                                        <p className="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
+                                        <p className="text-danger ml-2 mb-0 font-weight-medium">
+                                            -2.4%
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="col-3">
@@ -72,7 +99,9 @@ function DashboardAdmin() {
                                 <div className="col-9">
                                     <div className="d-flex align-items-center align-self-start">
                                         <h3 className="mb-0">$31.53</h3>
-                                        <p className="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                                        <p className="text-success ml-2 mb-0 font-weight-medium">
+                                            +3.5%
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="col-3">
@@ -86,42 +115,48 @@ function DashboardAdmin() {
                     </div>
                 </div>
             </div>
-            <div className="col-md-12 col-xl-9 grid-margin stretch-card">
+            <div className="col-md-12 col-xl-12 grid-margin stretch-card">
                 <div className="card">
                     <div className="card-body">
-                        <h4 className="card-title">Portfolio Slide</h4>
+                        <h4 className="card-title text-center">{data.titlecarousel}</h4>
                         <Carousel>
                             <Carousel.Item interval={1000}>
                                 <img
                                     className="d-block w-100"
-                                    src={require('../../assets/images/carousel/banner_1.jpg')}
+                                    src={data.imgcarousel1}
                                     alt="First slide"
+                                    width={900}
+                                    height={700}
                                 />
                                 <Carousel.Caption>
-                                    <h3>First slide label</h3>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    <h3>{data.titleimgcarousel1}</h3>
+                                    <p>{data.labelimgcarousel1}</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item interval={500}>
                                 <img
                                     className="d-block w-100"
-                                    src={require('../../assets/images/carousel/banner_2.jpg')}
+                                    src={data.imgcarousel2}
                                     alt="Second slide"
+                                    width={900}
+                                    height={700}
                                 />
                                 <Carousel.Caption>
-                                    <h3>Second slide label</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h3>{data.titleimgcarousel2}</h3>
+                                    <p>{data.labelimgcarousel2}</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={require('../../assets/images/carousel/banner_3.jpg')}
+                                    src={data.imgcarousel3}
                                     alt="Third slide"
+                                    width={900}
+                                    height={700}
                                 />
                                 <Carousel.Caption>
-                                    <h3>Third slide label</h3>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    <h3>{data.titleimgcarousel3}</h3>
+                                    <p>{data.labelimgcarousel3}</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                         </Carousel>
@@ -129,29 +164,34 @@ function DashboardAdmin() {
                             <div className="preview-list w-100">
                                 <div className="preview-item p-0">
                                     <div className="preview-thumbnail">
-                                        <img src={require('../../assets/images/faces/face12.jpg')} className="rounded-circle" alt="face" />
+                                        <img
+                                            src={require("../../assets/images/faces/face12.jpg")}
+                                            className="rounded-circle"
+                                            alt="face"
+                                        />
                                     </div>
                                     <div className="preview-item-content d-flex flex-grow">
                                         <div className="flex-grow">
                                             <div className="d-flex d-md-block d-xl-flex justify-content-between">
-                                                <h6 className="preview-subject">CeeCee Bass</h6>
-                                                <p className="text-muted text-small">4 Hours Ago</p>
+                                                <h6 className="preview-subject">{data.email}</h6>
+                                                <p className="text-muted text-small">
+                                                    {data.createdAt}
+                                                </p>
                                             </div>
-                                            <p className="text-muted">Well, it seems to be working now.</p>
+                                            <p className="text-muted">
+                                                {data.role}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <p className="text-muted">Well, it seems to be working now. </p>
-                        <div className="progress progress-md portfolio-progress">
-                            <div className="progress-bar bg-success" role="progressbar" style={{ width: '50%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <p className="text-muted"> {data.descripcion} </p>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default DashboardAdmin
+export default DashboardAdmin;

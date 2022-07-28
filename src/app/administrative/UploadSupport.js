@@ -40,7 +40,7 @@ function UploadSupport() {
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
-            if (user.photo.type === "image/jpeg" || user.photo.type === "image/png") {
+            if (user.photo.type === "image/jpeg" || user.photo.type === "image/png" || user.photo.type === "image/jpg" || user.photo.type === "image/gif") {
                 try {
                     const infosoporte = await uploadSupport(
                         user.photo,
