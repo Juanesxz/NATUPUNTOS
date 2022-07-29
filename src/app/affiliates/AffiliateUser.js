@@ -16,13 +16,14 @@ function AffiliateUser() {
         municipio: "",
         departamento: "",
         points: "",
-        morepoints: "",
+        morepoints: "0",
     };
 
     const { user } = useAuth();
 
     const [state, setState] = useState(initstate);
     const [data, setData] = useState({});
+    const [mpoints, setMpoints] = useState({});
     const [search, setSearch] = useState("");
     const {
         name = "",
@@ -30,7 +31,7 @@ function AffiliateUser() {
         phone,
         points = 0,
         morepoints,
-        municipio,
+        municipio = 0,
         departamento,
     } = state;
 
@@ -79,6 +80,11 @@ function AffiliateUser() {
             handleClosePoints();
             history.push("/affiliates/affiliate/list");
         }
+        const puntosmunicipio = isNaN(mpoints[state.municipio]?.points) ? parseInt(morepoints) : mpoints[state.municipio]?.points + parseInt(morepoints);
+        update(ref(database, `townshippoints/${state.municipio}`), {
+            municipio: state.municipio,
+            points: puntosmunicipio,
+        });
     };
     // obtener el valor del input
     const handleInputChange = (e) => {
@@ -113,6 +119,22 @@ function AffiliateUser() {
             setData({});
         };
     }, [id]);
+
+    //data de puntos municipios
+    useEffect(() => {
+        const starCountRef = ref(database, `townshippoints`);
+        onValue(starCountRef, (snapshot) => {
+            const mpoints = snapshot.val();
+            if (mpoints !== null) {
+                setMpoints({ ...mpoints });
+            } else {
+                setMpoints({});
+            }
+        });
+        return () => {
+            setMpoints({});
+        };
+    }, []);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {

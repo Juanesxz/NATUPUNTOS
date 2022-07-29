@@ -15,21 +15,24 @@ function AffiliateAdmin() {
         municipio: "",
         departamento: "",
         points: "",
-        morepoints: "",
+        morepoints: "0",
     };
 
     const [state, setState] = useState(initstate);
     const [data, setData] = useState({});
+    const [mpoints, setMpoints] = useState({});
     const [search, setSearch] = useState("");
     const {
         name = "",
         code,
         phone,
         points = 0,
-        morepoints,
+        morepoints = 0,
         municipio,
         departamento,
     } = state;
+
+
 
     //form modal submit
     const [show, setShow] = useState(false);
@@ -62,6 +65,7 @@ function AffiliateAdmin() {
         }
     };
 
+
     // Button para agregar puntos
     const handleSubmitPoints = (e) => {
         e.preventDefault();
@@ -77,6 +81,11 @@ function AffiliateAdmin() {
             handleClosePoints();
             history.push("/affiliates/affiliate/list");
         }
+        const puntosmunicipio = isNaN(mpoints[state.municipio]?.points) ? parseInt(morepoints) : mpoints[state.municipio]?.points + parseInt(morepoints);
+        update(ref(database, `townshippoints/${state.municipio}`), {
+            municipio: state.municipio,
+            points: puntosmunicipio,
+        });
     };
     // obtener el valor del input
     const handleInputChange = (e) => {
@@ -111,6 +120,25 @@ function AffiliateAdmin() {
             setData({});
         };
     }, [id]);
+
+    //data de puntos municipios
+    useEffect(() => {
+        const starCountRef = ref(database, `townshippoints`);
+        onValue(starCountRef, (snapshot) => {
+            const mpoints = snapshot.val();
+            if (mpoints !== null) {
+                setMpoints({ ...mpoints });
+            } else {
+                setMpoints({});
+            }
+        });
+        return () => {
+            setMpoints({});
+        };
+    }, []);
+
+
+
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
@@ -148,6 +176,8 @@ function AffiliateAdmin() {
                 dato.departamento.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
+
+
 
     return (
         <div>
