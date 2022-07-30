@@ -1,7 +1,85 @@
-import React from "react";
-import { useAuth } from '../../context/authContext'
+import React, { useState, useEffect } from "react";
+import { database } from "../Firebase";
+import { ref, onValue } from "firebase/database";
 import { Line, Bar } from "react-chartjs-2";
+import moment from "moment";
+import { useAuth } from '../../context/authContext'
 function GraphPointsPerMonthUser() {
+
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const starCountRef = ref(database, `transfer`);
+        onValue(starCountRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data !== null) {
+                setData({ ...data });
+            } else {
+                setData({});
+            }
+        });
+        return () => {
+            setData({});
+        };
+    }, []);
+
+    const datosparseados = Object.keys(data).map((key) => {
+        return {
+            fechacompleta: data[key].date,
+            año: parseInt(moment(data[key].date).format("YYYY")),
+            mes: parseInt(moment(data[key].date).format("MM")),
+            dia: parseInt(moment(data[key].date).format("DD")),
+            puntos: parseInt(data[key].points),
+        };
+    });
+
+    //sumar los puntos por mes
+    const sumarPuntosPorMes = (datosparseados) => {
+        let fecha = {
+            enero: 0,
+            febrero: 0,
+            marzo: 0,
+            abril: 0,
+            mayo: 0,
+            junio: 0,
+            julio: 0,
+            agosto: 0,
+            septiembre: 0,
+            octubre: 0,
+            noviembre: 0,
+            diciembre: 0,
+        };
+        datosparseados.forEach((element) => {
+            if (element.mes === 1) {
+                fecha.enero += element.puntos;
+            } else if (element.mes === 2) {
+                fecha.febrero += element.puntos;
+            } else if (element.mes === 3) {
+                fecha.marzo += element.puntos;
+            } else if (element.mes === 4) {
+                fecha.abril += element.puntos;
+            } else if (element.mes === 5) {
+                fecha.mayo += element.puntos;
+            } else if (element.mes === 6) {
+                fecha.junio += element.puntos;
+            } else if (element.mes === 7) {
+                fecha.julio += element.puntos;
+            } else if (element.mes === 8) {
+                fecha.agosto += element.puntos;
+            } else if (element.mes === 9) {
+                fecha.septiembre += element.puntos;
+            } else if (element.mes === 10) {
+                fecha.octubre += element.puntos;
+            } else if (element.mes === 11) {
+                fecha.noviembre += element.puntos;
+            } else if (element.mes === 12) {
+                fecha.diciembre += element.puntos;
+            }
+        });
+        return fecha;
+    };
+
+
     const { user } = useAuth();
     const areaData = {
         labels: [
@@ -22,10 +100,21 @@ function GraphPointsPerMonthUser() {
             {
                 label: "Puntos",
                 data: [
-                    0, 5000, 20000, 15000, 30000, 0, 30000, 35000, 3000, 2000, 0, 100000
+                    sumarPuntosPorMes(datosparseados).enero,
+                    sumarPuntosPorMes(datosparseados).febrero,
+                    sumarPuntosPorMes(datosparseados).marzo,
+                    sumarPuntosPorMes(datosparseados).abril,
+                    sumarPuntosPorMes(datosparseados).mayo,
+                    sumarPuntosPorMes(datosparseados).junio,
+                    sumarPuntosPorMes(datosparseados).julio,
+                    sumarPuntosPorMes(datosparseados).agosto,
+                    sumarPuntosPorMes(datosparseados).septiembre,
+                    sumarPuntosPorMes(datosparseados).octubre,
+                    sumarPuntosPorMes(datosparseados).noviembre,
+                    sumarPuntosPorMes(datosparseados).diciembre,
                 ],
                 backgroundColor: [
-                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(0, 255, 3, 0.2)",
                     "rgba(54, 162, 235, 0.2)",
                     "rgba(255, 206, 86, 0.2)",
                     "rgba(75, 192, 192, 0.2)",
@@ -40,7 +129,7 @@ function GraphPointsPerMonthUser() {
 
                 ],
                 borderColor: [
-                    "rgba(255,99,132,1)",
+                    "rgba(0, 255, 3, 1)",
                     "rgba(54, 162, 235, 1)",
                     "rgba(255, 206, 86, 1)",
                     "rgba(75, 192, 192, 1)",
@@ -60,7 +149,7 @@ function GraphPointsPerMonthUser() {
         ],
     };
 
-    const data = {
+    const datas = {
         labels: [
             "Enero",
             "Febrero",
@@ -79,8 +168,18 @@ function GraphPointsPerMonthUser() {
             {
                 label: "Puntos",
                 data: [
-                    0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000,
-                    50000, 55000
+                    sumarPuntosPorMes(datosparseados).enero,
+                    sumarPuntosPorMes(datosparseados).febrero,
+                    sumarPuntosPorMes(datosparseados).marzo,
+                    sumarPuntosPorMes(datosparseados).abril,
+                    sumarPuntosPorMes(datosparseados).mayo,
+                    sumarPuntosPorMes(datosparseados).junio,
+                    sumarPuntosPorMes(datosparseados).julio,
+                    sumarPuntosPorMes(datosparseados).agosto,
+                    sumarPuntosPorMes(datosparseados).septiembre,
+                    sumarPuntosPorMes(datosparseados).octubre,
+                    sumarPuntosPorMes(datosparseados).noviembre,
+                    sumarPuntosPorMes(datosparseados).diciembre,
                 ],
                 backgroundColor: [
                     "rgba(255, 99, 132, 0.2)",
@@ -149,7 +248,7 @@ function GraphPointsPerMonthUser() {
                             <div className="card">
                                 <div className="card-body">
                                     <h4 className="card-title">Puntos</h4>
-                                    <Bar data={data} />
+                                    <Bar data={datas} />
                                 </div>
                             </div>
                         </div>

@@ -38,7 +38,6 @@ function CompaniesAdmin() {
         length,
     } = company;
 
-
     const nombredepartamentos = departamentos.map((item, i) => item.nombre);
 
     const departaments = nombredepartamentos[company.iddepartaments];
@@ -120,7 +119,6 @@ function CompaniesAdmin() {
     const searcher = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
-
     };
 
     const nombre = Object.keys(data).map((item, i) => data[item]);
@@ -139,8 +137,6 @@ function CompaniesAdmin() {
                 dato.address.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
-
-    console.log(company);
 
     return (
         <div>
@@ -324,7 +320,6 @@ function CompaniesAdmin() {
                                         )
                                     )}
                             </select>
-
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>DIRECCION</Form.Label>
