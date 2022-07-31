@@ -29,25 +29,18 @@ function DashboardSetting() {
     const month = date.getMonth();
     const day = date.getDate();
 
-
-
-
-
-
-
     const handleChange = ({ target: { name, value } }) => {
         setUsers({ ...users, [name]: value });
     };
 
     const handleChangeFile = ({ target: { name, files } }) => {
         setUsers({ ...users, [name]: files[0] });
-    }
+    };
 
     console.log(user);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
 
         if (
             users.titlecarousel === "" ||
@@ -67,9 +60,9 @@ function DashboardSetting() {
                 toast.error("No puedes crear un perfil de administrador");
             } else {
                 try {
-                    const urlimg1 = await CarouselImg(users.imgcarousel1)
-                    const urlimg2 = await CarouselImg2(users.imgcarousel2)
-                    const urlimg3 = await CarouselImg3(users.imgcarousel3)
+                    const urlimg1 = await CarouselImg(users.imgcarousel1);
+                    const urlimg2 = await CarouselImg2(users.imgcarousel2);
+                    const urlimg3 = await CarouselImg3(users.imgcarousel3);
                     const refusers = ref(database, "dashboard/");
                     await set(refusers, {
                         titlecarousel: users.titlecarousel,
@@ -245,9 +238,7 @@ function DashboardSetting() {
                                                 onChange={handleChangeFile}
                                             />
                                         </div>
-                                        <p className="card-description">
-                                            MENSAJE DESCRIPTIVO
-                                        </p>
+                                        <p className="card-description">MENSAJE DESCRIPTIVO</p>
                                         <div className="form-group">
                                             <label htmlFor="labelimgcarousel3">
                                                 DESCRIPCION DE MENSAJE DE ETIQUETA

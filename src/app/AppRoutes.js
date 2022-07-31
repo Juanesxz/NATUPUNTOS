@@ -49,6 +49,7 @@ const ReportPointsForCustomers = lazy(() =>
 //settings
 const CreateProfile = lazy(() => import("./setting/CreateProfile"));
 const DashboardSetting = lazy(() => import("./setting/DashboardSetting"));
+const ListProfile = lazy(() => import("./setting/ListProfile"));
 
 class AppRoutes extends Component {
   render() {
@@ -120,6 +121,7 @@ class AppRoutes extends Component {
                 path="/setting/dashboardsetting"
                 component={DashboardSetting}
               />
+              <Route path="/setting/listprofile/:id" component={ListProfile} />
 
             </ProtectedRoute>
           </AuthProvider>

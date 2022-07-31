@@ -484,6 +484,19 @@ class Sidebar extends Component {
                       Dashboard
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/setting/dashboardsetting")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/setting/listprofile/list"
+                    >
+                      Lista de perfiles
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </Collapse>

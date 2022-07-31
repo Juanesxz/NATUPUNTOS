@@ -36,7 +36,8 @@ function UploadSupport() {
             user.department === "" ||
             user.city === "" ||
             user.address === "" ||
-            user.photo === null
+            user.photo === null ||
+            user.photo === undefined
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
@@ -91,6 +92,9 @@ function UploadSupport() {
                 toast.error("Error");
             });
     }, [id]);
+
+
+    console.log(user.photo);
 
 
 
