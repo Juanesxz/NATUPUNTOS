@@ -145,76 +145,82 @@ function DashboardUser() {
                     </div>
                 </div>
             </div>
-            <div className="col-md-12 col-xl-12 grid-margin stretch-card">
-                <div className="card">
-                    <div className="card-body">
-                        <h4 className="card-title text-center">{data.titlecarousel}</h4>
-                        <Carousel>
-                            <Carousel.Item interval={1000}>
-                                <img
-                                    className="d-block w-100"
-                                    src={data.imgcarousel1}
-                                    alt="First slide"
-                                    width={900}
-                                    height={700}
-                                />
-                                <Carousel.Caption>
-                                    <h3>{data.titleimgcarousel1}</h3>
-                                    <p>{data.labelimgcarousel1}</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={500}>
-                                <img
-                                    className="d-block w-100"
-                                    src={data.imgcarousel2}
-                                    alt="Second slide"
-                                    width={900}
-                                    height={700}
-                                />
-                                <Carousel.Caption>
-                                    <h3>{data.titleimgcarousel2}</h3>
-                                    <p>{data.labelimgcarousel2}</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img
-                                    className="d-block w-100"
-                                    src={data.imgcarousel3}
-                                    alt="Third slide"
-                                    width={900}
-                                    height={700}
-                                />
-                                <Carousel.Caption>
-                                    <h3>{data.titleimgcarousel3}</h3>
-                                    <p>{data.labelimgcarousel3}</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                        </Carousel>
-                        <div className="d-flex py-4">
-                            <div className="preview-list w-100">
-                                <div className="preview-item p-0">
-                                    <div className="preview-thumbnail">
-                                        <img
-                                            src={require("../../assets/images/faces/face12.jpg")}
-                                            className="rounded-circle"
-                                            alt="face"
-                                        />
-                                    </div>
-                                    <div className="preview-item-content d-flex flex-grow">
-                                        <div className="flex-grow">
-                                            <div className="d-flex d-md-block d-xl-flex justify-content-between">
-                                                <h6 className="preview-subject">{data.email}</h6>
-                                                <p className="text-muted text-small">
-                                                    {data.createdAt}
-                                                </p>
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }} >
+                <div className="col-md-9  col-xl-9 grid-margin stretch-card">
+                    <div className="card">
+                        <div className="card-body">
+                            <h4 className="card-title text-center">{data.titlecarousel}</h4>
+                            <Carousel>
+                                <Carousel.Item interval={1000}>
+                                    <img
+                                        className="d-block w-100"
+                                        src={data.imgcarousel1}
+                                        alt="First slide"
+                                        width={100}
+                                        height={1300}
+                                    />
+                                    <Carousel.Caption>
+                                        <h3>{data.titleimgcarousel1}</h3>
+                                        <p>{data.labelimgcarousel1}</p>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={500}>
+                                    <img
+                                        className="d-block w-100"
+                                        src={data.imgcarousel2}
+                                        alt="Second slide"
+                                        width={100}
+                                        height={1300}
+                                    />
+                                    <Carousel.Caption>
+                                        <h3>{data.titleimgcarousel2}</h3>
+                                        <p>{data.labelimgcarousel2}</p>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src={data.imgcarousel3}
+                                        alt="Third slide"
+                                        width={100}
+                                        height={1300}
+                                    />
+                                    <Carousel.Caption>
+                                        <h3>{data.titleimgcarousel3}</h3>
+                                        <p>{data.labelimgcarousel3}</p>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            </Carousel>
+                            <div className="d-flex py-4">
+                                <div className="preview-list w-100">
+                                    <div className="preview-item p-0">
+                                        <div className="preview-thumbnail">
+                                            <img
+                                                src={require("../../assets/images/faces/face12.jpg")}
+                                                className="rounded-circle"
+                                                alt="face"
+                                            />
+                                        </div>
+                                        <div className="preview-item-content d-flex flex-grow">
+                                            <div className="flex-grow">
+                                                <div className="d-flex d-md-block d-xl-flex justify-content-between">
+                                                    <h6 className="preview-subject">{data.email}</h6>
+                                                    <p className="text-muted text-small">
+                                                        {data.createdAt}
+                                                    </p>
+                                                </div>
+                                                <p className="text-muted">{data.role}</p>
                                             </div>
-                                            <p className="text-muted">{data.role}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <p className="text-muted"> {data.descripcion} </p>
                         </div>
-                        <p className="text-muted"> {data.descripcion} </p>
                     </div>
                 </div>
             </div>
