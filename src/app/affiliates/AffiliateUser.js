@@ -33,6 +33,7 @@ function AffiliateUser() {
         morepoints,
         municipio = 0,
         departamento,
+        totalpoints = 0,
     } = state;
 
     //form modal submit
@@ -70,11 +71,13 @@ function AffiliateUser() {
     const handleSubmitPoints = (e) => {
         e.preventDefault();
         const newPoints = parseInt(points) + parseInt(morepoints);
+
         if (isNaN(newPoints)) {
             toast.error("Por favor ingrese un numero");
         } else {
             update(ref(database, `users/${id}`), {
                 points: newPoints,
+                totalpoints: parseInt(morepoints) + parseInt(totalpoints),
             });
             toast.success("Puntos actualizados");
             handleClosePoints();

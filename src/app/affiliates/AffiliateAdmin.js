@@ -30,6 +30,7 @@ function AffiliateAdmin() {
         morepoints = 0,
         municipio,
         departamento,
+        totalpoints = 0,
     } = state;
 
 
@@ -75,7 +76,7 @@ function AffiliateAdmin() {
         } else {
             update(ref(database, `users/${id}`), {
                 points: newPoints,
-                totalpoints: newPoints,
+                totalpoints: parseInt(morepoints) + parseInt(totalpoints),
             });
             toast.success("Puntos actualizados");
             handleClosePoints();
