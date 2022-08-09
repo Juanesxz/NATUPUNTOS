@@ -46,6 +46,8 @@ const ReportPointsForCustomers = lazy(() =>
   import("./reports/ReportPointsForCustomers")
 );
 
+const CompanyHistory = lazy(() => import("./reports/CompanyHistory"));
+
 //settings
 const CreateProfile = lazy(() => import("./setting/CreateProfile"));
 const DashboardSetting = lazy(() => import("./setting/DashboardSetting"));
@@ -113,6 +115,7 @@ class AppRoutes extends Component {
                 path="/reports/reportpointsforcustomers"
                 component={ReportPointsForCustomers}
               />
+              <Route path="/reports/companyhistory/:id" component={CompanyHistory} />
 
               {/* settings */}
 

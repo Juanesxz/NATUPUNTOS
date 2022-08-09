@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import { database } from "../Firebase";
-
+import { Link } from "react-router-dom";
 
 function ReportPointsByCompaniesAdmin() {
     const [data, setData] = useState({});
@@ -26,6 +26,7 @@ function ReportPointsByCompaniesAdmin() {
     }, [id]);
 
 
+
     const searcher = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
@@ -46,9 +47,6 @@ function ReportPointsByCompaniesAdmin() {
                 dato.nit.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
-
-
-
 
     return (
         <div>
@@ -98,6 +96,7 @@ function ReportPointsByCompaniesAdmin() {
                                         <th>NOMBRE DE LA EMPRESA</th>
                                         <th>NIT</th>
                                         <th>TOTAL PUNTOS</th>
+                                        <th>ACCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,12 +107,23 @@ function ReportPointsByCompaniesAdmin() {
                                                     <td>{key + 1}</td>
                                                     <td>{results[id].companyname}</td>
                                                     <td>{results[id].nit}</td>
-                                                    <td>{results[id].totalpoints ? results[id].totalpoints : 0}</td>
-
+                                                    <td>
+                                                        {results[id].totalpoints
+                                                            ? results[id].totalpoints
+                                                            : 0}
+                                                    </td>
+                                                    <td>
+                                                        <Link
+                                                            to={`/reports/companyhistory/${results[id].id}`}
+                                                        >
+                                                            <button className="btn btn-outline-success">
+                                                                Historial
+                                                            </button>
+                                                        </Link>
+                                                    </td>
                                                 </tr>
                                             );
-                                        }
-                                        )}
+                                        })}
                                 </tbody>
                             </table>
                         </div>
