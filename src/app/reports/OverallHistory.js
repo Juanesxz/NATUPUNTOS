@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { database } from "../Firebase";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import moment from "moment";
 
-function CompanyHistory() {
+function OverallHistory() {
+
     const [transfer, setTransfer] = useState({});
 
     const { id } = useParams();
+
 
     useEffect(() => {
         const starCountRef = ref(database, `transfer`);
@@ -26,19 +28,18 @@ function CompanyHistory() {
         };
     }, [id]);
 
-    console.log(transfer);
-
     return (
-        <Container
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-            }}
-        >
-            <div>
-                {Object.keys(transfer).map((key, index) => {
-                    if (transfer[key].empresaId === id) {
+        <div>
+            <Container
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <div>
+                    {Object.keys(transfer).map((key, index) => {
+
                         return (
                             <Card
                                 className="text-center text-success"
@@ -121,13 +122,11 @@ function CompanyHistory() {
                                 </Card.Footer>
                             </Card>
                         );
-                    } else {
-                        return null;
-                    }
-                })}
-            </div>
-        </Container>
-    );
+                    })}
+                </div>
+            </Container>
+        </div>
+    )
 }
 
-export default CompanyHistory;
+export default OverallHistory
