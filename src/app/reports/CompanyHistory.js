@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { database } from "../Firebase";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";

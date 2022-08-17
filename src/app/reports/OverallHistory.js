@@ -7,11 +7,9 @@ import Container from "react-bootstrap/Container";
 import moment from "moment";
 
 function OverallHistory() {
-
     const [transfer, setTransfer] = useState({});
 
     const { id } = useParams();
-
 
     useEffect(() => {
         const starCountRef = ref(database, `transfer`);
@@ -39,7 +37,6 @@ function OverallHistory() {
             >
                 <div>
                     {Object.keys(transfer).map((key, index) => {
-
                         return (
                             <Card
                                 className="text-center text-success"
@@ -61,6 +58,13 @@ function OverallHistory() {
                                         NOMBRE DE LA EMPRESA:{" "}
                                     </Card.Title>
                                     <Card.Text>{transfer[key].empresaName}</Card.Text>
+                                    <Card.Title
+                                        style={{ display: "inline-block", margin: "5px" }}
+                                        as="h4"
+                                    >
+                                        ID DE LA EMPRESA:{" "}
+                                    </Card.Title>
+                                    <Card.Text>{transfer[key].empresaId}</Card.Text>
                                     <Card.Title
                                         style={{ display: "inline-block", margin: "5px" }}
                                         as="h4"
@@ -126,7 +130,7 @@ function OverallHistory() {
                 </div>
             </Container>
         </div>
-    )
+    );
 }
 
-export default OverallHistory
+export default OverallHistory;

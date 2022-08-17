@@ -426,6 +426,32 @@ class Sidebar extends Component {
                       Puntos por ciudad
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/reports/OverallHistory")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/reports/OverallHistory"
+                    >
+                      Historial general
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/reports/historytable")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/reports/historytable"
+                    >
+                      Tabla historial general
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </Collapse>

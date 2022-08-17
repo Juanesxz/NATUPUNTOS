@@ -8,11 +8,8 @@ import { toast } from "react-toastify";
 import { departamentos } from "../../components/Department";
 
 function NewCompaniesAdmin() {
-
     const year = new Date();
     const FullYear = year.getFullYear();
-
-
 
     const [user, setUser] = useState({
         companyname: "",
@@ -30,8 +27,6 @@ function NewCompaniesAdmin() {
         photo: null,
         totalpoints: 0,
     });
-
-
 
     const nombredepartamentos = departamentos.map((item, i) => item.nombre);
 
@@ -72,7 +67,12 @@ function NewCompaniesAdmin() {
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
-            if (user.photo.type === "image/jpeg" || user.photo.type === "image/png" || user.photo.type === "image/jpg" || user.photo.type === "image/gif") {
+            if (
+                user.photo.type === "image/jpeg" ||
+                user.photo.type === "image/png" ||
+                user.photo.type === "image/jpg" ||
+                user.photo.type === "image/gif"
+            ) {
                 try {
                     const infoEmpresa = await signup(user.email, user.password);
                     const infofoto = await uploadFile(user.photo, infoEmpresa.user.uid);
@@ -156,10 +156,7 @@ function NewCompaniesAdmin() {
                                 </div>
                             </Form.Group>
                             <Form.Group className="row">
-                                <label
-                                    htmlFor="password"
-                                    className="col-sm-3 col-form-label"
-                                >
+                                <label htmlFor="password" className="col-sm-3 col-form-label">
                                     Contraseña asignada
                                 </label>
                                 <div className="col-sm-9">

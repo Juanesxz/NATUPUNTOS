@@ -48,6 +48,7 @@ const ReportPointsForCustomers = lazy(() =>
 
 const CompanyHistory = lazy(() => import("./reports/CompanyHistory"));
 const OverallHistory = lazy(() => import("./reports/OverallHistory"));
+const HistoryTable = lazy(() => import("./reports/HistoryTable"));
 
 //settings
 const CreateProfile = lazy(() => import("./setting/CreateProfile"));
@@ -120,7 +121,11 @@ class AppRoutes extends Component {
                 path="/reports/companyhistory/:id"
                 component={CompanyHistory}
               />
-              <Route path="/reports/overallhistory" component={OverallHistory} />
+              <Route
+                path="/reports/overallhistory"
+                component={OverallHistory}
+              />
+              <Route path="/reports/historytable" component={HistoryTable} />
 
               {/* settings */}
 
