@@ -17,7 +17,7 @@ function Profile() {
                 <div className="navbar-profile">
                     <img
                         className="img-xs rounded-circle"
-                        src={require("../assets/images/faces/face15.jpg")}
+                        src={require("../assets/images/faces/face15.png")}
                         alt="profile"
                     />
                     <p className="mb-0 d-none d-sm-block navbar-profile-name">

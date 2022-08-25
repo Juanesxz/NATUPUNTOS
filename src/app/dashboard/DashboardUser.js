@@ -200,7 +200,7 @@ function DashboardUser() {
                                     <div className="preview-item p-0">
                                         <div className="preview-thumbnail">
                                             <img
-                                                src={require("../../assets/images/faces/face12.jpg")}
+                                                src={require("../../assets/images/faces/face15.png")}
                                                 className="rounded-circle"
                                                 alt="face"
                                             />
