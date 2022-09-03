@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { useAuth } from "../../context/authContext";
-
 import { ref, onValue } from "firebase/database";
 import { database } from "../Firebase";
 
 function ReportPointsByCityUser() {
-
     const [mpoints, setMpoints] = useState({});
     const [search, setSearch] = useState("");
 
@@ -44,8 +41,6 @@ function ReportPointsByCityUser() {
             dato.municipio.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
-
-
 
     const { user } = useAuth();
     return (
@@ -100,7 +95,9 @@ function ReportPointsByCityUser() {
                                                 <tr key={key}>
                                                     <td>{id + 1}</td>
                                                     <td>{results[key].municipio}</td>
-                                                    <td>{results[key].points ? results[key].points : 0}</td>
+                                                    <td>
+                                                        {results[key].points ? results[key].points : 0}
+                                                    </td>
                                                 </tr>
                                             ))}
                                         </tbody>

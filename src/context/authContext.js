@@ -57,6 +57,8 @@ export function AuthProvider({ children }) {
                     const readreportspointspercustomer = docu.readreportspointspercustomer ? docu.readreportspointspercustomer : null;
                     const readreportspointsbycompanies = docu.readreportspointsbycompanies ? docu.readreportspointsbycompanies : null;
                     const readreportspointsbycity = docu.readreportspointsbycity ? docu.readreportspointsbycity : null;
+                    const readoverallhistory = docu.readoverallhistory ? docu.readoverallhistory : null;
+                    const readhistorytable = docu.readhistorytable ? docu.readhistorytable : null;
                     const userData = {
                         name: name,
                         email: currentUser.email,
@@ -78,10 +80,13 @@ export function AuthProvider({ children }) {
                         readreportspointspercustomer: readreportspointspercustomer,
                         readreportspointsbycompanies: readreportspointsbycompanies,
                         readreportspointsbycity: readreportspointsbycity,
+                        readoverallhistory: readoverallhistory,
+                        readhistorytable: readhistorytable,
                     };
 
                     setUser(userData);
                     setLoading(false);
+                    console.log(currentUser)
                 });
             } else {
                 const userData = {

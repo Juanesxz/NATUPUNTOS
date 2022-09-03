@@ -118,7 +118,6 @@ function CompaniesUser() {
     const searcher = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
-        console.log(e.target.value);
     };
 
     const nombre = Object.keys(data).map((item, i) => data[item]);
@@ -137,8 +136,6 @@ function CompaniesUser() {
                 dato.address.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
-
-
 
     return (
         <div>
@@ -341,7 +338,6 @@ function CompaniesUser() {
                                                 )
                                             )}
                                     </select>
-
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>DIRECCION</Form.Label>

@@ -80,12 +80,11 @@ function UploadSupport() {
                             body: JSON.stringify({
                                 destino: user.email,
                                 asunto: "Comprobante de pago",
-                                cuerpo: `<hr><center><h1>El pago para la empresa ${user.companyname
-                                    } ha sido procesado
-                            de manera correcta. </h1><p>Se adjunta comprobante de la transación.</p><b><i>SOPORTE</i></b><br><br><img src='${infosoporte}' width='300' height='300'>
+                                cuerpo: `<hr><center><h1>COMPROBANTE DE PAGO</h1> <p>El pago para la empresa ${user.companyname
+                                    } ha sido procesado de manera exitosa.  <br>
+                                Se adjunta comprobante de la transacción.!</p> <img src='${infosoporte}' width='300' height='300'>
                             </center>
-                            Administrador Andrés Gonzalés
-                            <br>
+                            <p>Administrador Andrés Gonzalés</p>
                             ${moment(date).format("YYYY")}-${moment(
                                         date
                                     ).format("MM")}-${moment(date).format("DD")}/${moment(
@@ -143,8 +142,6 @@ function UploadSupport() {
                 toast.error("Error");
             });
     }, [id]);
-
-    console.log(user.points);
 
     return (
         <div>

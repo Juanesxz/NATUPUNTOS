@@ -514,7 +514,7 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/setting/dashboardsetting")
+                        this.isPathActive("/setting/listprofile/list")
                           ? "nav-link active"
                           : "nav-link"
                       }

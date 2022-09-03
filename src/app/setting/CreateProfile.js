@@ -29,6 +29,8 @@ function CreateProfile() {
         readreportspointspercustomer: "false",
         readreportspointsbycompanies: "false",
         readreportspointsbycity: "false",
+        readoverallhistory: "false",
+        readhistorytable: "false",
     });
 
     const history = useHistory();
@@ -80,6 +82,8 @@ function CreateProfile() {
                         readreportspointspercustomer: users.readreportspointspercustomer,
                         readreportspointsbycompanies: users.readreportspointsbycompanies,
                         readreportspointsbycity: users.readreportspointsbycity,
+                        readoverallhistory: users.readoverallhistory,
+                        readhistorytable: users.readhistorytable,
                     });
 
                     toast.success("Usuario creado correctamente");
@@ -462,6 +466,40 @@ function CreateProfile() {
                                                         <select
                                                             onChange={handleChange}
                                                             name="readreportspointsbycity"
+                                                            className="form-control"
+                                                        >
+                                                            <option>false</option>
+                                                            <option>true</option>
+                                                        </select>
+                                                    </div>
+                                                </Form.Group>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <Form.Group className="row">
+                                                    <label className="col-sm-3 col-form-label">
+                                                        Ver historial general
+                                                    </label>
+                                                    <div className="col-sm-9">
+                                                        <select
+                                                            onChange={handleChange}
+                                                            name="readoverallhistory"
+                                                            className="form-control"
+                                                        >
+                                                            <option>false</option>
+                                                            <option>true</option>
+                                                        </select>
+                                                    </div>
+                                                </Form.Group>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <Form.Group className="row">
+                                                    <label className="col-sm-3 col-form-label">
+                                                        Ver tabla del historial general
+                                                    </label>
+                                                    <div className="col-sm-9">
+                                                        <select
+                                                            onChange={handleChange}
+                                                            name="readhistorytable"
                                                             className="form-control"
                                                         >
                                                             <option>false</option>

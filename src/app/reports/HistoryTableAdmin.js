@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import { database } from "../Firebase";
+import moment from "moment";
 
-function ReportPointsForCustomersAdmin() {
-    const { id } = useParams();
-
+function HistoryTableAdmin() {
     const [data, setData] = useState({});
     const [search, setSearch] = useState("");
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { id } = useParams();
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-        const starCountRef = ref(database, `users`);
+        const starCountRef = ref(database, `transfer`);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             if (data !== null) {
@@ -39,24 +42,28 @@ function ReportPointsForCustomersAdmin() {
     } else {
         results = nombre.filter(
             (dato) =>
-                dato.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
-                dato.code.toLowerCase().includes(search.toLocaleLowerCase())
+                dato.clientName.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.points.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.empresaName.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.clientId.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.empresaId.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                dato.date.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
 
     return (
         <div>
             <div className="page-header">
-                <h3 className="page-title">Puntos Por Afiliado</h3>
+                <h3 className="page-title">TABLA DE HISTORIAL GENERAL</h3>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
                             <a href="!#" onClick={(event) => event.preventDefault()}>
-                                Reporte
+                                Lista
                             </a>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            Afiliado
+                            General
                         </li>
                     </ol>
                 </nav>
@@ -65,7 +72,7 @@ function ReportPointsForCustomersAdmin() {
                 <div className="card">
                     <div className="card-body">
                         <nav style={{ left: 0 }} className="navbar p-0 d-flex flex-row">
-                            <h4 className="card-title">Puntos Afiliados</h4>
+                            <h4 className="card-title">Historial general</h4>
                             <ul className="navbar-nav w-20">
                                 <li className="nav-item w-20">
                                     {data && (
@@ -80,15 +87,19 @@ function ReportPointsForCustomersAdmin() {
                                 </li>
                             </ul>
                         </nav>
-
                         <div className="table-responsive">
-                            <table className="table table-secondary  table-bordered">
+                            <table className="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>NOMBRE</th>
-                                        <th>CODIGO ASIGNADO</th>
-                                        <th>TOTAL PUNTOS</th>
+                                        <th>ID CLIENTE</th>
+                                        <th>NOMBRE CLIENTE</th>
+                                        <th>FECHA DE TRANSACCION</th>
+                                        <th>HORA</th>
+                                        <th>ID EMPRESA</th>
+                                        <th>NOMBRE EMPRESA</th>
+                                        <th>PUNTOS</th>
+                                        <th>ESTATUS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,12 +108,29 @@ function ReportPointsForCustomersAdmin() {
                                             return (
                                                 <tr key={id}>
                                                     <td>{key + 1}</td>
-                                                    <td>{results[id].name}</td>
-                                                    <td>{results[id].code}</td>
+                                                    <td>{results[id].clientId}</td>
+                                                    <td>{results[id].clientName}</td>
                                                     <td>
-                                                        {results[id].totalpoints
-                                                            ? results[id].totalpoints
-                                                            : 0}
+                                                        {" "}
+                                                        {`${moment(results[id].date).format(
+                                                            "YYYY"
+                                                        )}-${moment(results[id].date).format(
+                                                            "MM"
+                                                        )}-${moment(results[id].date).format("DD")}`}
+                                                    </td>
+                                                    <td>
+                                                        {" "}
+                                                        {`${moment(results[id].date).format("h")}:${moment(
+                                                            results[id].date
+                                                        ).format("mm")}:${moment(results[id].date).format(
+                                                            "ss"
+                                                        )} ${moment(results[id].date).format("A")}`}
+                                                    </td>
+                                                    <td>{results[id].empresaId}</td>
+                                                    <td>{results[id].empresaName}</td>
+                                                    <td>{results[id].points}</td>
+                                                    <td>
+                                                        {results[id].status ? "ACEPTADA" : "RECHAZADA"}
                                                     </td>
                                                 </tr>
                                             );
@@ -117,4 +145,4 @@ function ReportPointsForCustomersAdmin() {
     );
 }
 
-export default ReportPointsForCustomersAdmin;
+export default HistoryTableAdmin;

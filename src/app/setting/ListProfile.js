@@ -31,6 +31,8 @@ function ListProfile() {
         readreportspointspercustomer: "",
         readreportspointsbycompanies: "",
         readreportspointsbycity: "",
+        readoverallhistory: "",
+        readhistorytable: "",
     };
     const history = useHistory();
 
@@ -65,6 +67,8 @@ function ListProfile() {
         readreportspointspercustomer,
         readreportspointsbycompanies,
         readreportspointsbycity,
+        readoverallhistory,
+        readhistorytable,
     } = state;
 
     const handleSubmit = (e) => {
@@ -85,15 +89,17 @@ function ListProfile() {
             readcompaniespointsstatistics === "" ||
             readreportspointspercustomer === "" ||
             readreportspointsbycompanies === "" ||
-            readreportspointsbycity === ""
+            readreportspointsbycity === "" ||
+            readoverallhistory === "" ||
+            readhistorytable === ""
         ) {
             toast.error("Debe llenar todos los campos");
         } else {
-
             if (state.role === "ADMINISTRADOR") {
-                toast.error("No se puede cambiar los permisos de los usuarios administrador");
+                toast.error(
+                    "No se puede cambiar los permisos de los usuarios administrador"
+                );
             } else {
-
                 update(ref(database, `admin/${id}`), state);
                 toast.success("Afiliado actualizado");
                 handleClose();
@@ -112,7 +118,6 @@ function ListProfile() {
         if (role === "ADMINISTRADOR") {
             toast.error("No se puede eliminar los usuarios administrador");
         } else {
-
             if (window.confirm("¿Está seguro de eliminar este afiliado?")) {
                 remove(ref(database, `admin/${id}`));
                 toast.success("Afiliado eliminado");
@@ -169,8 +174,6 @@ function ListProfile() {
                 dato.email.toLowerCase().includes(search.toLocaleLowerCase())
         );
     }
-
-    console.log(results);
 
     const { user } = useAuth();
     return (
@@ -233,7 +236,6 @@ function ListProfile() {
                                                             <td> {results[id].role} </td>
                                                             {user.role === "ADMINISTRADOR" ? (
                                                                 <td>
-                                                                    
                                                                     <Link
                                                                         to={`/setting/listprofile/${results[id].id}`}
                                                                     >
@@ -248,7 +250,12 @@ function ListProfile() {
                                                                     <button
                                                                         type="button"
                                                                         className="btn btn-outline-danger btn-sm"
-                                                                        onClick={() => handleDelete(results[id].id, results[id].role)}
+                                                                        onClick={() =>
+                                                                            handleDelete(
+                                                                                results[id].id,
+                                                                                results[id].role
+                                                                            )
+                                                                        }
                                                                     >
                                                                         Eliminar
                                                                     </button>
@@ -256,8 +263,6 @@ function ListProfile() {
                                                             ) : (
                                                                 <td> </td>
                                                             )}
-
-
                                                         </tr>
                                                     );
                                                 })}
@@ -304,7 +309,6 @@ function ListProfile() {
                                 className="form-control form-control-lg"
                                 id="email"
                                 name="email"
-
                                 onChange={handleInputChange}
                                 placeholder={state.email}
                                 disabled={true}
@@ -318,7 +322,6 @@ function ListProfile() {
                                 className="form-control form-control-lg"
                                 id="role"
                                 name="role"
-
                                 onChange={handleInputChange}
                                 placeholder={state.role}
                                 disabled={true}
@@ -584,6 +587,38 @@ function ListProfile() {
                                     name="readreportspointsbycity"
                                     className="form-control"
                                     value={readreportspointsbycity || ""}
+                                >
+                                    <option>false</option>
+                                    <option>true</option>
+                                </select>
+                            </div>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <label className="col-sm-3 col-form-label">
+                                Ver historial general
+                            </label>
+                            <div className="col-sm-9">
+                                <select
+                                    onChange={handleInputChange}
+                                    name="readoverallhistory"
+                                    className="form-control"
+                                    value={readoverallhistory || ""}
+                                >
+                                    <option>false</option>
+                                    <option>true</option>
+                                </select>
+                            </div>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <label className="col-sm-3 col-form-label">
+                                Ver tabla del historial general
+                            </label>
+                            <div className="col-sm-9">
+                                <select
+                                    onChange={handleInputChange}
+                                    name="readhistorytable"
+                                    className="form-control"
+                                    value={readhistorytable || ""}
                                 >
                                     <option>false</option>
                                     <option>true</option>

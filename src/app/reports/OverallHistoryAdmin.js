@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import moment from "moment";
 
-function CompanyHistory() {
+function OverallHistoryAdmin() {
     const [transfer, setTransfer] = useState({});
 
     const { id } = useParams();
@@ -26,19 +26,17 @@ function CompanyHistory() {
         };
     }, [id]);
 
-
-
     return (
-        <Container
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-            }}
-        >
-            <div>
-                {Object.keys(transfer).map((key, index) => {
-                    if (transfer[key].empresaId === id) {
+        <div>
+            <Container
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <div>
+                    {Object.keys(transfer).map((key, index) => {
                         return (
                             <Card
                                 className="text-center text-success"
@@ -60,6 +58,13 @@ function CompanyHistory() {
                                         NOMBRE DE LA EMPRESA:{" "}
                                     </Card.Title>
                                     <Card.Text>{transfer[key].empresaName}</Card.Text>
+                                    <Card.Title
+                                        style={{ display: "inline-block", margin: "5px" }}
+                                        as="h4"
+                                    >
+                                        ID DE LA EMPRESA:{" "}
+                                    </Card.Title>
+                                    <Card.Text>{transfer[key].empresaId}</Card.Text>
                                     <Card.Title
                                         style={{ display: "inline-block", margin: "5px" }}
                                         as="h4"
@@ -121,13 +126,11 @@ function CompanyHistory() {
                                 </Card.Footer>
                             </Card>
                         );
-                    } else {
-                        return null;
-                    }
-                })}
-            </div>
-        </Container>
+                    })}
+                </div>
+            </Container>
+        </div>
     );
 }
 
-export default CompanyHistory;
+export default OverallHistoryAdmin;

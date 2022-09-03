@@ -10,7 +10,6 @@ function AdministrativePortfolioUser() {
     const [data, setData] = useState({});
     const [search, setSearch] = useState("");
 
-
     const { id } = useParams();
 
     useEffect(() => {
@@ -28,12 +27,9 @@ function AdministrativePortfolioUser() {
         };
     }, [id]);
 
-
-
     const searcher = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
-        console.log(e.target.value);
     };
 
     const nombre = Object.keys(data).map((item, i) => data[item]);

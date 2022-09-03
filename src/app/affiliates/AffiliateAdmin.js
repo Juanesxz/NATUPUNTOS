@@ -31,6 +31,7 @@ function AffiliateAdmin() {
         municipio,
         departamento,
         totalpoints = 0,
+        pass = ""
     } = state;
 
 
@@ -303,7 +304,6 @@ function AffiliateAdmin() {
                         <Form.Group className="mb-3">
                             <Form.Label>CODIGO ASIGNADO</Form.Label>
                             <Form.Control
-                                disabled
                                 type="text"
                                 placeholder=""
                                 id="code"
@@ -343,6 +343,19 @@ function AffiliateAdmin() {
                                 name="municipio"
                                 onChange={handleInputChange}
                                 value={municipio || ""}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>CONTRASEÑA</Form.Label>
+                            <Form.Control
+                                disabled
+                                type="text"
+                                placeholder=""
+                                id="pass"
+                                name="pass"
+                                onChange={handleInputChange}
+                                value={pass || ""}
+                                style={{ backgroundColor: "#2A3038", textAlign: "center" }}
                             />
                         </Form.Group>
 

@@ -34,6 +34,7 @@ function AffiliateUser() {
         municipio = 0,
         departamento,
         totalpoints = 0,
+        pass = "",
     } = state;
 
     //form modal submit
@@ -83,7 +84,9 @@ function AffiliateUser() {
             handleClosePoints();
             history.push("/affiliates/affiliate/list");
         }
-        const puntosmunicipio = isNaN(mpoints[state.municipio]?.points) ? parseInt(morepoints) : mpoints[state.municipio]?.points + parseInt(morepoints);
+        const puntosmunicipio = isNaN(mpoints[state.municipio]?.points)
+            ? parseInt(morepoints)
+            : mpoints[state.municipio]?.points + parseInt(morepoints);
         update(ref(database, `townshippoints/${state.municipio}`), {
             municipio: state.municipio,
             points: puntosmunicipio,
@@ -155,7 +158,6 @@ function AffiliateUser() {
     const searcher = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
-        console.log(e.target.value);
     };
 
     const nombre = Object.keys(data).map((item, i) => data[item]);
@@ -319,7 +321,7 @@ function AffiliateUser() {
                                 <Form.Group className="mb-3">
                                     <Form.Label>CODIGO ASIGNADO</Form.Label>
                                     <Form.Control
-                                        disabled
+
                                         type="text"
                                         placeholder=""
                                         id="code"
@@ -361,7 +363,19 @@ function AffiliateUser() {
                                         value={municipio || ""}
                                     />
                                 </Form.Group>
-
+                                <Form.Group className="mb-3">
+                                    <Form.Label>CONTRASEÑA</Form.Label>
+                                    <Form.Control
+                                        disabled
+                                        type="text"
+                                        placeholder=""
+                                        id="pass"
+                                        name="pass"
+                                        onChange={handleInputChange}
+                                        value={pass || ""}
+                                        style={{ backgroundColor: "#2A3038", textAlign: "center" }}
+                                    />
+                                </Form.Group>
                                 <Modal.Footer>
                                     <Button variant="outline-warning" onClick={handleClose}>
                                         Cancelar

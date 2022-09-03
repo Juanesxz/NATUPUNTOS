@@ -37,8 +37,6 @@ function DashboardSetting() {
         setUsers({ ...users, [name]: files[0] });
     };
 
-    console.log(user);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
