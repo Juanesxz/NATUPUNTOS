@@ -54,6 +54,7 @@ const HistoryTable = lazy(() => import("./reports/HistoryTable"));
 const CreateProfile = lazy(() => import("./setting/CreateProfile"));
 const DashboardSetting = lazy(() => import("./setting/DashboardSetting"));
 const ListProfile = lazy(() => import("./setting/ListProfile"));
+const ChangePassword = lazy(() => import("./setting/ChangePassword"))
 
 class AppRoutes extends Component {
   render() {
@@ -135,6 +136,8 @@ class AppRoutes extends Component {
                 component={DashboardSetting}
               />
               <Route path="/setting/listprofile/:id" component={ListProfile} />
+              <Route path="/setting/changepassword/:id" component={ChangePassword} />
+
             </ProtectedRoute>
           </AuthProvider>
           <Redirect to="/dashboard" />

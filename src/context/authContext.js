@@ -4,15 +4,12 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
+
 } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
 import { auth, database, auth2 } from "../app/Firebase";
 
-
 const authContext = createContext();
-
-
-
 
 export const useAuth = () => {
     const context = useContext(authContext);
@@ -31,6 +28,7 @@ export function AuthProvider({ children }) {
         signInWithEmailAndPassword(auth, email, password);
 
 
+
     const logout = () => signOut(auth);
 
     useEffect(() => {
@@ -43,22 +41,51 @@ export function AuthProvider({ children }) {
                     const name = docu.name ? docu.name : null;
                     const readafiliados = docu.readafiliados ? docu.readafiliados : null;
                     const editafiliados = docu.editafiliados ? docu.editafiliados : null;
-                    const deleteafiliados = docu.deleteafiliados ? docu.deleteafiliados : null;
+                    const deleteafiliados = docu.deleteafiliados
+                        ? docu.deleteafiliados
+                        : null;
                     const changepoints = docu.changepoints ? docu.changepoints : null;
-                    const readregisternewcompanies = docu.readregisternewcompanies ? docu.readregisternewcompanies : null;
-                    const readalliedcompanies = docu.readalliedcompanies ? docu.readalliedcompanies : null;
+                    const readregisternewcompanies = docu.readregisternewcompanies
+                        ? docu.readregisternewcompanies
+                        : null;
+                    const readalliedcompanies = docu.readalliedcompanies
+                        ? docu.readalliedcompanies
+                        : null;
                     const editcompanies = docu.editcompanies ? docu.editcompanies : null;
-                    const deletecompanies = docu.deletecompanies ? docu.deletecompanies : null;
-                    const moreinfocompanies = docu.moreinfocompanies ? docu.moreinfocompanies : null;
-                    const readadministrativeportfolio = docu.readadministrativeportfolio ? docu.readadministrativeportfolio : null;
-                    const administrativepaymentmethod = docu.administrativepaymentmethod ? docu.administrativepaymentmethod : null;
-                    const readstatisticspointspermonth = docu.readstatisticspointspermonth ? docu.readstatisticspointspermonth : null;
-                    const readcompaniespointsstatistics = docu.readcompaniespointsstatistics ? docu.readcompaniespointsstatistics : null;
-                    const readreportspointspercustomer = docu.readreportspointspercustomer ? docu.readreportspointspercustomer : null;
-                    const readreportspointsbycompanies = docu.readreportspointsbycompanies ? docu.readreportspointsbycompanies : null;
-                    const readreportspointsbycity = docu.readreportspointsbycity ? docu.readreportspointsbycity : null;
-                    const readoverallhistory = docu.readoverallhistory ? docu.readoverallhistory : null;
-                    const readhistorytable = docu.readhistorytable ? docu.readhistorytable : null;
+                    const deletecompanies = docu.deletecompanies
+                        ? docu.deletecompanies
+                        : null;
+                    const moreinfocompanies = docu.moreinfocompanies
+                        ? docu.moreinfocompanies
+                        : null;
+                    const readadministrativeportfolio = docu.readadministrativeportfolio
+                        ? docu.readadministrativeportfolio
+                        : null;
+                    const administrativepaymentmethod = docu.administrativepaymentmethod
+                        ? docu.administrativepaymentmethod
+                        : null;
+                    const readstatisticspointspermonth = docu.readstatisticspointspermonth
+                        ? docu.readstatisticspointspermonth
+                        : null;
+                    const readcompaniespointsstatistics =
+                        docu.readcompaniespointsstatistics
+                            ? docu.readcompaniespointsstatistics
+                            : null;
+                    const readreportspointspercustomer = docu.readreportspointspercustomer
+                        ? docu.readreportspointspercustomer
+                        : null;
+                    const readreportspointsbycompanies = docu.readreportspointsbycompanies
+                        ? docu.readreportspointsbycompanies
+                        : null;
+                    const readreportspointsbycity = docu.readreportspointsbycity
+                        ? docu.readreportspointsbycity
+                        : null;
+                    const readoverallhistory = docu.readoverallhistory
+                        ? docu.readoverallhistory
+                        : null;
+                    const readhistorytable = docu.readhistorytable
+                        ? docu.readhistorytable
+                        : null;
                     const userData = {
                         name: name,
                         email: currentUser.email,
@@ -86,7 +113,6 @@ export function AuthProvider({ children }) {
 
                     setUser(userData);
                     setLoading(false);
-                    console.log(currentUser)
                 });
             } else {
                 const userData = {

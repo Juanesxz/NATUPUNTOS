@@ -523,6 +523,19 @@ class Sidebar extends Component {
                       Lista de perfiles
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/setting/changepassword/PQSgph7A9DbC4la0pUD1bM5q0MC2")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/setting/changepassword/PQSgph7A9DbC4la0pUD1bM5q0MC2"
+                    >
+                      Cambiar contraseña
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </Collapse>

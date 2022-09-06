@@ -66,6 +66,7 @@ function CreateProfile() {
                         name: users.name,
                         email: users.email,
                         role: users.role,
+                        password: users.password,
                         readafiliados: users.readafiliados,
                         editafiliados: users.editafiliados,
                         deleteafiliados: users.deleteafiliados,

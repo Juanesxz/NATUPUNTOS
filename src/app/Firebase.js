@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, updatePassword } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -26,6 +26,7 @@ export const database = getDatabase(app);
 export const app2 = initializeApp(firebaseConfig, "app2");
 export const auth2 = getAuth(app2);
 export const firestore = getStorage(app);
+
 
 export async function uploadFile(file, uid) {
     const storageRef = ref(firestore, "companyphotos/" + uid);
@@ -58,4 +59,11 @@ export async function CarouselImg3(file) {
     await uploadBytes(storageRef, file);
     const url = await getDownloadURL(storageRef);
     return url;
+}
+
+
+export async function adminnewpassword(newPassword) {
+    const auth = getAuth();
+    const userpass = auth.currentUser;
+    updatePassword(userpass, newPassword);
 }

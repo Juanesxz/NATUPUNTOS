@@ -105,7 +105,7 @@ function UploadSupport() {
                         history.push("/administrative/administrative-portfolio");
                         toast.success("Soporte subido exitosamente");
                     } catch (error) {
-                        console.log(error);
+                        toast.error(error);
                     }
                 } else {
                     toast.error(
